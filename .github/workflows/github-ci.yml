@@ -85,9 +85,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
 # [caching](https://github.com/actions/cache/blob/main/examples.md#using-multiple-systems-and-npm-config)
 # [caching](https://dev.to/mpocock1/how-to-cache-nodemodules-in-github-actions-with-yarn-24eh)
-
 # [run jobs in Docker containers](https://docs.github.com/en/free-pro-team@latest/actions/guides/building-and-testing-nodejs#running-on-a-different-operating-system)
-
 # [sonarcloud-github-action](https://github.com/SonarSource/sonarcloud-github-action)
