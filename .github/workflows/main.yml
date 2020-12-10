@@ -30,7 +30,7 @@ jobs:
 
 
   test:
-    # needs: build
+    needs: build
     runs-on: ubuntu-18.04
     strategy:
       matrix:
@@ -38,12 +38,12 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-      - name: npm ci
-        run: npm ci
+      # - name: Use Node.js ${{ matrix.node-version }}
+      #   uses: actions/setup-node@v1
+      #   with:
+      #     node-version: ${{ matrix.node-version }}
+      # - name: npm ci
+      #   run: npm ci
       - name: npm test
         run: CI=true npm test -- --coverage --testResultsProcessor jest-sonar-reporter
       - name: Archive code coverage results
