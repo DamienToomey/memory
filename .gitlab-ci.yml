@@ -1,0 +1,67 @@
+stages:
+  - build
+  - test
+  - docs
+  - quality
+
+build_job:
+  stage: build
+  image: node
+  script: 
+    - npm install
+    - npm run build
+  # Why use artificats and not cache to share
+  # build and node_modules across jobs ?
+  # See [GitLab | Cache vs artifacts](https://docs.gitlab.com/ee/ci/caching/#cache-vs-artifacts)
+  artifacts:
+    expire_in: 1 hour
+    paths:
+      - build
+      - node_modules/
+
+test_job:
+  stage: test
+  image: node
+  script:
+    # CI=true: run tests once and finish the process
+    # (i.e. stop default interactive CLI after a test run)
+    # See [Create React App | Running Tests](https://create-react-app.dev/docs/running-tests/#continuous-integration)
+    - CI=true npm test -- --coverage --testResultsProcessor jest-sonar-reporter
+    # --testResultsProcessor jest-sonar-reporter: to create `test-reporter.xml` for SonarCloud
+  artifacts:
+    paths:
+      - coverage
+      - reports
+
+docs_job:
+  stage: docs
+  image: node
+  script:
+    - npm run docs
+  artifacts:
+    paths:
+      - docs
+
+variables:
+  SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Defines the location of the analysis task cache
+  GIT_DEPTH: "0"  # Tells git to fetch all the branches of the project, required by the analysis task
+  
+quality_job:
+  stage: quality
+  image:
+    name: sonarsource/sonar-scanner-cli:latest
+    entrypoint: [""]
+  cache:
+    key: "${CI_JOB_NAME}"
+    paths:
+      - .sonar/cache
+  script:
+    - sonar-scanner -Dsonar.qualitygate.wait=true
+  # Fail job if SonarCloud Quality Gate fails
+  # https://community.sonarsource.com/t/how-to-block-the-merge-of-merge-requests-when-sonarqube-quality-gate-is-failed-with-gitlab/19530
+
+# [Use docker images built in previous stages](https://gitlab.com/gitlab-org/gitlab-runner/-/issues/1448)
+# [Passing Docker Image Between Build and Test Stage in GitLab Runner](https://forum.gitlab.com/t/passing-docker-image-between-build-and-test-stage-in-gitlab-runner/2444/7)
+# [Gitlab CI react-scripts: not found](https://stackoverflow.com/questions/61000671/gitlab-ci-react-scripts-not-found)
+# [GitLab CI/CD example with a dockerized ReactJS App](https://dev.to/christianmontero/gitlab-ci-cd-example-with-a-dockerized-reactjs-app-1cda)
+

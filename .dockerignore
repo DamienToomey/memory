@@ -1,0 +1,9 @@
+build
+coverage
+Dockerfile
+jsdoc.conf.json
+node_modules
+README2.md
+README.md
+reports
+sonar-project.properties
