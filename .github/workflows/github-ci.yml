@@ -127,13 +127,18 @@ jobs:
           echo "ls"
           ls
           git add hello.txt
+          echo "hello0"
           git commit -m "Deploying docs"
-          git config --global user.name 'DamienToomeye'
+          echo "hello1"
+          git config --global user.name 'DamienToomey'
+          echo "hello2"
           git config --global user.email 'DamienToomey@users.noreply.github.com'
+          echo "hello3"
           git remote set-url --push origin https://DamienToomey:$GITHUB_TOKEN@github.com/memory
+          echo "hello4"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
+        # [Push to origin from GitHub action](https://stackoverflow.com/questions/57921401/push-to-origin-from-github-action)
       # - name: Deploy docs folder to github pages
       #   uses: JamesIves/github-pages-deploy-action@3.7.1
       #   with:
