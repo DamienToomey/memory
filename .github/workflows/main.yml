@@ -8,13 +8,28 @@ on:
   pull_request:
     branches: [ master ]
 
+# [Building and testing Node.js](https://docs.github.com/en/free-pro-team@latest/actions/guides/building-and-testing-nodejs)
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   build:
     name: build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
+    strategy:
+      matrix:
+        node-version: [12.x]
     steps:
+      - name: Checkout repository
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-      - run: npm install
+      - name: Use Node.js ${{ matrix.node-version }
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: npm install
+      - run: npm install # npm ci
+      - name: npm run build
       - run: npm run build
+      # - name: Archive code coverage results
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     name: code-coverage-report
+      #     path: output/test/code-coverage.html
