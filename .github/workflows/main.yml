@@ -31,7 +31,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
-          ${{ runner.os }}-
+            ${{ runner.os }}-
       - name: npm ci
         run: npm ci
       - name: npm run build
