@@ -46,8 +46,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      # - name: npm ci
-      #   run: npm ci
+      - name: npm ci
+        run: npm ci
       - name: npm test
         run: CI=true npm test -- --coverage --testResultsProcessor jest-sonar-reporter
       - name: Archive code coverage results
