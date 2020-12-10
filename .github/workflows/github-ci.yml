@@ -125,7 +125,10 @@ jobs:
           touch hello.txt
           git add hello.txt
           git commit -m "Deploying docs"
-          git push origin my_new_branch
+          git remote set-url --push origin https://DamienToomey:$GITHUB_TOKEN@github.com/memory
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       # - name: Deploy docs folder to github pages
       #   uses: JamesIves/github-pages-deploy-action@3.7.1
       #   with:
