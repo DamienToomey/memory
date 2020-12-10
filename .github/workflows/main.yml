@@ -32,9 +32,9 @@ jobs:
   test:
     needs: build
     runs-on: ubuntu-18.04
-    strategy:
-      matrix:
-        node-version: [12.x]
+    # strategy:
+    #   matrix:
+    #     node-version: [12.x]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
