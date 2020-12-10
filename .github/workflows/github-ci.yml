@@ -128,11 +128,11 @@ jobs:
           ls
           git add hello.txt
           echo "hello0"
-          git commit -m "Deploying docs"
-          echo "hello1"
           git config --global user.name 'DamienToomey'
-          echo "hello2"
+          echo "hello1"
           git config --global user.email 'DamienToomey@users.noreply.github.com'
+          echo "hello2"
+          git commit -m "Deploying docs"
           echo "hello3"
           git remote set-url --push origin https://DamienToomey:$GITHUB_TOKEN@github.com/memory
           echo "hello4"
