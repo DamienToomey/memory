@@ -121,10 +121,15 @@ jobs:
           git checkout --orphan my_new_branch
           git rm -rf .
           git status
+          echo "ls"
           ls
           touch hello.txt
+          echo "ls"
+          ls
           git add hello.txt
           git commit -m "Deploying docs"
+          git config --global user.name 'DamienToomeye'
+          git config --global user.email 'DamienToomey@users.noreply.github.com'
           git remote set-url --push origin https://DamienToomey:$GITHUB_TOKEN@github.com/memory
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
