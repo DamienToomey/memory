@@ -58,7 +58,7 @@ jobs:
           path: "*reports/"
           retention-days: 1
 
-  docs:
+  generate_docs:
     runs-on: ubuntu-18.04
     strategy:
       matrix:
@@ -105,7 +105,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   deploy_docs:
-    needs: docs
+    needs: generate_docs
     runs-on: ubuntu-latest
     steps:
       - name: Download documentation artifact
@@ -117,8 +117,10 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: docs # The branch the action should deploy to.
-          FOLDER: docs # The folder the action should deploy.
+          FOLDER: "*docs" # The folder the action should deploy.
           CLEAN: true # Automatically remove deleted files from the deploy branch
+  # [Configuring a publishing source for your GitHub Pages site](https://docs.github.com/en/free-pro-team@latest/github/working-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site#choosing-a-publishing-source)
+
 
 # [caching](https://github.com/actions/cache/blob/main/examples.md#using-multiple-systems-and-npm-config)
 # [caching](https://dev.to/mpocock1/how-to-cache-nodemodules-in-github-actions-with-yarn-24eh)
