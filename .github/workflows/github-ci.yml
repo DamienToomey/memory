@@ -45,6 +45,10 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: code_coverage_artifact
+          # Why use a wild card * ?
+          # "If a wildcard pattern is used, the path hierarchy
+          # will be preserved after the first wildcard pattern."
+          # [upload-artifact](https://github.com/actions/upload-artifact#upload-using-multiple-paths-and-exclusions)
           path: "*coverage/"
           retention-days: 1
       - name: Archive Sonar compatible code coverage report
@@ -94,13 +98,18 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: sonar_code_coverage_artifact
-      - name: ls
-        run: ls coverage
       - name: SonarCloud Scan
         uses: sonarsource/sonarcloud-github-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          
+  publish_docs:
+    needs: docs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create branch docs
+        run: git checkout -b docs
 
 # [caching](https://github.com/actions/cache/blob/main/examples.md#using-multiple-systems-and-npm-config)
 # [caching](https://dev.to/mpocock1/how-to-cache-nodemodules-in-github-actions-with-yarn-24eh)
