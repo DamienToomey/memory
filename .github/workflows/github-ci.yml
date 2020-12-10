@@ -45,13 +45,13 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: code_coverage_artifact
-          path: "./coverage/"
+          path: "*coverage/"
           retention-days: 1
       - name: Archive Sonar compatible code coverage report
         uses: actions/upload-artifact@v2
         with:
           name: sonar_code_coverage_artifact
-          path: "./reports/"
+          path: "*reports/"
           retention-days: 1
 
   docs:
@@ -74,7 +74,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: documentation_artifact
-          path: "./docs/"
+          path: "*docs/"
           retention-days: 1
 
   sonarcloud:
