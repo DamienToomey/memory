@@ -9,7 +9,7 @@ build_job:
   image: node
   script: 
     - npm install
-    - npm run build
+    - CI=true npm run build
   # Why use artificats and not cache to share
   # build and node_modules across jobs ?
   # See [GitLab | Cache vs artifacts](https://docs.gitlab.com/ee/ci/caching/#cache-vs-artifacts)

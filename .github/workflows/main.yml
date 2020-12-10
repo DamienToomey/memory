@@ -23,10 +23,9 @@ jobs:
       - name: npm ci
         run: npm ci
       - name: npm run build
-        run: npm run build
+        run: CI=true npm run build
 
   test:
-    needs: build
     runs-on: ubuntu-18.04
     strategy:
       matrix:
@@ -73,6 +72,7 @@ jobs:
           retention-days: 1
 
   sonarcloud:
+    needs: test
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
