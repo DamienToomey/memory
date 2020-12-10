@@ -1,12 +1,9 @@
 name: CI
 
 # Controls when the action will run. 
-on:
+on: 
   # Triggers the workflow on push or pull request events but only for the master branch
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+  [push, pull_request]
 
 # [Building and testing Node.js](https://docs.github.com/en/free-pro-team@latest/actions/guides/building-and-testing-nodejs)
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -19,16 +16,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      # - name: Get npm cache directory
-      #   id: npm-cache
-      #   run: |
-      #     echo "::set-output name=dir::$(npm config get cache)"
-      # - uses: actions/cache@v2
-      #   with:
-      #     path: ${{ steps.npm-cache.outputs.dir }}
-      #     key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-      #     restore-keys: |
-      #       ${{ runner.os }}-node-
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
@@ -37,7 +24,6 @@ jobs:
         run: npm ci
       - name: npm run build
         run: npm run build
-
 
   test:
     needs: build
@@ -62,3 +48,5 @@ jobs:
           name: code_coverage_artifact
           path: coverage/
           retention-days: 5
+
+# [caching](https://github.com/actions/cache/blob/main/examples.md#using-multiple-systems-and-npm-config)
