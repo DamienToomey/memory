@@ -91,6 +91,8 @@ jobs:
         with:
           name: sonar_code_coverage_artifact
           path: reports/
+      - name: ls
+        run: ls reports
       - name: SonarCloud Scan
         uses: sonarsource/sonarcloud-github-action@master
         env:
