@@ -19,10 +19,16 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      - uses: actions/cache@v2
-        with:
-          path: 'node_modules'
-          key: ${{ runner.os }}-modules-${{ hashFiles('package.json') }}
+      # - name: Get npm cache directory
+      #   id: npm-cache
+      #   run: |
+      #     echo "::set-output name=dir::$(npm config get cache)"
+      # - uses: actions/cache@v2
+      #   with:
+      #     path: ${{ steps.npm-cache.outputs.dir }}
+      #     key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-node-
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
