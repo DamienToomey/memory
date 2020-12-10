@@ -118,26 +118,15 @@ jobs:
         run: ls -a
       - name: Create branch docs
         run: |
-          git checkout --orphan my_new_branch
+          git checkout --orphan docs
           git rm -rf .
-          git status
-          echo "ls"
-          ls
           touch hello.txt
-          echo "ls"
-          ls
           git add hello.txt
-          echo "hello0"
           git config --global user.name 'DamienToomey'
-          echo "hello1"
           git config --global user.email 'DamienToomey@users.noreply.github.com'
-          echo "hello2"
           git remote set-url origin https://DamienToomey:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-          echo "hello2.5"
           git commit -m "Deploying docs"
-          echo "hello3"
-          git push origin my_new_branch
-          echo "hello4"
+          git push origin docs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         # [Push to origin from GitHub action](https://stackoverflow.com/questions/57921401/push-to-origin-from-github-action)
