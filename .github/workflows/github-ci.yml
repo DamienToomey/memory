@@ -118,8 +118,7 @@ jobs:
         run: ls -a
       - name: Create branch docs
         run: |
-          git checkout -B docs
-          git pull
+          git checkout --orphan docs
           git rm -rf .
           touch hello.txt
           git add hello.txt
