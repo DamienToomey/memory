@@ -117,7 +117,7 @@ jobs:
       - name: ls -a
         run: ls -a
       - name: Create branch docs
-        run: git checkout -b docs
+        run: git checkout -b hello
       # - name: Deploy docs folder to github pages
       #   uses: JamesIves/github-pages-deploy-action@3.7.1
       #   with:
