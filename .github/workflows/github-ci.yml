@@ -132,9 +132,11 @@ jobs:
           echo "hello1"
           git config --global user.email 'DamienToomey@users.noreply.github.com'
           echo "hello2"
+          git remote set-url origin https://DamienToomey:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+          echo "hello2.5"
           git commit -m "Deploying docs"
           echo "hello3"
-          git remote set-url --push origin https://DamienToomey:$GITHUB_TOKEN@github.com/memory
+          git push origin my_new_branch
           echo "hello4"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
