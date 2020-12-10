@@ -114,7 +114,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: documentation_artifact
-      - name ls -a
+      - name: ls -a
         run: ls -a
       - name: Create branch docs
         run: git checkout -b docs
