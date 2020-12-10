@@ -86,10 +86,11 @@ jobs:
         with:
           # Disabling shallow clone is recommended for improving relevancy of reporting
           fetch-depth: 0
-      # - name: Download Sonar compatible code coverage report
-      #   uses: actions/download-artifact@v2
-      #   with:
-      #     name: sonar_code_coverage_artifact
+      - name: Download Sonar compatible code coverage report
+        uses: actions/download-artifact@v2
+        with:
+          name: sonar_code_coverage_artifact
+          path: reports/
       - name: ls
         run: ls
       - name: SonarCloud Scan
