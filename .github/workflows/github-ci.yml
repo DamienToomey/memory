@@ -90,11 +90,11 @@ jobs:
         with:
           # Disabling shallow clone is recommended for improving relevancy of reporting
           fetch-depth: 0
-      - name: Download code coverage report
+      - name: Download code coverage report artifact
         uses: actions/download-artifact@v2
         with:
           name: code_coverage_artifact
-      - name: Download Sonar compatible code coverage report
+      - name: Download Sonar compatible code coverage report artifact
         uses: actions/download-artifact@v2
         with:
           name: sonar_code_coverage_artifact
@@ -103,13 +103,24 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          
+
   publish_docs:
     needs: docs
     runs-on: ubuntu-latest
     steps:
       - name: Create branch docs
         run: git checkout -b docs
+      - name: Download documentation artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: documentation_artifact
+      - name: Deploy docs folder to github pages
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: docs # The branch the action should deploy to.
+          FOLDER: docs # The folder the action should deploy.
+          CLEAN: true # Automatically remove deleted files from the deploy branch
 
 # [caching](https://github.com/actions/cache/blob/main/examples.md#using-multiple-systems-and-npm-config)
 # [caching](https://dev.to/mpocock1/how-to-cache-nodemodules-in-github-actions-with-yarn-24eh)
