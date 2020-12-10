@@ -47,7 +47,30 @@ jobs:
         with:
           name: code_coverage_artifact
           path: coverage/
-          retention-days: 5
+          retention-days: 1
+
+  docs:
+    runs-on: ubuntu-18.04
+    strategy:
+      matrix:
+        node-version: [12.x]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: npm ci
+        run: npm ci
+      - name: npm run docs
+        run: npm run docs
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v2
+        with:
+          name: documentation_artifact
+          path: docs/
+          retention-days: 1
 
 # [caching](https://github.com/actions/cache/blob/main/examples.md#using-multiple-systems-and-npm-config)
 # [caching](https://dev.to/mpocock1/how-to-cache-nodemodules-in-github-actions-with-yarn-24eh)
