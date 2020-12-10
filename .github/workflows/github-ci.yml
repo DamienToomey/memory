@@ -41,11 +41,17 @@ jobs:
         run: npm ci
       - name: npm test
         run: CI=true npm test -- --coverage --testResultsProcessor jest-sonar-reporter
-      - name: Archive code coverage results
+      - name: Archive code coverage report
         uses: actions/upload-artifact@v2
         with:
           name: code_coverage_artifact
           path: coverage/
+          retention-days: 1
+      - name: Archive Sonar compatible code coverage report
+        uses: actions/upload-artifact@v2
+        with:
+          name: sonar_code_coverage_artifact
+          path: reports/
           retention-days: 1
 
   docs:
@@ -75,16 +81,22 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-      with:
-        # Disabling shallow clone is recommended for improving relevancy of reporting
-        fetch-depth: 0
-    - name: SonarCloud Scan
-      uses: sonarsource/sonarcloud-github-action@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          # Disabling shallow clone is recommended for improving relevancy of reporting
+          fetch-depth: 0
+      - name: Download Sonar compatible code coverage report
+        uses: actions/download-artifact@v2
+        with:
+          name: sonar_code_coverage_artifact
+      - name: ls
+        - run: ls
+      - name: SonarCloud Scan
+        uses: sonarsource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
 # [caching](https://github.com/actions/cache/blob/main/examples.md#using-multiple-systems-and-npm-config)
 # [caching](https://dev.to/mpocock1/how-to-cache-nodemodules-in-github-actions-with-yarn-24eh)
