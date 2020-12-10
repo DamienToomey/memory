@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-18.04
     strategy:
       matrix:
-        node-version: [12.x]
+        node-version: [11.x, 12.x]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -23,8 +23,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: npm install
-        run: npm install # npm ci
+      - name: npm ci
+        run: npm ci # npm ci
       - name: npm run build
         run: npm run build
       # - name: Archive code coverage results
