@@ -45,13 +45,13 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: code_coverage_artifact
-          path: coverage/
+          path: coverage/**
           retention-days: 1
       - name: Archive Sonar compatible code coverage report
         uses: actions/upload-artifact@v2
         with:
           name: sonar_code_coverage_artifact
-          path: reports/
+          path: reports/**
           retention-days: 1
 
   docs:
@@ -86,6 +86,11 @@ jobs:
         with:
           # Disabling shallow clone is recommended for improving relevancy of reporting
           fetch-depth: 0
+      - name: Download code coverage report
+        uses: actions/download-artifact@v2
+        with:
+          name: code_coverage_artifact
+          path: coverage/
       - name: Download Sonar compatible code coverage report
         uses: actions/download-artifact@v2
         with:
