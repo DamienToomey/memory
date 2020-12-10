@@ -112,13 +112,16 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: documentation_artifact
-      - name: Deploy docs folder to github pages
-        uses: JamesIves/github-pages-deploy-action@3.7.1
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: docs # The branch the action should deploy to.
-          FOLDER: "*docs" # The folder the action should deploy.
-          CLEAN: true # Automatically remove deleted files from the deploy branch
+      - name: Create branch docs
+        run: git checkout -b docs
+      # - name: Deploy docs folder to github pages
+      #   uses: JamesIves/github-pages-deploy-action@3.7.1
+      #   with:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     BRANCH: docs # The branch the action should deploy to.
+      #     FOLDER: "docs" # The folder the action should deploy.
+      #     CLEAN: true # Automatically remove deleted files from the deploy branch
+  # Activate GitHub Pages: Settings > Scroll down to GitHub Pages > Select branch and root
   # [Configuring a publishing source for your GitHub Pages site](https://docs.github.com/en/free-pro-team@latest/github/working-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site#choosing-a-publishing-source)
 
 
@@ -126,3 +129,5 @@ jobs:
 # [caching](https://dev.to/mpocock1/how-to-cache-nodemodules-in-github-actions-with-yarn-24eh)
 # [run jobs in Docker containers](https://docs.github.com/en/free-pro-team@latest/actions/guides/building-and-testing-nodejs#running-on-a-different-operating-system)
 # [sonarcloud-github-action](https://github.com/SonarSource/sonarcloud-github-action)
+
+# Code quality github action: https://github.com/peterjgrainger/action-create-branch/blob/master/.github/workflows/codeql-analysis.yml
