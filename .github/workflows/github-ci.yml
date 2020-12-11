@@ -93,7 +93,7 @@ jobs:
           path: "*docs/"
           retention-days: 1
 
-  sonarcloud:
+  quality: # measured with SonarCloud
     needs: unit-tests
     runs-on: ubuntu-latest
     # Most of the code in steps is given sonarcloud.io
@@ -119,7 +119,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   deploy:
-    needs: [build, unit-tests, docs]
+    needs: [build, quality, docs]
     runs-on: ubuntu-latest
     steps:
       - name: This a test to understantd actions/checkout@v2
