@@ -350,3 +350,6 @@ git checkout master
 Go to https://github.com/DamienToomey/memory/settings > Scroll down to GitHub Pages > Select docs branch and docs folder.
 
 #--ignore-unmatch      exit with a zero status even if nothing matched
+
+"Note: It can take up to 20 minutes for changes to your site to publish after you push the changes to GitHub."
+[GitHub Pages | Creating your site](https://docs.github.com/en/free-pro-team@latest/github/working-with-github-pages/creating-a-github-pages-site#creating-your-site)
