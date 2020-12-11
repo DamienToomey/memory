@@ -333,6 +333,7 @@ sudo npm run build
 ### Create empty docs branch that will contain web page for documentation with GitHub Pages
 
 ```
+git pull
 git branch -D docs
 git push origin --delete docs
 git checkout --orphan docs # create new branch with no history
