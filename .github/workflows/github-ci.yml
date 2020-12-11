@@ -116,25 +116,21 @@ jobs:
     steps:
       - name: Checkout only branch gh-pages
         uses: actions/checkout@v2
-        # with:
-        #   ref: gh-pages # checkout only gh-pages branch
+        with:
+          ref: gh-pages # checkout only gh-pages branch
           # branch gh-pages has already been created by
-          # hand when setting up GitHub Pages
+          # hand when setting up GitHub Pages (see README.md)
       - name: Enter GitHub credentials
         run: |
           git config --global user.name 'DamienToomey'
           git config --global user.email 'DamienToomey@users.noreply.github.com'
           git remote set-url origin https://DamienToomey:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-      - name: Checkout branch gh-pages
-        run: git checkout -B gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Delete folders/files on branch gh-pages
         run: git rm --ignore-unmatch -rf .
         # Initial state of branch gh-pages is an empty branch
         #--ignore-unmatch: exit with a zero status even if nothing matched
-      - name: Deploy to branch gh-pages
-        run: |
-          git commit --allow-empty -m "Initialize gh-pages branch"
-          git push origin gh-pages
       - name: Download documentation artifact
         uses: actions/download-artifact@v2
         with:
@@ -152,8 +148,6 @@ jobs:
           git add docs/
           git commit -m "Deploying docs and build"
           git push origin gh-pages
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
         # [Push to origin from GitHub action](https://stackoverflow.com/questions/57921401/push-to-origin-from-github-action)
       # - name: Deploy docs folder to github pages
