@@ -110,12 +110,14 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+        with:
+          ref: docs
       - name: Debugging
         run: git branch
-      - name: Create branch docs
-        run: |
-          git checkout docs
-          git rm -rf .
+      # - name: Create branch docs
+      #   run: |
+      #     git checkout docs
+      #     git rm -rf .
       - name: Download documentation artifact
         uses: actions/download-artifact@v2
         with:
