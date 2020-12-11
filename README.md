@@ -370,3 +370,20 @@ $ git add .
 $ git commit -m "Update"
 $ git push # to kick off CI pipeline
 ```
+
+#### Debugging
+
+- Reference:
+  - "It's not currently possible to manually trigger a rebuild, without pushing a commit to the appropriate branch."
+    - [How to force GitHub Pages build?](https://stackoverflow.com/questions/24098792/how-to-force-github-pages-build/61706020#61706020)
+
+At this point, if https://damientoomey.github.io/memory/docs or https://damientoomey.github.io/memory/app gives you a 404 page, but https://damientoomey.github.io/memory/docs/index.html or https://damientoomey.github.io/memory/app/index.html work, do
+
+```
+git commit -m 'rebuild pages' --allow-empty
+git push origin gh-pages
+```
+
+#### Deployment for GitHub Pages with Create React App
+
+https://create-react-app.dev/docs/deployment/#github-pages
