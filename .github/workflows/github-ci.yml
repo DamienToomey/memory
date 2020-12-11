@@ -14,7 +14,7 @@ jobs:
       matrix:
         node-version: [12.x]
     steps:
-      - name: Checkout repository
+      - name: Checkout branch on which commit was performed 
         uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
@@ -40,7 +40,7 @@ jobs:
       matrix:
         node-version: [12.x]
     steps:
-      - name: Checkout repository
+      - name: Checkout branch on which commit was performed 
         uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
@@ -76,7 +76,7 @@ jobs:
       matrix:
         node-version: [12.x]
     steps:
-      - name: Checkout repository
+      - name: Checkout branch on which commit was performed 
         uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
@@ -99,7 +99,7 @@ jobs:
     # Most of the code in steps is given sonarcloud.io
     # when creating a new project
     steps:
-      - name: Checkout repository
+      - name: Checkout branch on which commit was performed 
         uses: actions/checkout@v2
         with:
           # Disabling shallow clone is recommended for improving relevancy of reporting
@@ -122,18 +122,12 @@ jobs:
     needs: [build, quality, docs]
     runs-on: ubuntu-latest
     steps:
-      - name: This a test to understantd actions/checkout@v2
-        uses: actions/checkout@v2
-      - name: git branch
-        run: git branch
-      - name: Checkout only branch gh-pages
+      - name: Checkout branch gh-pages
         uses: actions/checkout@v2
         with:
-          ref: gh-pages # checkout only gh-pages branch
+          ref: gh-pages
           # branch gh-pages has already been created by
           # hand when setting up GitHub Pages (see README.md)
-      - name: git branch
-        run: git branch
       - name: Enter GitHub credentials
         run: |
           git config --global user.name 'DamienToomey'
