@@ -1,5 +1,8 @@
 # Memory
 
+- App: damientoomey.github.io/memory/app
+- Documentation: damientoomey.github.io/memory/docs
+
 Based on a Openclassrooms course: [Réalisez une application web avec React.js](https://openclassrooms.com/fr/courses/4664381-realisez-une-application-web-avec-react-js/4664801-demarrez-facilement-avec-create-react-app)
 
 This app uses [React](https://reactjs.org) and was created with Create React App.
