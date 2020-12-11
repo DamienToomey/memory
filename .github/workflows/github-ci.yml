@@ -124,6 +124,7 @@ jobs:
     steps:
       - name: This a test to understantd actions/checkout@v2
         uses: actions/checkout@v2
+      - name: git branch
         run: git branch
       - name: Checkout only branch gh-pages
         uses: actions/checkout@v2
@@ -131,6 +132,8 @@ jobs:
           ref: gh-pages # checkout only gh-pages branch
           # branch gh-pages has already been created by
           # hand when setting up GitHub Pages (see README.md)
+      - name: git branch
+        run: git branch
       - name: Enter GitHub credentials
         run: |
           git config --global user.name 'DamienToomey'
