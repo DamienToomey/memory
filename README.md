@@ -327,28 +327,46 @@ or
 ###
 
 ```
-sudo npm run build
+$ sudo npm run build
 ```
 
 ### Create empty docs branch that will contain web page for documentation with GitHub Pages
 
 ```
-git pull
-git branch -D docs
-git push origin --delete docs
-git checkout --orphan docs # create new branch with no history
-git rm -rf .
-git commit --allow-empty -m "Initialize docs branch"
-git push origin docs
-git branch
-git checkout master
+$ git pull
+$ git branch -D docs
+$ git push origin --delete docs
+$ git checkout --orphan docs # create new branch with no history
+$ git rm -rf .
+$ git commit --allow-empty -m "Initialize docs branch"
+$ git push origin docs
+$ git branch
+$ git checkout master
 ```
+
+At this stage, branch docs is empty.
 
 #### Configure GitHub Pages
 
 Go to https://github.com/DamienToomey/memory/settings > Scroll down to GitHub Pages > Select docs branch and docs folder.
 
-#--ignore-unmatch      exit with a zero status even if nothing matched
-
 "Note: It can take up to 20 minutes for changes to your site to publish after you push the changes to GitHub."
 [GitHub Pages | Creating your site](https://docs.github.com/en/free-pro-team@latest/github/working-with-github-pages/creating-a-github-pages-site#creating-your-site)
+
+At this stage, your website should be available at https://damientoomey.github.io/memory/index.html but not at https://damientoomey.github.io/memory
+
+#### Push to master branch to kick off CI pipeline
+
+**WARNING**: it seems like the website will be available at https://damientoomey.github.io/memory only after:
+- Step1: configuring GitHub Pages (as described above)
+- Step2: pushing HTML content to the branch docs
+
+Step1 and Step2 must be done in this order.
+
+In our case, HTML content is pushed to the branch docs in our CI pipeline.
+
+```
+$ git add .
+$ git commit -m "Update"
+$ git push # to kick off CI pipeline
+```
