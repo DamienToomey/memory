@@ -348,3 +348,5 @@ git checkout master
 #### Configure GitHub Pages
 
 Go to https://github.com/DamienToomey/memory/settings > Scroll down to GitHub Pages > Select docs branch and docs folder.
+
+#--ignore-unmatch      exit with a zero status even if nothing matched
