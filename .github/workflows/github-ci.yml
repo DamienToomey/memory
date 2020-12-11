@@ -110,7 +110,7 @@ jobs:
   #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   #         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-  deploy_docs:
+  deploy:
     needs: [build, generate_docs]
     runs-on: ubuntu-latest
     steps:
@@ -120,7 +120,7 @@ jobs:
           ref: gh-pages # checkout only gh-pages branch
           # branch gh-pages has already been created by
           # hand when setting up GitHub Pages
-      - name: Delete current documentation on branch gh-pages
+      - name: Delete folders/files on branch gh-pages
         run: git rm --ignore-unmatch -rf .
         # Initial state of branch gh-pages is an empty branch
         #--ignore-unmatch: exit with a zero status even if nothing matched
@@ -136,13 +136,13 @@ jobs:
         run: |
           git add build/
           git mv build/ app/
-      - name: Update branch docs
+      - name: Deploy to branch gh-pages
         run: |
           git add docs/
           git config --global user.name 'DamienToomey'
           git config --global user.email 'DamienToomey@users.noreply.github.com'
           git remote set-url origin https://DamienToomey:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-          git commit -m "Deploying docs"
+          git commit -m "Deploying docs and build"
           git push origin docs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
