@@ -387,3 +387,22 @@ git push origin gh-pages
 #### Deployment for GitHub Pages with Create React App
 
 https://create-react-app.dev/docs/deployment/#github-pages
+
+
+## Refs
+
+- [caching](https://github.com/actions/cache/blob/main/examples.md#using-multiple-systems-and-npm-config)
+- [caching](https://dev.to/mpocock1/how-to-cache-nodemodules-in-github-actions-with-yarn-24eh)
+- [run jobs in Docker containers](https://docs.github.com/en/free-pro-team@latest/actions/guides/building-and-testing-nodejs#running-on-a-different-operating-system)
+- [sonarcloud-github-action](https://github.com/SonarSource/sonarcloud-github-action)
+
+- Code quality github action: https://github.com/peterjgrainger/action-create-branch/blob/master/.github/workflows/codeql-analysis.yml
+
+- [How to force GitHub Pages build?](https://stackoverflow.com/questions/24098792/how-to-force-github-pages-build/61706020#61706020)
+- [Can I have my GitHub Pages index.html in a subfolder of the repository?](https://stackoverflow.com/questions/25320356/can-i-have-my-github-pages-index-html-in-a-subfolder-of-the-repository)
+
+- [Nice badges, codecov.io, https://img.shields.io](https://github.com/JamesIves/github-pages-deploy-action)
+
+### Other way to deploy app to GitHub Pages
+
+- [github-pages-deploy-action](https://github.com/JamesIves/github-pages-deploy-action)
