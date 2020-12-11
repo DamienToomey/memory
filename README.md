@@ -401,7 +401,7 @@ https://create-react-app.dev/docs/deployment/#github-pages
 - [How to force GitHub Pages build?](https://stackoverflow.com/questions/24098792/how-to-force-github-pages-build/61706020#61706020)
 - [Can I have my GitHub Pages index.html in a subfolder of the repository?](https://stackoverflow.com/questions/25320356/can-i-have-my-github-pages-index-html-in-a-subfolder-of-the-repository)
 
-- [Nice badges, codecov.io, https://img.shields.io](https://github.com/JamesIves/github-pages-deploy-action)
+- [Nice badges, codecov.io, https://img.shields.io, codecov-action, codeql-action](https://github.com/JamesIves/github-pages-deploy-action)
 
 ### Other way to deploy app to GitHub Pages
 
