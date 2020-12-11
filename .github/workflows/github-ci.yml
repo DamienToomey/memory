@@ -8,22 +8,28 @@ on:
 # [Building and testing Node.js](https://docs.github.com/en/free-pro-team@latest/actions/guides/building-and-testing-nodejs)
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-#   build:
-#     runs-on: ubuntu-18.04
-#     strategy:
-#       matrix:
-#         node-version: [12.x]
-#     steps:
-#       - name: Checkout repository
-#         uses: actions/checkout@v2
-#       - name: Use Node.js ${{ matrix.node-version }}
-#         uses: actions/setup-node@v1
-#         with:
-#           node-version: ${{ matrix.node-version }}
-#       - name: npm ci
-#         run: npm ci
-#       - name: npm run build
-#         run: CI=true npm run build
+  build:
+    runs-on: ubuntu-18.04
+    strategy:
+      matrix:
+        node-version: [12.x]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: npm ci
+        run: npm ci
+      - name: npm run build
+        run: CI=true npm run build
+      - name: Archive build
+        uses: actions/upload-artifact@v2
+        with:
+          name: build_artifact
+          path: "*build/"
+          retention-days: 1
 
 #   test:
 #     runs-on: ubuntu-18.04
@@ -105,23 +111,31 @@ jobs:
   #         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   deploy_docs:
-    needs: generate_docs
+    needs: [build, generate_docs]
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout only branch docs
+      - name: Checkout only branch gh-pages
         uses: actions/checkout@v2
         with:
-          ref: docs # checkout only docs branch
-          # branch docs has already been created by
+          ref: gh-pages # checkout only gh-pages branch
+          # branch gh-pages has already been created by
           # hand when setting up GitHub Pages
-      - name: Delete current documentation on branch docs
+      - name: Delete current documentation on branch gh-pages
         run: git rm --ignore-unmatch -rf .
-        # Initial state of branch docs is an empty branch
+        # Initial state of branch gh-pages is an empty branch
         #--ignore-unmatch: exit with a zero status even if nothing matched
       - name: Download documentation artifact
         uses: actions/download-artifact@v2
         with:
           name: documentation_artifact
+      - name: Download build artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: build_artifact
+      - name: Rename build folder to app folder
+        run: |
+          git add build/
+          git mv build/ app/
       - name: Update branch docs
         run: |
           git add docs/
