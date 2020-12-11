@@ -110,9 +110,10 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+      - name: Debugging
+        run: git branch
       - name: Create branch docs
         run: |
-          git branch
           git checkout docs
           git rm -rf .
       - name: Download documentation artifact
@@ -121,7 +122,6 @@ jobs:
           name: documentation_artifact
       - name: Create branch docs
         run: |
-          ls -a
           git add docs/
           git config --global user.name 'DamienToomey'
           git config --global user.email 'DamienToomey@users.noreply.github.com'
