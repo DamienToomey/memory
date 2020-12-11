@@ -115,7 +115,9 @@ jobs:
           # branch docs has already been created by
           # hand when setting up GitHub Pages
       - name: Delete current documentation on branch docs
-        run: git rm -rf .
+        run: git rm --ignore-unmatch -rf .
+        # Initial state of branch docs is an empty branch
+        #--ignore-unmatch: exit with a zero status even if nothing matched
       - name: Download documentation artifact
         uses: actions/download-artifact@v2
         with:
