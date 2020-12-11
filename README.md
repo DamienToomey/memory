@@ -339,6 +339,7 @@ git checkout --orphan docs # create new branch with no history
 git rm -rf .
 git commit --allow-empty -m "Initialize docs branch"
 git push origin docs
+git branch
 git checkout master
 ```
 
