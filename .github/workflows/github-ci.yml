@@ -162,4 +162,5 @@ jobs:
 # [run jobs in Docker containers](https://docs.github.com/en/free-pro-team@latest/actions/guides/building-and-testing-nodejs#running-on-a-different-operating-system)
 # [sonarcloud-github-action](https://github.com/SonarSource/sonarcloud-github-action)
 
+
 # Code quality github action: https://github.com/peterjgrainger/action-create-branch/blob/master/.github/workflows/codeql-analysis.yml
