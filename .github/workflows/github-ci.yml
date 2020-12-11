@@ -131,6 +131,10 @@ jobs:
         run: git rm --ignore-unmatch -rf .
         # Initial state of branch gh-pages is an empty branch
         #--ignore-unmatch: exit with a zero status even if nothing matched
+      - name: Deploy to branch gh-pages
+        run: |
+          git commit --allow-empty -m "Initialize gh-pages branch"
+          git push origin gh-pages
       - name: Download documentation artifact
         uses: actions/download-artifact@v2
         with:
