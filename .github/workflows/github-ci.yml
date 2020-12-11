@@ -111,7 +111,7 @@ jobs:
   #         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   deploy:
-    needs: [build, generate_docs]
+    needs: [build, docs]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout only branch gh-pages
