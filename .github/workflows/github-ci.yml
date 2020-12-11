@@ -108,21 +108,19 @@ jobs:
     needs: generate_docs
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout only branch docs
         uses: actions/checkout@v2
         with:
-          ref: docs
-      - name: Debugging
-        run: git branch
-      # - name: Create branch docs
-      #   run: |
-      #     git checkout docs
-      #     git rm -rf .
+          ref: docs # checkout only docs branch
+          # branch docs has already been created by
+          # hand when setting up GitHub Pages
+      - name: Delete current documentation on branch docs
+        run: git rm -rf .
       - name: Download documentation artifact
         uses: actions/download-artifact@v2
         with:
           name: documentation_artifact
-      - name: Create branch docs
+      - name: Update branch docs
         run: |
           git add docs/
           git config --global user.name 'DamienToomey'
