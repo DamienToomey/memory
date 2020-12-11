@@ -338,8 +338,6 @@ git branch -D docs
 git push origin --delete docs
 git checkout --orphan docs # create new branch with no history
 git rm -rf .
-touch dummy.txt
-git add dummy.txt
 git commit --allow-empty -m "Initialize docs branch"
 git push origin docs
 git branch
