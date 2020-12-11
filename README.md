@@ -329,3 +329,19 @@ or
 ```
 sudo npm run build
 ```
+
+### Create empty docs branch that will contain web page for documentation with GitHub Pages
+
+```
+git branch -d docs
+git push origin --delete docs
+git checkout --orphan docs # create new branch with no history
+git rm -rf .
+git commit --allow-empty -m "Initialize docs branch"
+git push origin docs
+git checkout master
+```
+
+#### Configure GitHub Pages
+
+Go to https://github.com/DamienToomey/memory/settings > Scroll down to GitHub Pages > Select docs branch and docs folder.
