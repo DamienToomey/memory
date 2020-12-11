@@ -64,7 +64,7 @@ jobs:
 #           path: "*reports/"
 #           retention-days: 1
 
-  generate_docs:
+  docs:
     runs-on: ubuntu-18.04
     strategy:
       matrix:
@@ -143,7 +143,7 @@ jobs:
           git config --global user.email 'DamienToomey@users.noreply.github.com'
           git remote set-url origin https://DamienToomey:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
           git commit -m "Deploying docs and build"
-          git push origin docs
+          git push origin gh-pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         # [Push to origin from GitHub action](https://stackoverflow.com/questions/57921401/push-to-origin-from-github-action)
