@@ -110,18 +110,18 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      - name: Download documentation artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: documentation_artifact
-      - name: ls -a
-        run: ls -a
       - name: Create branch docs
         run: |
           git checkout --orphan docs
           git rm -rf .
-          touch hello.txt
-          git add hello.txt
+      - name: Download documentation artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: documentation_artifact
+      - name: Create branch docs
+        run: |
+          ls -a
+          git add docs/
           git config --global user.name 'DamienToomey'
           git config --global user.email 'DamienToomey@users.noreply.github.com'
           git remote set-url origin https://DamienToomey:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
