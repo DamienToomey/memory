@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: App.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: App.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { Component } from 'react'
+import shuffle from 'lodash.shuffle'
+
+import './App.css'
+
+import Card from './Card'
+import GuessCount from './GuessCount'
+import HallOfFame from './HallOfFame'
+import HighScoreInput from './HighScoreInput'
+
+const SIDE = 6
+export const SYMBOLS = '😀🎉💖🎩🐶🐱🦄🐬🌍🌛🌞💫🍎🍌🍓🍐🍟🍿'
+const VISUAL_PAUSE_MSECS = 500
+
+/**
+ * Memory app
+ * @component
+ * @extends {Component}
+ */
+class App extends Component {
+
+    constructor(props) {
+        super(props)
+        this.state = {
+            cards: this.generateCards(),
+            currentPair: [],
+            guesses: 0,
+            hallOfFame: null,
+            matchedCardIndices: [],
+        }
+        /**
+         * Initialize card feedbacks as hidden at the
+         * start of the game
+         */
+        this.feedbacks = Array(SIDE * SIDE).fill('hidden')
+    }
+
+    /**
+     * &lt;p>Display information about the winners&lt;/p>
+     * @param {HallOfFame} hallOfFame Information about the winners
+     */
+    // Arrow function for binding
+    // (i.e. to access `this` of the current object)
+    displayHallOfFame = hallOfFame => {
+        this.setState({ hallOfFame })
+        // where { hallOfFame } is shorthand for { hallOfFame: hallOfFame }
+    }
+
+    /**
+     * Generate a shuffled array of pairs of cards
+     * @return {Array} Shuffled array of pairs of cards
+     */
+    generateCards() {
+        const result = []
+        const size = SIDE * SIDE
+        const candidates = Array.from(SYMBOLS) // convert string to array of chars
+        // Keep this loop to control number of
+        // cards with variable SIDE
+        while (result.length &lt; size) {
+            const card = candidates.pop()
+            result.push(card, card)
+        }
+        return shuffle(result)
+    }
+
+    /**
+     * &lt;p>Get the feeback of a card&lt;/p>
+     * &lt;p>See possible feedback values in {@link Card#propTypes}&lt;/p>
+     * @return {string} Feeback value
+     */
+    getFeedbackForCard(index) {
+        const { currentPair, matchedCardIndices } = this.state
+        const indexMatched = matchedCardIndices.includes(index)
+        let currentFeedback = this.feedbacks[index]
+        let newFeedback = ''
+
+        if (currentFeedback === 'justMatched' || currentFeedback === 'disabled') {
+            newFeedback = 'disabled'
+        }
+        else if (currentPair.length &lt; 2) {
+            newFeedback = currentPair.includes(index) ? 'visible' : 'hidden'
+        }
+        else if (currentPair.length === 2) {
+            if (currentPair.includes(index)) {
+                newFeedback = indexMatched ? 'justMatched' : 'justMismatched'
+            }
+            else {
+                newFeedback = indexMatched ? 'visible' : 'hidden'
+            }
+        }
+        this.feedbacks[index] = newFeedback
+        return newFeedback
+    }
+    
+    /**
+     * &lt;p>Handle event when card is clicked on&lt;/p>
+     * @param {number} index Index of the card that was clicked on
+     */
+    // Arrow function for binding
+    handleCardClick = index => {
+        const { currentPair } = this.state
+
+        // Prevent user from clicking when
+        // the current pair already contains
+        // 2 cards
+        if (currentPair.length === 2) {
+            return
+        }
+
+        if (currentPair.length === 0) {
+            this.setState({ currentPair: [index] })
+            return
+        }
+
+        this.handleNewPair(index)
+    }
+
+    /**
+     * Checking if both cards in the pair match
+     * @param {number} index Index of the card that was clicked on
+     */
+    handleNewPair(index) {
+        const { cards, currentPair, guesses, matchedCardIndices } = this.state
+
+        const newPair = [currentPair[0], index]
+        const newGuesses = guesses + 1
+        const matched = cards[newPair[0]] === cards[newPair[1]]
+        this.setState({ currentPair: newPair, guesses: newGuesses })
+        if (matched) {
+            this.setState({ matchedCardIndices: [...matchedCardIndices, ...newPair] })
+        }
+        setTimeout(() => this.setState({ currentPair: [] }), VISUAL_PAUSE_MSECS)
+    }
+
+    /**
+     * Render the whole game
+     */
+    render() {
+        const { cards, guesses, hallOfFame, matchedCardIndices } = this.state
+        // Game is won when there are as many matched cards as there are cards
+        // in the game
+        const won = matchedCardIndices.length === 4 //cards.length
+        return ( 
+            &lt;div className="memory">
+            {/* &lt;span>{`Seconds ${new Date().getSeconds()}`}&lt;/span> */}
+            &lt;GuessCount guesses={guesses} />
+            { cards.map((card, index) => ( 
+              &lt;Card card={card}
+                  feedback={this.getFeedbackForCard(index)}
+                  key={index} // key must be unique and stable in time
+                  index={index}
+                  onClick={this.handleCardClick}
+              />
+            ))}
+            {won &amp;&amp; (hallOfFame ? ( &lt;HallOfFame entries={hallOfFame} />
+                    ) : ( &lt;HighScoreInput
+                          guesses={guesses}
+                          onStored={this.displayHallOfFame}
+                        />
+                    ))
+            }
+            &lt;/div>
+        )
+    }
+}
+
+export default App</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="App.html">App</a></li><li><a href="Card.html">Card</a></li><li><a href="GuessCount.html">GuessCount</a></li><li><a href="HallOfFame.html">HallOfFame</a></li><li><a href="HighScoreInput.html">HighScoreInput</a></li></ul><h3>Global</h3><ul><li><a href="global.html#saveHOFEntry">saveHOFEntry</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Fri Dec 11 2020 16:12:00 GMT+0000 (Coordinated Universal Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
