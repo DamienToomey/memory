@@ -116,10 +116,12 @@ jobs:
     steps:
       - name: Checkout only branch gh-pages
         uses: actions/checkout@v2
-        with:
-          ref: gh-pages # checkout only gh-pages branch
+        # with:
+        #   ref: gh-pages # checkout only gh-pages branch
           # branch gh-pages has already been created by
           # hand when setting up GitHub Pages
+      - name: Checkout branch gh-pages
+        run: git checkout -B gh-pages
       - name: Delete folders/files on branch gh-pages
         run: git rm --ignore-unmatch -rf .
         # Initial state of branch gh-pages is an empty branch
