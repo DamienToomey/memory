@@ -149,6 +149,10 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: build_artifact
+      - name: Download code coverage artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: code_coverage_artifact
       - name: Rename build folder to app folder
         run: |
           git add build/
@@ -156,5 +160,6 @@ jobs:
       - name: Push folders docs and app to branch gh-pages
         run: |
           git add docs/
+          git add coverage/
           git commit -m "Deploying docs and build"
           git push origin gh-pages
