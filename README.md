@@ -1,9 +1,10 @@
 # Memory
 
-- App: damientoomey.github.io/memory/app
-- Documentation: damientoomey.github.io/memory/docs
-
 Based on a Openclassrooms course: [Réalisez une application web avec React.js](https://openclassrooms.com/fr/courses/4664381-realisez-une-application-web-avec-react-js/4664801-demarrez-facilement-avec-create-react-app)
+
+- Open App: https://damientoomey.github.io/memory/app
+- Open Documentation: https://damientoomey.github.io/memory/docs
+- Open Coverage Report: https://damientoomey.github.io/memory/coverage/lcov-report
 
 This app uses [React](https://reactjs.org) and was created with Create React App.
 
@@ -86,12 +87,12 @@ $ sudo npm start
 
 ### II. How was this repository created?
 
-- Go to https://gitlab.com
+- Go to https://github.com
 - Create a blank project named `memory`
 - `$ create-react-app memory` already initialized a git repository (`.git` folder)
 
 ```
-$ git remote add origin https://gitlab.com/DamienToomey/memory.git
+$ git remote add origin https://github.com/DamienToomey/memory.git
 $ git add .
 $ git commit -m "Initial commit`
 $ git push --set-upstream origin master
@@ -231,12 +232,12 @@ $ sudo npm test -- --coverage --watchAll --verbose
 - Go to https://sonarcloud.io
 - Sign in / Sign up
 - Create SonarCloud project
-- Import GitLab project
+- Import GitHub project
 - Follow instructions
 
 #### Create SonarCloud compatible test coverage report
 
-- Reference: [SonarQube documentation](https://docs.sonarqube.org/latest/analysis/coverage)
+- Reference: [SonarQube Documentation](https://docs.sonarqube.org/latest/analysis/coverage)
 
 ```
 $ sudo npm install --save-dev jest-sonar-reporter
@@ -299,7 +300,7 @@ $ sudo npm run docs
  
 ### VII. Docker deployment (with static server)
 
-- Reference: [Create React App documentation | Deployment](https://create-react-app.dev/docs/deployment)
+- Reference: [https://create-react-app.dev/docs/deployment/#static-server](https://create-react-app.dev/docs/deployment)
 
 See content of `Dockerfile`.
 
@@ -324,49 +325,54 @@ or
 ### VIII. Deployment (without any server)
 
 - References:
-  - [Create React App documentation | Deployment](https://create-react-app.dev/docs/deployment)
   - [Stack Overflow | Run React application without server](https://stackoverflow.com/questions/40342100/run-react-application-without-server)
+  - [Create React App Documentation | Deployment](https://create-react-app.dev/docs/deployment)
 
-###
+(not used in this repository but interesting for future projects)
+
+### IX. Deployment on GitHub Pages
+
+- Reference: [Create React App Documentation | Deployment](https://create-react-app.dev/docs/deployment/#github-pages)
+
+**WARNING**: follow the steps bellow to create empty `gh-pages` branch where HTML/CSS/JS content will be stored and deployed to GitHub Pages.
+
+The branch `gh-pages` will contain the app, its documentation and the coverage report.
 
 ```
-$ sudo npm run build
-```
-
-### Create empty gh-pages branch that will contain web page for documentation with GitHub Pages
-
-```
-$ git pull
-$ git branch -D gh-pages
-$ git push origin --delete gh-pages
-$ git checkout --orphan gh-pages # create new branch with no history
-$ git rm -rf .
+$ git pull # make sure your local repository is up to date
+$ git branch -D gh-pages # delete local branch gh-pages
+$ git push origin --delete gh-pages # delete remote branch gh-pages
+$ git checkout --orphan gh-pages # create new branch with no history called gh-pages
+$ git rm -rf . # delete content of this branch
 $ git commit --allow-empty -m "Initialize gh-pages branch"
 $ git push origin gh-pages
 $ git branch
 $ git checkout master
 ```
 
-At this stage, branch gh-pages is empty.
+At this stage, branch `gh-pages` is empty.
+
+#### Add `homepage` to package.json
+
+```
+"homepage": "https://damientoomey.github.io/memory/app"
+```
 
 #### Configure GitHub Pages
 
-Go to https://github.com/DamienToomey/memory/settings > Scroll down to GitHub Pages > Select gh-pages branch and (root) folder.
-
-"Note: It can take up to 20 minutes for changes to your site to publish after you push the changes to GitHub."
-[GitHub Pages | Creating your site](https://docs.github.com/en/free-pro-team@latest/github/working-with-github-pages/creating-a-github-pages-site#creating-your-site)
-
-At this stage, your website should be available at https://damientoomey.github.io/memory/docs/index.html but not at https://damientoomey.github.io/memory/docs
+Go to https://github.com/DamienToomey/memory/settings > Scroll down to GitHub Pages > Select `gh-pages` branch and (root) folder.
 
 #### Push to master branch to kick off CI pipeline
 
-**WARNING**: it seems like the website will be available at https://damientoomey.github.io/memory only after:
+This repository uses GitHub Actions for CI/CD purposes (see `.github/github-ci.yml`). In the `deploy` job of the pipeline, `build`, `coverage`, `docs` folders are generated and pushed on the branch `gh-pages`.
+
+**WARNING**: content on the branch `gh-pages` will be available only after:
 - Step1: configuring GitHub Pages (as described above)
-- Step2: pushing HTML content to the branch docs
+- Step2: pushing HTML/CSS/JS content to the branch `gh-pages`
 
 Step1 and Step2 must be done in this order.
 
-In our case, HTML content is pushed to the branch docs in our CI pipeline.
+In our case, HTML/CSS/JS content is pushed to the branch `gh-pages` in our CI pipeline.
 
 ```
 $ git add .
@@ -374,38 +380,50 @@ $ git commit -m "Update"
 $ git push # to kick off CI pipeline
 ```
 
-#### Debugging
+"**Note**: It can take up to 20 minutes for changes to your site to publish after you push the changes to GitHub."
+[GitHub Pages | Creating your site](https://docs.github.com/en/free-pro-team@latest/github/working-with-github-pages/creating-a-github-pages-site#creating-your-site)
 
-- Reference:
-  - "It's not currently possible to manually trigger a rebuild, without pushing a commit to the appropriate branch."
-    - [How to force GitHub Pages build?](https://stackoverflow.com/questions/24098792/how-to-force-github-pages-build/61706020#61706020)
+At this stage, you can access the content of the branch `gh-pages` via:
+- Open App: https://damientoomey.github.io/memory/app
+- Open Documentation: https://damientoomey.github.io/memory/docs
+- Open Coverage Report: https://damientoomey.github.io/memory/coverage/lcov-report
 
-At this point, if https://damientoomey.github.io/memory/docs or https://damientoomey.github.io/memory/app gives you a 404 page, but https://damientoomey.github.io/memory/docs/index.html or https://damientoomey.github.io/memory/app/index.html work, do
+### X. Troubleshooting
+
+- I get a 404 error when going on at least one of the following links above.
+
+Try adding `/index.html` at the end of the link. If you can now access the webpage, enter the following commands to trigger a GitHub Pages rebuild.
 
 ```
 git commit -m 'rebuild pages' --allow-empty
 git push origin gh-pages
 ```
 
-#### Deployment for GitHub Pages with Create React App
+- Reference:
+  - [How to force GitHub Pages build?](https://stackoverflow.com/questions/24098792/how-to-force-github-pages-build/61706020#61706020)
+    - "It's not currently possible to manually trigger a rebuild, without pushing a commit to the appropriate branch."
 
-https://create-react-app.dev/docs/deployment/#github-pages
+### XI. References
 
+- [actions/cache for nmp | GitHub](https://github.com/actions/cache/blob/main/examples.md#using-multiple-systems-and-npm-config)
 
-## Refs
+- [How to cache node_modules in GitHub Actions with Yarn ](https://dev.to/mpocock1/how-to-cache-nodemodules-in-github-actions-with-yarn-24eh)
+  - "Note: It is not recommended to cache `node_modules`, as it can break across Node versions and won't work with `npm ci`" ([actions/cache for nmp | GitHub](https://github.com/actions/cache/blob/main/examples.md#using-multiple-systems-and-npm-config))
 
-- [caching](https://github.com/actions/cache/blob/main/examples.md#using-multiple-systems-and-npm-config)
-- [caching](https://dev.to/mpocock1/how-to-cache-nodemodules-in-github-actions-with-yarn-24eh)
-- [run jobs in Docker containers](https://docs.github.com/en/free-pro-team@latest/actions/guides/building-and-testing-nodejs#running-on-a-different-operating-system)
-- [sonarcloud-github-action](https://github.com/SonarSource/sonarcloud-github-action)
+- [Run jobs in Docker containers in GitHub Actions | GitHub Docs](https://docs.github.com/en/free-pro-team@latest/actions/guides/building-and-testing-nodejs#running-on-a-different-operating-system)
+  - "You can also run jobs in Docker containers [...]"
 
-- Code quality github action: https://github.com/peterjgrainger/action-create-branch/blob/master/.github/workflows/codeql-analysis.yml
+- [sonarcloud-github-action | GitHub](https://github.com/SonarSource/sonarcloud-github-action)
 
-- [How to force GitHub Pages build?](https://stackoverflow.com/questions/24098792/how-to-force-github-pages-build/61706020#61706020)
-- [Can I have my GitHub Pages index.html in a subfolder of the repository?](https://stackoverflow.com/questions/25320356/can-i-have-my-github-pages-index-html-in-a-subfolder-of-the-repository)
+- [peterjgrainger/action-create-branch | GitHub](https://github.com/peterjgrainger/action-create-branch/blob/master/.github/workflows/codeql-analysis.yml)
+  - `github/codeql-action` code quality example
 
-- [Nice badges, codecov.io, https://img.shields.io, codecov-action, codeql-action](https://github.com/JamesIves/github-pages-deploy-action)
+- [How to force GitHub Pages build? | Stack Overflow](https://stackoverflow.com/questions/24098792/how-to-force-github-pages-build/61706020#61706020)
 
-### Other way to deploy app to GitHub Pages
+- [Can I have my GitHub Pages index.html in a subfolder of the repository? | Stack Overflow](https://stackoverflow.com/questions/25320356/can-i-have-my-github-pages-index-html-in-a-subfolder-of-the-repository)
 
-- [github-pages-deploy-action](https://github.com/JamesIves/github-pages-deploy-action)
+- [JamesIves/github-pages-deploy-action | GitHub](https://github.com/JamesIves/github-pages-deploy-action)
+  - https://img.shields.io (nice badges)
+  - https://codecov.io
+  - [codecov/codecov-action](https://github.com/codecov/codecov-action)
+  - [github/codeql-action](https://github.com/github/codeql-action)
