@@ -18,13 +18,13 @@
         "react"
     ],
     "rules": {
-        "semi": ["error", "never"],
+        "semi": ["warning", "never"],
         // Indent with 4 spaces
-        "indent": ["error", 4],
+        "indent": ["warning", 4],
         // Indent JSX with 4 spaces
-        "react/jsx-indent": ["error", 4],
+        "react/jsx-indent": ["warning", 4],
         // Indent props with 4 spaces
-        "react/jsx-indent-props": ["error", 4]
+        "react/jsx-indent-props": ["warning", 4]
     },
     "parser": "babel-eslint"
 }
