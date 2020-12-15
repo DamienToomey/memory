@@ -22,11 +22,13 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: npm ci
         run: npm ci
+      - name: fix lining errors
+        run: npm run lint -- --fix
       - name: npm run build
-        # Why set CI=true ?
+        # Why set CI=true ? # This does not seem to work
         # "to perform a linter warning check"
         # [Continuous Integration | Create React App Documentation](https://create-react-app.dev/docs/running-tests/#continuous-integration)
-        run: CI=false npm run build
+        run: npm run build
       - name: Archive build as artifact
         uses: actions/upload-artifact@v2
         with:
