@@ -36,178 +36,178 @@ jobs:
           path: "*build/"
           retention-days: 1
 
-  # unit-tests:
-  #   runs-on: ubuntu-18.04
-  #   strategy:
-  #     matrix:
-  #       node-version: [12.x]
-  #   steps:
-  #     - name: Checkout branch on which commit was performed 
-  #       uses: actions/checkout@v2
-  #     - name: Use Node.js ${{ matrix.node-version }}
-  #       uses: actions/setup-node@v1
-  #       with:
-  #         node-version: ${{ matrix.node-version }}
-  #     - name: npm ci
-  #       run: npm ci
-  #     - name: npm test
-  #       # Why set CI=true ?
-  #       # "to run tests once and finish the process" (i.e. stop  interactive CLI)
-  #       # [Continuous Integration | Create React App Documentation](https://create-react-app.dev/docs/running-tests/#continuous-integration)
-  #       run: CI=true npm test -- --coverage --testResultsProcessor jest-sonar-reporter
-  #     - name: Archive code coverage report as artifact
-  #       uses: actions/upload-artifact@v2
-  #       with:
-  #         name: code_coverage_artifact
-  #         # Why use a wild card * ?
-  #         # "If a wildcard pattern is used, the path hierarchy
-  #         # will be preserved after the first wildcard pattern."
-  #         # [upload-artifact](https://github.com/actions/upload-artifact#upload-using-multiple-paths-and-exclusions)
-  #         path: "*coverage/"
-  #         retention-days: 1
-  #     - name: Archive Sonar compatible code coverage report as artifact
-  #       uses: actions/upload-artifact@v2
-  #       with:
-  #         name: sonar_code_coverage_artifact
-  #         path: "*reports/"
-  #         retention-days: 1
+  unit-tests:
+    runs-on: ubuntu-18.04
+    strategy:
+      matrix:
+        node-version: [12.x]
+    steps:
+      - name: Checkout branch on which commit was performed 
+        uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: npm ci
+        run: npm ci
+      - name: npm test
+        # Why set CI=true ?
+        # "to run tests once and finish the process" (i.e. stop  interactive CLI)
+        # [Continuous Integration | Create React App Documentation](https://create-react-app.dev/docs/running-tests/#continuous-integration)
+        run: CI=true npm test -- --coverage --testResultsProcessor jest-sonar-reporter
+      - name: Archive code coverage report as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: code_coverage_artifact
+          # Why use a wild card * ?
+          # "If a wildcard pattern is used, the path hierarchy
+          # will be preserved after the first wildcard pattern."
+          # [upload-artifact](https://github.com/actions/upload-artifact#upload-using-multiple-paths-and-exclusions)
+          path: "*coverage/"
+          retention-days: 1
+      - name: Archive Sonar compatible code coverage report as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: sonar_code_coverage_artifact
+          path: "*reports/"
+          retention-days: 1
 
-  # docs:
-  #   runs-on: ubuntu-18.04
-  #   strategy:
-  #     matrix:
-  #       node-version: [12.x]
-  #   steps:
-  #     - name: Checkout branch on which commit was performed 
-  #       uses: actions/checkout@v2
-  #     - name: Use Node.js ${{ matrix.node-version }}
-  #       uses: actions/setup-node@v1
-  #       with:
-  #         node-version: ${{ matrix.node-version }}
-  #     - name: npm ci
-  #       run: npm ci
-  #     - name: npm run docs
-  #       run: npm run docs
-  #     - name: Archive generated documentation as artifact
-  #       uses: actions/upload-artifact@v2
-  #       with:
-  #         name: documentation_artifact
-  #         path: "*docs/"
-  #         retention-days: 1
+  docs:
+    runs-on: ubuntu-18.04
+    strategy:
+      matrix:
+        node-version: [12.x]
+    steps:
+      - name: Checkout branch on which commit was performed 
+        uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: npm ci
+        run: npm ci
+      - name: npm run docs
+        run: npm run docs
+      - name: Archive generated documentation as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: documentation_artifact
+          path: "*docs/"
+          retention-days: 1
 
-  # quality: # measured with SonarCloud
-  #   needs: unit-tests
-  #   runs-on: ubuntu-latest
-  #   strategy:
-  #     matrix:
-  #       node-version: [12.x]
-  #   # Most of the code in steps is given sonarcloud.io
-  #   # when creating a new project
-  #   steps:
-  #     - name: Checkout branch on which commit was performed 
-  #       uses: actions/checkout@v2
-  #       with:
-  #         # Disabling shallow clone is recommended for improving relevancy of reporting
-  #         fetch-depth: 0
-  #     - name: Use Node.js ${{ matrix.node-version }}
-  #       uses: actions/setup-node@v1
-  #       with:
-  #         node-version: ${{ matrix.node-version }}
-  #     - name: npm ci
-  #       run: npm ci
-  #     - name: Download code coverage report artifact
-  #       uses: actions/download-artifact@v2
-  #       with:
-  #         name: code_coverage_artifact
-  #     - name: Download Sonar compatible code coverage report artifact
-  #       uses: actions/download-artifact@v2
-  #       with:
-  #         name: sonar_code_coverage_artifact
-  #     - name: Generate lint report
-  #       run: npm run lint src/**/*.js -- -f json -o lint_report.json
-  #     - name: SonarCloud Scan
-  #       uses: sonarsource/sonarcloud-github-action@master
-  #       env:
-  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  #         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  quality: # measured with SonarCloud
+    needs: unit-tests
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+    # Most of the code in steps is given sonarcloud.io
+    # when creating a new project
+    steps:
+      - name: Checkout branch on which commit was performed 
+        uses: actions/checkout@v2
+        with:
+          # Disabling shallow clone is recommended for improving relevancy of reporting
+          fetch-depth: 0
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: npm ci
+        run: npm ci
+      - name: Download code coverage report artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: code_coverage_artifact
+      - name: Download Sonar compatible code coverage report artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: sonar_code_coverage_artifact
+      - name: Generate lint report
+        run: npm run lint src/**/*.js -- -f json -o lint_report.json
+      - name: SonarCloud Scan
+        uses: sonarsource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-  # # coverage:
-  # #   needs: [unit-tests]
-  # #   runs-on: ubuntu-latest
-  # #   steps:
-  # #     - uses: actions/checkout@master
-  # #     - name: Download code coverage artifact
-  # #       uses: actions/download-artifact@v2
-  # #       with:
-  # #         name: code_coverage_artifact
-  # #     - uses: codecov/codecov-action@v1.0.15
-  # #       with:
-  # #         # token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
-  # #         files: coverage/lcov.info # optional
-  # #         flags: unittests # optional
-  # #         name: codecov-umbrella # optional
-  # #         fail_ci_if_error: true # optional (default = false)
-  # #         verbose: true # optional (default = false)
-
-  # # quality:
-  # #   runs-on: ubuntu-latest
-  # #   strategy:
-  # #     fail-fast: false
-  # #     matrix:
-  # #       language: ['javascript']
-  # #   steps:
-  # #     - name: Checkout branch on which commit was performed 
-  # #       uses: actions/checkout@v2
-  # #     - name: Initialize CodeQL
-  # #       uses: github/codeql-action/init@v1
-  # #       with:
-  # #         languages: ${{ matrix.language }}
-  # #         config-file: ./.github/codeql/codeql-config.yml
-  # #     - name: Perform CodeQL Analysis
-  # #       uses: github/codeql-action/analyze@v1
-
-  # deploy:
-  #   needs: [build, quality, docs]
+  # coverage:
+  #   needs: [unit-tests]
   #   runs-on: ubuntu-latest
   #   steps:
-  #     - name: Checkout branch gh-pages
-  #       uses: actions/checkout@v2
-  #       with:
-  #         ref: gh-pages
-  #         # branch gh-pages has already been created by
-  #         # hand when setting up GitHub Pages (see README.md)
-  #     - name: Enter GitHub credentials
-  #       run: |
-  #         git config --global user.name 'DamienToomey'
-  #         git config --global user.email 'DamienToomey@users.noreply.github.com'
-  #         git remote set-url origin https://DamienToomey:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY
-  #       env:
-  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  #         GITHUB_REPOSITORY: ${{ github.repository }}
-  #       # [Push to origin from GitHub action | Stack Overflow](https://stackoverflow.com/questions/57921401/push-to-origin-from-github-action)
-  #     - name: Delete folders/files on branch gh-pages
-  #       run: git rm --ignore-unmatch -rf .
-  #       # Initial state of branch gh-pages is an empty branch
-  #       # --ignore-unmatch: exit with a zero status even if nothing matched
-  #     - name: Download documentation artifact
-  #       uses: actions/download-artifact@v2
-  #       with:
-  #         name: documentation_artifact
-  #     - name: Download build artifact
-  #       uses: actions/download-artifact@v2
-  #       with:
-  #         name: build_artifact
+  #     - uses: actions/checkout@master
   #     - name: Download code coverage artifact
   #       uses: actions/download-artifact@v2
   #       with:
   #         name: code_coverage_artifact
-  #     - name: Rename build folder to app folder
-  #       run: |
-  #         git add build/
-  #         git mv build/ app/
-  #     - name: Push folders docs and app to branch gh-pages
-  #       run: |
-  #         git add docs/
-  #         git add coverage/
-  #         git commit -m "Deploying docs, build and coverage report to GitHub Pages"
-  #         git push origin gh-pages
+  #     - uses: codecov/codecov-action@v1.0.15
+  #       with:
+  #         # token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
+  #         files: coverage/lcov.info # optional
+  #         flags: unittests # optional
+  #         name: codecov-umbrella # optional
+  #         fail_ci_if_error: true # optional (default = false)
+  #         verbose: true # optional (default = false)
+
+  # quality:
+  #   runs-on: ubuntu-latest
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       language: ['javascript']
+  #   steps:
+  #     - name: Checkout branch on which commit was performed 
+  #       uses: actions/checkout@v2
+  #     - name: Initialize CodeQL
+  #       uses: github/codeql-action/init@v1
+  #       with:
+  #         languages: ${{ matrix.language }}
+  #         config-file: ./.github/codeql/codeql-config.yml
+  #     - name: Perform CodeQL Analysis
+  #       uses: github/codeql-action/analyze@v1
+
+  deploy:
+    needs: [build, quality, docs]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch gh-pages
+        uses: actions/checkout@v2
+        with:
+          ref: gh-pages
+          # branch gh-pages has already been created by
+          # hand when setting up GitHub Pages (see README.md)
+      - name: Enter GitHub credentials
+        run: |
+          git config --global user.name 'DamienToomey'
+          git config --global user.email 'DamienToomey@users.noreply.github.com'
+          git remote set-url origin https://DamienToomey:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        # [Push to origin from GitHub action | Stack Overflow](https://stackoverflow.com/questions/57921401/push-to-origin-from-github-action)
+      - name: Delete folders/files on branch gh-pages
+        run: git rm --ignore-unmatch -rf .
+        # Initial state of branch gh-pages is an empty branch
+        # --ignore-unmatch: exit with a zero status even if nothing matched
+      - name: Download documentation artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: documentation_artifact
+      - name: Download build artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: build_artifact
+      - name: Download code coverage artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: code_coverage_artifact
+      - name: Rename build folder to app folder
+        run: |
+          git add build/
+          git mv build/ app/
+      - name: Push folders docs and app to branch gh-pages
+        run: |
+          git add docs/
+          git add coverage/
+          git commit -m "Deploying docs, build and coverage report to GitHub Pages"
+          git push origin gh-pages
