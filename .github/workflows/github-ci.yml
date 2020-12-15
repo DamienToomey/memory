@@ -138,16 +138,17 @@ jobs:
 
   quality:
     runs-on: ubuntu-latest
-    - name: Checkout branch on which commit was performed 
-      uses: actions/checkout@v2
-    - name: Initialize CodeQL
-      uses: github/codeql-action/init@v1
-      with:
-        languages: javascript
-    - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v1
-    - name: ls
-      run: ls
+    steps:
+      - name: Checkout branch on which commit was performed 
+        uses: actions/checkout@v2
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v1
+        with:
+          languages: javascript
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v1
+      - name: ls
+        run: ls
 
   deploy:
     needs: [build, quality, docs]
