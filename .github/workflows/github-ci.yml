@@ -113,7 +113,7 @@ jobs:
         with:
           name: sonar_code_coverage_artifact
       - name: Generate lint report
-        uses: npm run lint "src/**/*.js" -- -f json -o lint_report.json
+        uses: "npm run lint src/**/*.js -- -f json -o lint_report.json"
       - name: SonarCloud Scan
         uses: sonarsource/sonarcloud-github-action@master
         env:
