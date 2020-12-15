@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">60% </span>
+                <span class="strong">53.85% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>6/10</span>
+                <span class='fraction'>7/13</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">60% </span>
+                <span class="strong">53.85% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>6/10</span>
+                <span class='fraction'>7/13</span>
             </div>
         
             
@@ -127,7 +127,12 @@
 <a name='L68'></a><a href='#L68'>68</a>
 <a name='L69'></a><a href='#L69'>69</a>
 <a name='L70'></a><a href='#L70'>70</a>
-<a name='L71'></a><a href='#L71'>71</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a>
+<a name='L76'></a><a href='#L76'>76</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -167,12 +172,15 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -192,7 +200,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -208,23 +218,23 @@ import { saveHOFEntry } from './HallOfFame'
  * Get winner information, save it and display it
  * @component
  * @prop {number} guesses Number of guesses done by the user
- * @prop {function} onStored Function called after information is stored in order to display information about the winners 
+ * @prop {function} onStored Function called after information is stored
+ * in order to display information about the winners
  * @extends {Component}
  */
 class HighScoreInput extends Component {
-&nbsp;
     constructor(props) {
         super(props)
         this.state = { winner: '' }
     }
-    
+&nbsp;
     /**
      * &lt;p&gt;Handle onChange event from user input&lt;/p&gt;
      * &lt;p&gt;Transform lower case letters to upper case&lt;/p&gt;
      * @param {event} event onChange event
      */
     // Arrow function for binding
-    handleWinnerUpdate = <span class="fstat-no" title="function not covered" >ev</span>ent =&gt; {
+    handleWinnerUpdate = <span class="fstat-no" title="function not covered" >(e</span>vent) =&gt; {
 <span class="cstat-no" title="statement not covered" >        this.setState({ winner: event.target.value.toUpperCase() })</span>
     }
 &nbsp;
@@ -233,29 +243,33 @@ class HighScoreInput extends Component {
      * @param {event} event onSubmit event
      */
     // Arrow function for binding
-    persistWinner = <span class="fstat-no" title="function not covered" >ev</span>ent =&gt; {
+    persistWinner = <span class="fstat-no" title="function not covered" >(e</span>vent) =&gt; {
 <span class="cstat-no" title="statement not covered" >        event.preventDefault()</span>
-        const newEntry = <span class="cstat-no" title="statement not covered" >{ guesses: this.props.guesses, player: this.state.winner }</span>
-<span class="cstat-no" title="statement not covered" >        saveHOFEntry(newEntry, this.props.onStored)</span>
+        const { guesses, onStored } = <span class="cstat-no" title="statement not covered" >this.props</span>
+        const { winner } = <span class="cstat-no" title="statement not covered" >this.state</span>
+        const newEntry = <span class="cstat-no" title="statement not covered" >{ guesses, player: winner }</span>
+<span class="cstat-no" title="statement not covered" >        saveHOFEntry(newEntry, onStored)</span>
     }
 &nbsp;
     /**
      * Render the winner information form
      */
     render() {
+        const { winner } = this.state
         return (
             &lt;form className="highScoreInput" onSubmit={this.persistWinner}&gt;
                 &lt;p&gt;
-                &lt;label&gt;
-                    Well done! Please enter your name:
-                    &lt;input
-                        autoComplete="given-name"
-                        onChange={this.handleWinnerUpdate}
-                        type="text"
-                        value={this.state.winner}
-                    /&gt;
-                &lt;/label&gt;
-                &lt;button type="submit"&gt;I have won!&lt;/button&gt;
+                    &lt;label htmlFor="input_winner_information"&gt;
+                        Well done! Please enter your name:
+                        &lt;input
+                            autoComplete="given-name"
+                            onChange={this.handleWinnerUpdate}
+                            type="text"
+                            value={winner}
+                            id="input_winner_information"
+                        /&gt;
+                    &lt;/label&gt;
+                    &lt;button type="submit"&gt;I have won!&lt;/button&gt;
                 &lt;/p&gt;
             &lt;/form&gt;
         )
@@ -267,14 +281,15 @@ HighScoreInput.propTypes = {
     onStored: PropTypes.func.isRequired,
 }
 &nbsp;
-export default HighScoreInput</pre></td></tr></table></pre>
+export default HighScoreInput
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Tue Dec 15 2020 17:36:08 GMT+0000 (Coordinated Universal Time)
+                at Tue Dec 15 2020 21:27:19 GMT+0000 (Coordinated Universal Time)
             </div>
         </div>
         <script src="prettify.js"></script>

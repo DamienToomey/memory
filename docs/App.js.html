@@ -46,11 +46,27 @@ const VISUAL_PAUSE_MSECS = 500
  * @extends {Component}
  */
 class App extends Component {
+    /**
+     * Generate a shuffled array of pairs of cards
+     * @return {Array} Shuffled array of pairs of cards
+     */
+    static generateCards() {
+        const result = []
+        const size = SIDE * SIDE
+        const candidates = Array.from(SYMBOLS) // convert string to array of chars
+        // Keep this loop to control number of
+        // cards with variable SIDE
+        while (result.length &lt; size) {
+            const card = candidates.pop()
+            result.push(card, card)
+        }
+        return shuffle(result)
+    }
 
     constructor(props) {
         super(props)
         this.state = {
-            cards: this.generateCards(),
+            cards: App.generateCards(),
             currentPair: [],
             guesses: 0,
             hallOfFame: null,
@@ -64,68 +80,11 @@ class App extends Component {
     }
 
     /**
-     * &lt;p>Display information about the winners&lt;/p>
-     * @param {HallOfFame} hallOfFame Information about the winners
-     */
-    // Arrow function for binding
-    // (i.e. to access `this` of the current object)
-    displayHallOfFame = hallOfFame => {
-        this.setState({ hallOfFame })
-        // where { hallOfFame } is shorthand for { hallOfFame: hallOfFame }
-    }
-
-    /**
-     * Generate a shuffled array of pairs of cards
-     * @return {Array} Shuffled array of pairs of cards
-     */
-    generateCards() {
-        const result = []
-        const size = SIDE * SIDE
-        const candidates = Array.from(SYMBOLS) // convert string to array of chars
-        // Keep this loop to control number of
-        // cards with variable SIDE
-        while (result.length &lt; size) {
-            const card = candidates.pop()
-            result.push(card, card)
-        }
-        return shuffle(result)
-    }
-
-    /**
-     * &lt;p>Get the feeback of a card&lt;/p>
-     * &lt;p>See possible feedback values in {@link Card#propTypes}&lt;/p>
-     * @return {string} Feeback value
-     */
-    getFeedbackForCard(index) {
-        const { currentPair, matchedCardIndices } = this.state
-        const indexMatched = matchedCardIndices.includes(index)
-        let currentFeedback = this.feedbacks[index]
-        let newFeedback = ''
-
-        if (currentFeedback === 'justMatched' || currentFeedback === 'disabled') {
-            newFeedback = 'disabled'
-        }
-        else if (currentPair.length &lt; 2) {
-            newFeedback = currentPair.includes(index) ? 'visible' : 'hidden'
-        }
-        else if (currentPair.length === 2) {
-            if (currentPair.includes(index)) {
-                newFeedback = indexMatched ? 'justMatched' : 'justMismatched'
-            }
-            else {
-                newFeedback = indexMatched ? 'visible' : 'hidden'
-            }
-        }
-        this.feedbacks[index] = newFeedback
-        return newFeedback
-    }
-    
-    /**
      * &lt;p>Handle event when card is clicked on&lt;/p>
      * @param {number} index Index of the card that was clicked on
      */
     // Arrow function for binding
-    handleCardClick = index => {
+    handleCardClick = (index) => {
         const { currentPair } = this.state
 
         // Prevent user from clicking when
@@ -148,7 +107,9 @@ class App extends Component {
      * @param {number} index Index of the card that was clicked on
      */
     handleNewPair(index) {
-        const { cards, currentPair, guesses, matchedCardIndices } = this.state
+        const {
+            cards, currentPair, guesses, matchedCardIndices,
+        } = this.state
 
         const newPair = [currentPair[0], index]
         const newGuesses = guesses + 1
@@ -161,38 +122,79 @@ class App extends Component {
     }
 
     /**
+     * &lt;p>Get the feeback of a card&lt;/p>
+     * &lt;p>See possible feedback values in {@link Card#propTypes}&lt;/p>
+     * @return {string} Feeback value
+     */
+    getFeedbackForCard(index) {
+        const { currentPair, matchedCardIndices } = this.state
+        const indexMatched = matchedCardIndices.includes(index)
+        const currentFeedback = this.feedbacks[index]
+        let newFeedback = ''
+
+        if (currentFeedback === 'justMatched' || currentFeedback === 'disabled') {
+            newFeedback = 'disabled'
+        } else if (currentPair.length &lt; 2) {
+            newFeedback = currentPair.includes(index) ? 'visible' : 'hidden'
+        } else if (currentPair.length === 2) {
+            if (currentPair.includes(index)) {
+                newFeedback = indexMatched ? 'justMatched' : 'justMismatched'
+            } else {
+                newFeedback = indexMatched ? 'visible' : 'hidden'
+            }
+        }
+        this.feedbacks[index] = newFeedback
+        return newFeedback
+    }
+
+    /**
+     * &lt;p>Display information about the winners&lt;/p>
+     * @param {HallOfFame} hallOfFame Information about the winners
+     */
+    // Arrow function for binding
+    // (i.e. to access `this` of the current object)
+    displayHallOfFame = (hallOfFame) => {
+        this.setState({ hallOfFame })
+        // where { hallOfFame } is shorthand for { hallOfFame: hallOfFame }
+    }
+
+    /**
      * Render the whole game
      */
     render() {
-        const { cards, guesses, hallOfFame, matchedCardIndices } = this.state
+        const {
+            cards, guesses, hallOfFame, matchedCardIndices,
+        } = this.state
         // Game is won when there are as many matched cards as there are cards
         // in the game
-        const won = matchedCardIndices.length === 4 //cards.length
-        return ( 
+        const won = matchedCardIndices.length === 4 // cards.length
+        return (
             &lt;div className="memory">
-            {/* &lt;span>{`Seconds ${new Date().getSeconds()}`}&lt;/span> */}
-            &lt;GuessCount guesses={guesses} />
-            { cards.map((card, index) => ( 
-              &lt;Card card={card}
-                  feedback={this.getFeedbackForCard(index)}
-                  key={index} // key must be unique and stable in time
-                  index={index}
-                  onClick={this.handleCardClick}
-              />
-            ))}
-            {won &amp;&amp; (hallOfFame ? ( &lt;HallOfFame entries={hallOfFame} />
-                    ) : ( &lt;HighScoreInput
-                          guesses={guesses}
-                          onStored={this.displayHallOfFame}
-                        />
-                    ))
-            }
+                {/* &lt;span>{`Seconds ${new Date().getSeconds()}`}&lt;/span> */}
+                &lt;GuessCount guesses={guesses} />
+                { cards.map((card, index) => (
+                    &lt;Card
+                        card={card}
+                        feedback={this.getFeedbackForCard(index)}
+                        key={index} // key must be unique and stable in time
+                        index={index}
+                        onClick={this.handleCardClick}
+                    />
+                ))}
+                {won &amp;&amp; (hallOfFame ? (&lt;HallOfFame entries={hallOfFame} />
+                ) : (
+                    &lt;HighScoreInput
+                        guesses={guesses}
+                        onStored={this.displayHallOfFame}
+                    />
+                ))}
             &lt;/div>
         )
     }
 }
 
-export default App</code></pre>
+export default App
+</code></pre>
         </article>
     </section>
 
@@ -208,7 +210,7 @@ export default App</code></pre>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Tue Dec 15 2020 17:36:12 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Tue Dec 15 2020 21:27:17 GMT+0000 (Coordinated Universal Time)
 </footer>
 
 <script> prettyPrint(); </script>

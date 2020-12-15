@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">33.33% </span>
+                <span class="strong">30% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>6/18</span>
+                <span class='fraction'>6/20</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">33.33% </span>
+                <span class="strong">30% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>6/18</span>
+                <span class='fraction'>6/20</span>
             </div>
         
             
@@ -125,7 +125,17 @@
 <a name='L66'></a><a href='#L66'>66</a>
 <a name='L67'></a><a href='#L67'>67</a>
 <a name='L68'></a><a href='#L68'>68</a>
-<a name='L69'></a><a href='#L69'>69</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a>
+<a name='L76'></a><a href='#L76'>76</a>
+<a name='L77'></a><a href='#L77'>77</a>
+<a name='L78'></a><a href='#L78'>78</a>
+<a name='L79'></a><a href='#L79'>79</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -136,8 +146,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
@@ -150,7 +162,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -165,8 +177,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -176,6 +191,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -193,6 +212,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import PropTypes from 'prop-types'
 import React from 'react'
 &nbsp;
@@ -205,28 +225,30 @@ import './HallOfFame.css'
  * @returns {JSX} Information to display on the screen
  */
 const HallOfFame = ({ entries }) =&gt; (
-  &lt;table className="hallOfFame"&gt;
-    &lt;tbody&gt;
-      {entries.map(({ date, guesses, id, player }) =&gt; (
-        &lt;tr key={id}&gt;
-          &lt;td className="date"&gt;{date}&lt;/td&gt;
-          &lt;td className="guesses"&gt;{guesses}&lt;/td&gt;
-          &lt;td className="player"&gt;{player}&lt;/td&gt;
-        &lt;/tr&gt;
-      ))}
-    &lt;/tbody&gt;
-  &lt;/table&gt;
+    &lt;table className="hallOfFame"&gt;
+        &lt;tbody&gt;
+            {entries.map(({
+                date, guesses, id, player,
+            }) =&gt; (
+                &lt;tr key={id}&gt;
+                    &lt;td className="date"&gt;{date}&lt;/td&gt;
+                    &lt;td className="guesses"&gt;{guesses}&lt;/td&gt;
+                    &lt;td className="player"&gt;{player}&lt;/td&gt;
+                &lt;/tr&gt;
+            ))}
+        &lt;/tbody&gt;
+    &lt;/table&gt;
 )
 &nbsp;
 HallOfFame.propTypes = {
-  entries: PropTypes.arrayOf(
-    PropTypes.shape({
-      date: PropTypes.string.isRequired,
-      guesses: PropTypes.number.isRequired,
-      id: PropTypes.number.isRequired,
-      player: PropTypes.string.isRequired,
-    })
-  ).isRequired,
+    entries: PropTypes.arrayOf(
+        PropTypes.shape({
+            date: PropTypes.string.isRequired,
+            guesses: PropTypes.number.isRequired,
+            id: PropTypes.number.isRequired,
+            player: PropTypes.string.isRequired,
+        }),
+    ).isRequired,
 }
 &nbsp;
 export default HallOfFame
@@ -238,37 +260,45 @@ const HOF_MAX_SIZE = 10
 &nbsp;
 /**
  * Save information about a player
- * @param {JSON} entry Information about a player (See parameter given in code of function {@link HighScoreInput#persistWinner})
- * @param {function} onStored Function called after information is stored in order to display information about the winners (See parameter given in code of function {@link HighScoreInput#persistWinner})
+ * @param {JSON} entry Information about a player (See parameter given
+ * in code of function {@link HighScoreInput#persistWinner})
+ * @param {function} onStored Function called after information
+ * is stored in order to display information about the winners
+ * (See parameter given in code of function {@link HighScoreInput#persistWinner})
  */
 export function <span class="fstat-no" title="function not covered" >saveHOFEntry(</span>entry, onStored) {
-<span class="cstat-no" title="statement not covered" >  entry.date = new Date().toLocaleDateString()</span>
-<span class="cstat-no" title="statement not covered" >  entry.id = Date.now()</span>
+    const { guesses, player } = <span class="cstat-no" title="statement not covered" >entry</span>
+    const date = <span class="cstat-no" title="statement not covered" >new Date().toLocaleDateString()</span>
+    const id = <span class="cstat-no" title="statement not covered" >Date.now()</span>
+    const newEntry = <span class="cstat-no" title="statement not covered" >{</span>
+        guesses, player, date, id,
+    }
 &nbsp;
-  const entries = <span class="cstat-no" title="statement not covered" >JSON.parse(localStorage.getItem(HOF_KEY) || '[]')</span>
-  const insertionPoint = <span class="cstat-no" title="statement not covered" >entries.findIndex(</span>
-<span class="fstat-no" title="function not covered" >    ({</span> guesses }) =&gt; <span class="cstat-no" title="statement not covered" >guesses &gt;= entry.guesses</span>
-  )
+    const entries = <span class="cstat-no" title="statement not covered" >JSON.parse(localStorage.getItem(HOF_KEY) || '[]')</span>
+    const insertionPoint = <span class="cstat-no" title="statement not covered" >entries.findIndex(</span>
+<span class="fstat-no" title="function not covered" >        ({</span> _guesses }) =&gt; <span class="cstat-no" title="statement not covered" >_guesses &gt;= newEntry.guesses,</span>
+    )
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  if (insertionPoint === -1) {</span>
-<span class="cstat-no" title="statement not covered" >    entries.push(entry)</span>
-  } else {
-<span class="cstat-no" title="statement not covered" >    entries.splice(insertionPoint, 0, entry)</span>
-  }
-<span class="cstat-no" title="statement not covered" >  if (entries.length &gt; HOF_MAX_SIZE) {</span>
-<span class="cstat-no" title="statement not covered" >    entries.splice(HOF_MAX_SIZE, entries.length)</span>
-  }
+<span class="cstat-no" title="statement not covered" >    if (insertionPoint === -1) {</span>
+<span class="cstat-no" title="statement not covered" >        entries.push(newEntry)</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >        entries.splice(insertionPoint, 0, newEntry)</span>
+    }
+<span class="cstat-no" title="statement not covered" >    if (entries.length &gt; HOF_MAX_SIZE) {</span>
+<span class="cstat-no" title="statement not covered" >        entries.splice(HOF_MAX_SIZE, entries.length)</span>
+    }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  localStorage.setItem(HOF_KEY, JSON.stringify(entries))</span>
-<span class="cstat-no" title="statement not covered" >  onStored(entries)</span>
-}</pre></td></tr></table></pre>
+<span class="cstat-no" title="statement not covered" >    localStorage.setItem(HOF_KEY, JSON.stringify(entries))</span>
+<span class="cstat-no" title="statement not covered" >    onStored(entries)</span>
+}
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Tue Dec 15 2020 17:36:08 GMT+0000 (Coordinated Universal Time)
+                at Tue Dec 15 2020 21:27:19 GMT+0000 (Coordinated Universal Time)
             </div>
         </div>
         <script src="prettify.js"></script>
