@@ -585,3 +585,7 @@ test: src/**/*.js and src/**.js
 ```
 
 Remove .eslintrc.json to stop npm run build from failing because of lint
+
+### Change quality gate
+
+https://sonarcloud.io/dashboard?id=DamienToomey_memory2 > Click on href under label Quality Gate
