@@ -428,8 +428,11 @@ git push origin gh-pages
   - [codecov/codecov-action](https://github.com/codecov/codecov-action)
   - [github/codeql-action](https://github.com/github/codeql-action)
 
+- [Setting up a CI/CD workflow on GitHub Actions for a React App (with GitHub Pages and Codecov)](https://dev.to/dyarleniber/setting-up-a-ci-cd-workflow-on-github-actions-for-a-react-app-with-github-pages-and-codecov-4hnp)
+
 ### [codecov](https://codecov.io) tokenless uploads with GitHub Actions
 
 - Go to https://codecov.io
 - Login with GitHub
-- [codecov/codecov-action](https://github.com/codecov/codecov-action)
+- Follow instructions given on [codecov/codecov-action](https://github.com/codecov/codecov-action) (FYI: codecov supports tokenless uploads from GitHub Actions)
+- Install Codecov app for the `memory` app on GitHub (https://github.com/apps/codecov > Configure)
