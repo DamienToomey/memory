@@ -45,20 +45,20 @@ class HighScoreInput extends Component {
      */
     render() {
         return (
-        <form className="highScoreInput" onSubmit={this.persistWinner}>
-            <p>
-            <label>
-                Well done! Please enter your name:
-                <input
-                    autoComplete="given-name"
-                    onChange={this.handleWinnerUpdate}
-                    type="text"
-                    value={this.state.winner}
-                />
-            </label>
-            <button type="submit">I have won!</button>
-            </p>
-        </form>
+            <form className="highScoreInput" onSubmit={this.persistWinner}>
+                <p>
+                <label>
+                    Well done! Please enter your name:
+                    <input
+                        autoComplete="given-name"
+                        onChange={this.handleWinnerUpdate}
+                        type="text"
+                        value={this.state.winner}
+                    />
+                </label>
+                <button type="submit">I have won!</button>
+                </p>
+            </form>
         )
     }
 }

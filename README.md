@@ -434,6 +434,10 @@ git push origin gh-pages
 
 - [What is Codecov score and how it is measured?](https://stackoverflow.com/questions/38281319/what-is-codecov-score-and-how-it-is-measured)
 
+- [codeclimate](https://codeclimate.com)
+
+- [Setting up ESLint in React](https://medium.com/@RossWhitehouse/setting-up-eslint-in-react-c20015ef35f7)
+
 ### [codecov](https://codecov.io) tokenless uploads with GitHub Actions
 
 - Go to https://codecov.io
@@ -446,4 +450,120 @@ git push origin gh-pages
 - archive and compare coverage reports
 - does not require a upload tokens for public GitHub repositories
 - compute total test coverage
-- do not need to generate a specific codecov compatible code coverage report as needed for SonarCloud for example
+- does not need to generate a specific codecov compatible code coverage report as needed for SonarCloud for example
+
+#### Why use SonarCloud instead of Codecov ?
+
+- SonarCloud has comprehensive set of pre-configured quality checks
+- has a quality gate
+
+### [ESLint](https://www.npmjs.com/package/eslint)
+
+- [Setting up ESLint in React](https://medium.com/@RossWhitehouse/setting-up-eslint-in-react-c20015ef35f7)
+
+```
+$ sudo npm install --save-dev eslint
+```
+
+You should then set up a configuration file:
+
+```
+$ ./node_modules/.bin/eslint --init
+# How would you like to use ESLint? To check syntax, find problems, and enforce code style
+# What type of modules does your project use? JavaScript modules (import/export)
+# Which framework does your project use? React
+# Does your project use TypeScript? No
+# Where does your code run? Browser
+# How would you like to define a style for your project? Use a popular style guide
+# Which style guide do you want to follow? Airbnb: https://github.com/airbnb/javascript
+# What format do you want your config file to be in? JSON
+# Would you like to install them now with npm? Yes
+```
+
+After that, you can run ESLint on any file or directory like this:
+
+```
+$ ./node_modules/.bin/eslint src/HighScoreInput.js
+```
+
+#### Troubleshooting
+
+- [ESLint Parsing error: Unexpected token](https://stackoverflow.com/questions/36001552/eslint-parsing-error-unexpected-token)
+
+> error  Parsing error: Unexpected token =
+
+```
+sudo npm install --save-dev babel-eslint 
+```
+
+Add the following code in `.eslintrc`:
+
+```
+"parser": "babel-eslint"
+```
+
+- [allow semi colons in javascript eslint](https://stackoverflow.com/questions/40453894/allow-semi-colons-in-javascript-eslint)
+
+Reference: [ESLint Documentation](https://eslint.org/docs/rules/semi#options)
+
+> error  Missing semicolon
+
+Add the following code in `.eslintrc`:
+
+```
+"rules": {
+    "semi": ["error", "never"]
+}
+```
+
+- [Eslint AirBNB with 4 spaces for indent](https://stackoverflow.com/questions/48902050/eslint-airbnb-with-4-spaces-for-indent)
+
+> Expected indentation of 2 spaces but found 4
+
+Add the following code in `.eslintrc`:
+
+```
+"rules": {
+  // Indent with 4 spaces
+  "indent": ["error", 4],
+  // Indent JSX with 4 spaces
+  "react/jsx-indent": ["error", 4],
+  // Indent props with 4 spaces
+  "react/jsx-indent-props": ["error", 4]
+}
+```
+
+- [Running eslint as an npm script results in ELIFECYCLE error.](https://github.com/eslint/eslint/issues/2409)
+
+> Failed at the memory@0.1.0 lint script.
+
+"I tried your scenario and what happens is that when eslint run ends with a exit code of 1 (that means you have eslint error(s) in your code) and then when npm tackles that error code then it throws an error because internal task returned an exit code 1.
+
+It will for sure run fine if you don't have any eslint errors.
+
+So to answer your questions, Yes its behaving as expected."
+
+We can add `eslint ...; exit 0` to prevent npm from throwing an error.
+
+#### Running ESLint on a single file
+
+```
+$ sudo npm run lint src/HighScoreInput.js
+```
+
+#### Running ESLint on all files
+
+```
+$ sudo npm run lint src/**/*.js
+```
+
+#### Generating ESLint report for SonarCloud
+
+```
+$ sudo npm run lint src/**/*.js -- -f json -o report.json
+```
+
+#### Adding ESLint report to SonarCloud
+
+- [Importing ESLint Issues Reports](https://docs.sonarqube.org/pages/viewpage.action?pageId=11639183)
+
