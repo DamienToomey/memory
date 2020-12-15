@@ -8,5 +8,7 @@ paths:
 queries:
   - name: security-and-quality
     uses: security-and-quality
-  - name: Cyclomatic complexity
-    uses: github/codeql/javascript/ql/src/Metrics/FCyclomaticComplexity.ql@main
+  - name: code-scanning
+    uses: code-scanning
+  # - name: Cyclomatic complexity
+  #   uses: github/codeql/javascript/ql/src/Metrics/FCyclomaticComplexity.ql@main
