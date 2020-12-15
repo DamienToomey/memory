@@ -38,7 +38,7 @@ class App extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            cards: this.generateCards(),
+            cards: App.generateCards(),
             currentPair: [],
             guesses: 0,
             hallOfFame: null,

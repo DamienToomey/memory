@@ -14,9 +14,10 @@ describe('<App />', () => {
     // What is the difference between a stub and a spy ?
     // for stub, we can specify what it returns
         const mock = sinon
-            .stub(App.prototype, 'generateCards')
+            .stub(App, 'generateCards') // generateCards is static method
+            // .stub(App.prototype, 'generateCards') // if generateCards were is instance method
             .returns([...SYMBOLS.repeat(2)])
-        // .repeat(2) as we want pairs of symbols
+            // .repeat(2) as we want pairs of symbols
 
         try {
             const wrapper = shallow(<App />)
