@@ -28,7 +28,7 @@ jobs:
         # [Continuous Integration | Create React App Documentation](https://create-react-app.dev/docs/running-tests/#continuous-integration)
         run: npm run build
         env:
-          CI: ""
+          CI: false
       - name: Archive build as artifact
         uses: actions/upload-artifact@v2
         with:
