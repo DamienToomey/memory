@@ -427,3 +427,9 @@ git push origin gh-pages
   - https://codecov.io
   - [codecov/codecov-action](https://github.com/codecov/codecov-action)
   - [github/codeql-action](https://github.com/github/codeql-action)
+
+### [codecov](https://codecov.io) tokenless uploads with GitHub Actions
+
+- Go to https://codecov.io
+- Login with GitHub
+- [codecov/codecov-action](https://github.com/codecov/codecov-action)
