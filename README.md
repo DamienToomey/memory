@@ -16,6 +16,8 @@ This app uses [React](https://reactjs.org) and was created with Create React App
 | [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=DamienToomey_memory2&metric=duplicated_lines_density)](https://sonarcloud.io/dashboard?id=DamienToomey_memory2) | [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=DamienToomey_memory2&metric=ncloc)](https://sonarcloud.io/dashboard?id=DamienToomey_memory2) | [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=DamienToomey_memory2&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=DamienToomey_memory2) |
 | [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=DamienToomey_memory2&metric=alert_status)](https://sonarcloud.io/dashboard?id=DamienToomey_memory2) | [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=DamienToomey_memory2&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=DamienToomey_memory2) | [![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/dashboard?id=DamienToomey_memory2) |
 
+[![codecov](https://codecov.io/gh/DamienToomey/memory/branch/master/graph/badge.svg?token=4ZFLXJ0LXP)](https://codecov.io/gh/DamienToomey/memory)
+
 ### I. How was the project created?
 
 #### Install nodejs
