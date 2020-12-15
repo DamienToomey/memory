@@ -118,7 +118,7 @@ jobs:
   #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   #         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-  quality:
+  coverage:
     needs: [unit-tests]
     runs-on: ubuntu-latest
     steps:
@@ -135,6 +135,19 @@ jobs:
           name: codecov-umbrella # optional
           fail_ci_if_error: true # optional (default = false)
           verbose: true # optional (default = false)
+
+  quality:
+    runs-on: ubuntu-latest
+    - name: Checkout branch on which commit was performed 
+      uses: actions/checkout@v2
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v1
+      with:
+        languages: javascript
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v1
+    - name: ls
+      run: ls
 
   deploy:
     needs: [build, quality, docs]

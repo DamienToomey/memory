@@ -432,9 +432,18 @@ git push origin gh-pages
 
 - [Setting up a CI/CD workflow on GitHub Actions for a React App (with GitHub Pages and Codecov)](https://dev.to/dyarleniber/setting-up-a-ci-cd-workflow-on-github-actions-for-a-react-app-with-github-pages-and-codecov-4hnp)
 
+- [What is Codecov score and how it is measured?](https://stackoverflow.com/questions/38281319/what-is-codecov-score-and-how-it-is-measured)
+
 ### [codecov](https://codecov.io) tokenless uploads with GitHub Actions
 
 - Go to https://codecov.io
 - Login with GitHub
-- Follow instructions given on [codecov/codecov-action](https://github.com/codecov/codecov-action) (FYI: codecov supports tokenless uploads from GitHub Actions)
+- Follow instructions given on [codecov/codecov-action](https://github.com/codecov/codecov-action) (FYI: codecov supports tokenless uploads from GitHub Actions for a public GitHub repository)
 - Install Codecov app for the `memory` app on GitHub (https://github.com/apps/codecov > Configure)
+
+#### Why use Codecov ?
+
+- archive and compare coverage reports
+- does not require a upload tokens for public GitHub repositories
+- compute total test coverage
+- do not need to generate a specific codecov compatible code coverage report as needed for SonarCloud for example
