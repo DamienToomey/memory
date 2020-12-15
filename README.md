@@ -364,7 +364,7 @@ Go to https://github.com/DamienToomey/memory/settings > Scroll down to GitHub Pa
 
 #### Push to master branch to kick off CI pipeline
 
-This repository uses GitHub Actions for CI/CD purposes (see `.github/github-ci.yml`). In the `deploy` job of the pipeline, `build`, `coverage`, `docs` folders are generated and pushed on the branch `gh-pages`.
+This repository uses GitHub Actions for CI/CD purposes (see `.github/workflows/github-ci.yml`). In the `deploy` job of the pipeline, `build`, `coverage`, `docs` folders are generated and pushed on the branch `gh-pages`.
 
 **WARNING**: content on the branch `gh-pages` will be available only after:
 - Step1: configuring GitHub Pages (as described above)
