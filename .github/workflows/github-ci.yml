@@ -127,10 +127,11 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: code_coverage_artifact
-      - uses: codecov/codecov-action@v1.0.15
+      - uses: codecov/codecov-action@v1.0.6
         with:
           # token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
-          files: coverage/lcov.info, coverage/clover.xml # optional
+          files: ./lcov.info, ./clover.xml # optional
+          directory: ./coverage/
           flags: unittests # optional
           name: codecov-umbrella # optional
           fail_ci_if_error: true # optional (default = false)
