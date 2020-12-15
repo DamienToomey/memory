@@ -1,7 +1,8 @@
 {
     "env": {
         "browser": true,
-        "es2021": true
+        "es2021": true,
+        "CI": false
     },
     "extends": [
         "plugin:react/recommended",
@@ -18,13 +19,13 @@
         "react"
     ],
     "rules": {
-        "semi": ["warning", "never"],
+        "semi": ["error", "never"],
         // Indent with 4 spaces
-        "indent": ["warning", 4],
+        "indent": ["error", 4],
         // Indent JSX with 4 spaces
-        "react/jsx-indent": ["warning", 4],
+        "react/jsx-indent": ["error", 4],
         // Indent props with 4 spaces
-        "react/jsx-indent-props": ["warning", 4]
+        "react/jsx-indent-props": ["error", 4]
     },
     "parser": "babel-eslint"
 }
