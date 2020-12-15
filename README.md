@@ -560,7 +560,7 @@ $ sudo npm run lint src/**/*.js
 #### Generating ESLint report for SonarCloud
 
 ```
-$ sudo npm run lint src/**/*.js -- -f json -o report.json
+$ sudo npm run lint src/**/*.js -- -f json -o lint_report.json
 ```
 
 #### Adding ESLint report to SonarCloud
