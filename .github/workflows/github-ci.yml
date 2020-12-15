@@ -111,6 +111,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+      - name: npm ci
+        run: npm ci
       - name: Download code coverage report artifact
         uses: actions/download-artifact@v2
         with:
