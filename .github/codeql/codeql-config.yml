@@ -1,0 +1,10 @@
+name: "CodeQL config"
+
+languages: javascript
+
+paths:
+  - src
+  - public
+
+queries: 
+  - security-and-quality
