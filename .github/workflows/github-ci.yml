@@ -23,10 +23,10 @@ jobs:
       - name: npm ci
         run: npm ci
       - name: npm run build
-        # Why set CI=false ?
-        # "not to perform a linter warning check"
+        # Why set CI=true ?
+        # "to perform a linter warning check"
         # [Continuous Integration | Create React App Documentation](https://create-react-app.dev/docs/running-tests/#continuous-integration)
-        run: CI=false npm run build
+        run: npm run build
       - name: Archive build as artifact
         uses: actions/upload-artifact@v2
         with:
