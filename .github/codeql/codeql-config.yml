@@ -5,10 +5,12 @@ paths:
   - src
   - public
 
+disable-default-queries: true
+
 queries:
   - name: security-and-quality
     uses: security-and-quality
-  - name: code-scanning
-    uses: github/codeql/javascript/ql/src/codeql-suites/javascript-code-scanning.qls@main
+  # - name: code-scanning
+  #   uses: github/codeql/javascript/ql/src/codeql-suites/javascript-code-scanning.qls@main
   # - name: Cyclomatic complexity
   #   uses: github/codeql/javascript/ql/src/Metrics/FCyclomaticComplexity.ql@main
