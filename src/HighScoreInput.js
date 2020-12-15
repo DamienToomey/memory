@@ -9,23 +9,23 @@ import { saveHOFEntry } from './HallOfFame'
  * Get winner information, save it and display it
  * @component
  * @prop {number} guesses Number of guesses done by the user
- * @prop {function} onStored Function called after information is stored in order to display information about the winners 
+ * @prop {function} onStored Function called after information is stored
+ * in order to display information about the winners
  * @extends {Component}
  */
 class HighScoreInput extends Component {
-
     constructor(props) {
         super(props)
         this.state = { winner: '' }
     }
-    
+
     /**
      * <p>Handle onChange event from user input</p>
      * <p>Transform lower case letters to upper case</p>
      * @param {event} event onChange event
      */
     // Arrow function for binding
-    handleWinnerUpdate = event => {
+    handleWinnerUpdate = (event) => {
         this.setState({ winner: event.target.value.toUpperCase() })
     }
 
@@ -34,29 +34,33 @@ class HighScoreInput extends Component {
      * @param {event} event onSubmit event
      */
     // Arrow function for binding
-    persistWinner = event => {
+    persistWinner = (event) => {
         event.preventDefault()
-        const newEntry = { guesses: this.props.guesses, player: this.state.winner }
-        saveHOFEntry(newEntry, this.props.onStored)
+        const { guesses, onStored } = this.props
+        const { winner } = this.state
+        const newEntry = { guesses, player: winner }
+        saveHOFEntry(newEntry, onStored)
     }
 
     /**
      * Render the winner information form
      */
     render() {
+        const { winner } = this.state
         return (
             <form className="highScoreInput" onSubmit={this.persistWinner}>
                 <p>
-                <label>
-                    Well done! Please enter your name:
-                    <input
-                        autoComplete="given-name"
-                        onChange={this.handleWinnerUpdate}
-                        type="text"
-                        value={this.state.winner}
-                    />
-                </label>
-                <button type="submit">I have won!</button>
+                    <label htmlFor="input_winner_information">
+                        Well done! Please enter your name:
+                        <input
+                            autoComplete="given-name"
+                            onChange={this.handleWinnerUpdate}
+                            type="text"
+                            value={winner}
+                            id="input_winner_information"
+                        />
+                    </label>
+                    <button type="submit">I have won!</button>
                 </p>
             </form>
         )

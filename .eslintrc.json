@@ -1,7 +1,8 @@
 {
     "env": {
         "browser": true,
-        "es2021": true
+        "es2021": true,
+        "jasmine": true
     },
     "extends": [
         "plugin:react/recommended",
@@ -18,13 +19,20 @@
         "react"
     ],
     "rules": {
+        // No errors when ; is missing
         "semi": ["error", "never"],
         // Indent with 4 spaces
         "indent": ["error", 4],
         // Indent JSX with 4 spaces
         "react/jsx-indent": ["error", 4],
         // Indent props with 4 spaces
-        "react/jsx-indent-props": ["error", 4]
+        "react/jsx-indent-props": ["error", 4],
+        // Allow imports of devDependencies in test files only
+        "import/no-extraneous-dependencies": ["error", { "devDependencies": ["src/*.test.*", "src/**/*.test.*", "src/setupTests.js"] }],
+        // Ignore "JSX not allowed in files with extension '.js'" TO BE REMOVED
+        "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx"] }],
+        // Ignore "Do not use Array index in keys" TO BE REMOVED
+        "react/no-array-index-key": 0 // = off
     },
     "parser": "babel-eslint"
 }

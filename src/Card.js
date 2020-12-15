@@ -9,16 +9,28 @@ const HIDDEN_SYMBOL = '❓'
  * Display a card on the screen
  * @component
  * @prop {string} card Content of the card
- * @prop {string} feedback Feeback of the card (See possible feedback values in {@link Card}.propTypes)
+ * @prop {string} feedback Feeback of the card
+ * (See possible feedback values in {@link Card}.propTypes)
  * @prop {number} index Index of the card
  * @prop {function} onClick Function called when the card is clicked on
  * @returns {JSX} Information to display on the screen
  */
-const Card = ({ card, feedback, index, onClick }) => (
-        <div className={`card ${feedback}`} onClick={() => onClick(index)}>
-        <span className="symbol">{feedback === 'hidden' ? HIDDEN_SYMBOL : card}</span>
+const Card = ({
+    card, feedback, index, onClick,
+}) => {
+    const enterKey = 13
+    return (
+        <div
+            className={`card ${feedback}`}
+            role="button"
+            onClick={() => onClick(index)}
+            tabIndex={0} // zero indicates that this element can be tabbed to
+            onKeyDown={(event) => { if (event.keycode === enterKey) { onClick(index) } }}
+        >
+            <span className="symbol">{feedback === 'hidden' ? HIDDEN_SYMBOL : card}</span>
         </div>
     )
+}
 
 Card.propTypes = {
     card: PropTypes.string.isRequired,

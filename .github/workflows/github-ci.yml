@@ -22,8 +22,6 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: npm ci
         run: npm ci
-      - name: fix lining errors # otherwise build fails due to the existence of .eslintrc.json
-        run: npm run lint -- --fix
       - name: npm run build
         # Why set CI=true ? # This does not seem to work
         # "to perform a linter warning check"
@@ -98,9 +96,6 @@ jobs:
   quality: # measured with SonarCloud
     needs: unit-tests
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [12.x]
     # Most of the code in steps is given sonarcloud.io
     # when creating a new project
     steps:
@@ -109,12 +104,6 @@ jobs:
         with:
           # Disabling shallow clone is recommended for improving relevancy of reporting
           fetch-depth: 0
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-      - name: npm ci
-        run: npm ci
       - name: Download code coverage report artifact
         uses: actions/download-artifact@v2
         with:
@@ -123,8 +112,6 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: sonar_code_coverage_artifact
-      - name: Generate lint report
-        run: npm run lint src/**/*.js -- -f json -o lint_report.json
       - name: SonarCloud Scan
         uses: sonarsource/sonarcloud-github-action@master
         env:

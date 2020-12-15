@@ -20,7 +20,7 @@
         "test": "react-scripts test",
         "eject": "react-scripts eject",
         "docs": "jsdoc -c jsdoc.conf.json",
-        "lint": "eslint; exit 0"
+        "lint": "eslint"
     },
     "eslintConfig": {
         "extends": [

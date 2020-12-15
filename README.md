@@ -16,8 +16,6 @@ This app uses [React](https://reactjs.org) and was created with Create React App
 | [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=DamienToomey_memory2&metric=duplicated_lines_density)](https://sonarcloud.io/dashboard?id=DamienToomey_memory2) | [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=DamienToomey_memory2&metric=ncloc)](https://sonarcloud.io/dashboard?id=DamienToomey_memory2) | [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=DamienToomey_memory2&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=DamienToomey_memory2) |
 | [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=DamienToomey_memory2&metric=alert_status)](https://sonarcloud.io/dashboard?id=DamienToomey_memory2) | [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=DamienToomey_memory2&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=DamienToomey_memory2) | [![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/dashboard?id=DamienToomey_memory2) |
 
-[![codecov](https://codecov.io/gh/DamienToomey/memory/branch/master/graph/badge.svg?token=4ZFLXJ0LXP)](https://codecov.io/gh/DamienToomey/memory)
-
 ### I. How was the project created?
 
 #### Install nodejs
@@ -543,7 +541,7 @@ It will for sure run fine if you don't have any eslint errors.
 
 So to answer your questions, Yes its behaving as expected."
 
-We can add `eslint ...; exit 0` to prevent npm from throwing an error.
+We can add `eslint ...; exit 0` to prevent npm from throwing an error. or -s (DOES NOT WORK AS EXPECTED)
 
 #### Running ESLint on a single file
 
@@ -560,10 +558,30 @@ $ sudo npm run lint src/**/*.js
 #### Generating ESLint report for SonarCloud
 
 ```
-$ sudo npm run lint src/**/*.js -- -f json -o lint_report.json
+$ sudo npm run lint src/*.js src/**/*.js -- -f json -o lint_report.json
 ```
+
+#### Generating HTML
+
+```
+$ sudo npm run lint src/*.js src/**/*.js -- -f html -o lint_report.html
+```
+
+PROBLEM: npm run build from Create React App applies lint on code and fails job even with CI=false
 
 #### Adding ESLint report to SonarCloud
 
 - [Importing ESLint Issues Reports](https://docs.sonarqube.org/pages/viewpage.action?pageId=11639183)
 
+
+#### Fix ESLint issues
+
+```
+$ sudo npm run lint src/*.js src/**/*.js -- --fix
+```
+
+```
+test: src/**/*.js and src/**.js
+```
+
+Remove .eslintrc.json to stop npm run build from failing because of lint
