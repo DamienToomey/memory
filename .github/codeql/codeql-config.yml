@@ -9,4 +9,4 @@ queries:
   - name: security-and-quality
     uses: security-and-quality
   - name: Cyclomatic complexity
-    uses: github/codeql/javascript/ql/src/Metrics/FunCyclomaticComplexity.ql@main
+    uses: github/codeql/javascript/ql/src/Metrics/FCyclomaticComplexity.ql@main
