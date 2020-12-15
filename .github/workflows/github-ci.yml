@@ -22,7 +22,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: npm ci
         run: npm ci
-      - name: fix lining errors
+      - name: fix lining errors # otherwise build fails due to the existence of .eslintrc.json
         run: npm run lint -- --fix
       - name: npm run build
         # Why set CI=true ? # This does not seem to work
