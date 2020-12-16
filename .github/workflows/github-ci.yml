@@ -118,41 +118,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-  # coverage:
-  #   needs: [unit-tests]
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@master
-  #     - name: Download code coverage artifact
-  #       uses: actions/download-artifact@v2
-  #       with:
-  #         name: code_coverage_artifact
-  #     - uses: codecov/codecov-action@v1.0.15
-  #       with:
-  #         # token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
-  #         files: coverage/lcov.info # optional
-  #         flags: unittests # optional
-  #         name: codecov-umbrella # optional
-  #         fail_ci_if_error: true # optional (default = false)
-  #         verbose: true # optional (default = false)
-
-  # quality:
-  #   runs-on: ubuntu-latest
-  #   strategy:
-  #     fail-fast: false
-  #     matrix:
-  #       language: ['javascript']
-  #   steps:
-  #     - name: Checkout branch on which commit was performed 
-  #       uses: actions/checkout@v2
-  #     - name: Initialize CodeQL
-  #       uses: github/codeql-action/init@v1
-  #       with:
-  #         languages: ${{ matrix.language }}
-  #         config-file: ./.github/codeql/codeql-config.yml
-  #     - name: Perform CodeQL Analysis
-  #       uses: github/codeql-action/analyze@v1
-
   deploy:
     needs: [build, quality, docs]
     runs-on: ubuntu-latest

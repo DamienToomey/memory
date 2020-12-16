@@ -11,64 +11,6 @@ This app uses [React](https://reactjs.org) and was created with [Create React Ap
 ### CI Badges
 
 <p align="center">
- <table style="width:100%; text-align: center">
-  <tr>
-    <th style="border: none;">
-      <a href="https://sonarcloud.io/dashboard?id=DamienToomey_memory2">
-        <img src="https://sonarcloud.io/api/project_badges/measure?project=DamienToomey_memory2&metric=bugs">
-      </a>
-    </th>
-    <th style="border: none;">
-      <a href="https://sonarcloud.io/dashboard?id=DamienToomey_memory2">
-        <img src="https://sonarcloud.io/api/project_badges/measure?project=DamienToomey_memory2&metric=code_smells">
-      </a>
-    </th>
-    <th style="border: none;">
-      <a href="https://sonarcloud.io/dashboard?id=DamienToomey_memory2">
-        <img src="https://sonarcloud.io/api/project_badges/measure?project=DamienToomey_memory2&metric=coverage">
-      </a>
-    </th>
-  </tr>
-  <tr>
-    <td style="border: none;">
-      <a href="https://sonarcloud.io/dashboard?id=DamienToomey_memory2">
-        <img src="https://sonarcloud.io/api/project_badges/measure?project=DamienToomey_memory2&metric=duplicated_lines_density">
-      </a>
-    </td>
-    <td style="border: none;">
-      <a href="https://sonarcloud.io/dashboard?id=DamienToomey_memory2">
-        <img src="https://sonarcloud.io/api/project_badges/measure?project=DamienToomey_memory2&metric=ncloc">
-      </a>
-    </td>
-    <td style="border: none;">
-      <a href="https://sonarcloud.io/dashboard?id=DamienToomey_memory2">
-        <img src="https://sonarcloud.io/api/project_badges/measure?project=DamienToomey_memory2&metric=sqale_rating">
-      </a>
-    </td>
-  </tr>
-  <tr>
-    <td style="border: none;">
-      <a href="https://sonarcloud.io/dashboard?id=DamienToomey_memory2">
-        <img src="https://sonarcloud.io/api/project_badges/measure?project=DamienToomey_memory2&metric=alert_status">
-      </a>
-    </td>
-    <td style="border: none;">
-      <a href="https://sonarcloud.io/dashboard?id=DamienToomey_memory2">
-        <img src="https://sonarcloud.io/api/project_badges/measure?project=DamienToomey_memory2&metric=reliability_rating">
-      </a>
-    </td>
-    <td style="border: none;">
-      <a href="https://sonarcloud.io/dashboard?id=DamienToomey_memory2">
-        <img src="https://sonarcloud.io/images/project_badges/sonarcloud-white.svg" width="100px">
-      </a>
-    </td>
-  </tr>
-</table> 
-</p>
-
----
-
-<p align="center">
       <a href="https://sonarcloud.io/dashboard?id=DamienToomey_memory2">
         <img src="https://sonarcloud.io/api/project_badges/measure?project=DamienToomey_memory2&metric=bugs">
       </a>
@@ -79,6 +21,7 @@ This app uses [React](https://reactjs.org) and was created with [Create React Ap
         <img src="https://sonarcloud.io/api/project_badges/measure?project=DamienToomey_memory2&metric=coverage">
       </a>
 </p>
+
 <p align="center">
       <a href="https://sonarcloud.io/dashboard?id=DamienToomey_memory2">
         <img src="https://sonarcloud.io/api/project_badges/measure?project=DamienToomey_memory2&metric=duplicated_lines_density">
@@ -90,6 +33,7 @@ This app uses [React](https://reactjs.org) and was created with [Create React Ap
         <img src="https://sonarcloud.io/api/project_badges/measure?project=DamienToomey_memory2&metric=sqale_rating">
       </a>
 </p>
+
 <p align="center">
       <a href="https://sonarcloud.io/dashboard?id=DamienToomey_memory2">
         <img src="https://sonarcloud.io/api/project_badges/measure?project=DamienToomey_memory2&metric=alert_status">
@@ -132,7 +76,7 @@ $ npm view react version
 #### Install Create-React-App
 
 ```
-sudo npm install --global create-react-app
+$ sudo npm install --global create-react-app
 ```
 
 #### Create app skeleton with Create-React-App
@@ -192,7 +136,7 @@ $ git push --set-upstream origin master
 $ sudo npm install --save lodash.shuffle
 ```
 
-- Runtime type checking for React props and similar objects.
+- Runtime type checking for React props and similar objects
 
 ```
 $ sudo npm install --save prop-types
@@ -278,11 +222,11 @@ Steps:
 - Serialize a version of the app that works (components, API reponses, ...) and save it (called snapshot)
 - Version snapshots with code
 - Compare previous snapshot with new snapshot
-    - Case1: previous snapshot is correct: we have just caught a regression in the code
-    - Case2: new snapshot is correct: we can overwrite the previous snapshot
+    - Case1: If the previous snapshot is correct then we have just caught a regression in the code
+    - Case2: If the new snapshot is correct then we can overwrite the previous snapshot
 
 ```
-sudo npm install --save-dev chai-jest-snapshot enzyme-to-json
+$ sudo npm install --save-dev chai-jest-snapshot enzyme-to-json
 ```
 
 **WARNING**: the initial snapshot must be correct, otherwise we will be comparing future snapshots with an initial erroneous snapshot, thus not truly knowing which snapshot is correct.
@@ -294,14 +238,14 @@ I decide not to use snapshots in this project as I am using a CI pipeline to aut
 #### Run tests
 
 ```
-$ sudo npm test --verbose
+$ sudo npm test -- --verbose
 # --verbose: print console.log
 ```
 
 #### Run tests on a single file
 
 ```
-$ sudo npm test --verbose -- App.test.js
+$ sudo npm test App.test.js -- --verbose
 ```
 
 #### Run tests and generate a test coverage report
@@ -311,15 +255,192 @@ $ sudo npm test -- --coverage --watchAll --verbose
 # --watchAll: rerun all tests, not just tests related to modified files
 ```
 
-### V. SonarCloud (code quality)
+### V. [ESLint](https://www.npmjs.com/package/eslint)
+
+(code quality)
+
+#### Setting up ESLint in React
+
+- References:
+  - [ESLint](https://www.npmjs.com/package/eslint)
+  - [Setting up ESLint in React](https://medium.com/@RossWhitehouse/setting-up-eslint-in-react-c20015ef35f7)
+
+```
+$ sudo npm install --save-dev eslint
+```
+
+You should then set up a configuration file:
+
+```
+$ ./node_modules/.bin/eslint --init
+```
+
+| Question | Answer |
+|:---:|:---:|:---:|
+| How would you like to use ESLint? | To check syntax, find problems, and enforce code style |
+| What type of modules does your project use? | JavaScript modules (import/export) |
+|  Which framework does your project use? | React
+| Does your project use TypeScript? | No |
+| Where does your code run? | Browser |
+| How would you like to define a style for your project? | Use a popular style guide |
+| Which style guide do you want to follow? | Airbnb: https://github.com/airbnb/javascript |
+| What format do you want your config file to be in? | JSON |
+| Would you like to install them now with npm? | Yes |
+
+After that, you can run ESLint on any file or directory like this:
+
+```
+$ ./node_modules/.bin/eslint src/HighScoreInput.js
+```
+
+#### Adding ESLint script in `package.json` to run linter
+
+```
+"scripts": {
+    "lint": "eslint"
+}
+```
+
+#### Running ESLint on a single file
+
+```
+$ sudo npm run lint src/HighScoreInput.js
+```
+
+#### Running ESLint on all files
+
+```
+$ sudo npm run lint src/*.js src/**/*.js
+# src/*.js: .js files in src 
+# src/**/*.js: .js files in src subfolders
+```
+
+#### Generating ESLint HTML report
+
+```
+$ sudo npm run lint src/*.js src/**/*.js -- -f html -o lint_report.html
+```
+
+#### Troubleshooting
+
+##### `Failed at the memory@0.1.0 lint script.`
+
+- Reference: [Running eslint as an npm script results in ELIFECYCLE error.](https://github.com/eslint/eslint/issues/2409)
+
+"I tried your scenario and what happens is that when eslint run ends with a exit code of 1 (that means you have eslint error(s) in your code) and then when npm tackles that error code then it throws an error because internal task returned an exit code 1.
+
+It will for sure run fine if you don't have any eslint errors.
+
+So to answer your questions, Yes its behaving as expected."
+
+If you really want to remove the npm error, do:
+- `eslint; exit 0` in `package.json`
+or
+- `npm run lint -s`
+
+**WARNING**: when building the app with `npm run build`, this also runs the linter when the file `.eslintrc.json` exists.
+
+Setting `npm run build` or `CI=false npm run build` does not turn off the linter when `.eslintrc.json` exists. (whereas according to the [Create React App Documentation](https://create-react-app.dev/docs/running-tests#continuous-integration), "When creating a build of your application with npm run build linter warnings are not checked by default [...]" so `CI=false` should work but it does not)
+
+This means that the linter will fail the build job in the CI pipeline if there are any linter related errors.
+
+#### Fix ESLint related errors
+
+```
+$ sudo npm run lint src/*.js src/**/*.js -- --fix
+```
+
+This will fix linting errors that can be automatically fixed. You might have to fix other errors manually.
+
+---
+
+##### `error 'expect' is not defined` or `error 'it' is not defined`
+
+Add the following code in `eslintrc.json`:
+
+```
+"env": {
+    "jasmine": true
+}
+```
+
+---
+
+##### `error  Parsing error: Unexpected token =`
+
+- Reference: [ESLint Parsing error: Unexpected token | Stack Overflow](https://stackoverflow.com/questions/36001552/eslint-parsing-error-unexpected-token)
+
+```
+$ sudo npm install --save-dev babel-eslint 
+```
+
+Add the following code in `.eslintrc`:
+
+```
+"parser": "babel-eslint"
+```
+
+---
+
+##### `error Missing semicolon`
+
+- References:
+  - [allow semi colons in javascript eslint | Stack Overflow](https://stackoverflow.com/questions/40453894/allow-semi-colons-in-javascript-eslint)
+  - [ESLint Documentation](https://eslint.org/docs/rules/semi#options)
+
+Add the following rule in `.eslintrc`:
+
+```
+"rules": {
+    "semi": ["error", "never"]
+}
+```
+
+---
+
+##### `error Expected indentation of 2 spaces but found 4`
+
+- Reference: [Eslint AirBNB with 4 spaces for indent](https://stackoverflow.com/questions/48902050/eslint-airbnb-with-4-spaces-for-indent)
+
+Change default indent value of 2 from AirBnB rules with a value of 4.
+
+Add the following rules in `.eslintrc`:
+
+```
+"rules": {
+  // Indent with 4 spaces
+  "indent": ["error", 4],
+  // Indent JSX with 4 spaces
+  "react/jsx-indent": ["error", 4],
+  // Indent props with 4 spaces
+  "react/jsx-indent-props": ["error", 4]
+}
+```
+
+---
+
+##### `error 'sinon-chai' should be listed in the project's dependencies, not devDependencies`
+
+Add the following rule in `.eslintrc` to allow devDependencies to be used by test files only:
+
+```
+"rules": {
+  "import/no-extraneous-dependencies": ["error", { "devDependencies": ["src/*.test.*", "src/**/*.test.*", "src/setupTests.js"] }
+}
+```
+
+### V. SonarCloud
+
+(code quality)
 
 #### Setup SonarCloud project
 
 - Go to https://sonarcloud.io
-- Sign in / Sign up
+- Sign in
 - Create SonarCloud project
 - Import GitHub project
 - Follow instructions
+- Create file `sonar-project.properties`
 
 #### Create SonarCloud compatible test coverage report
 
@@ -344,6 +465,11 @@ Add the following code at the end of `package.json` to save `test-reporter.xml` 
 ```
 $ sudo npm test -- --coverage --watchAll --verbose --testResultsProcessor jest-sonar-reporter
 ```
+
+#### Modify the quality gate on [SonarCloud](sonarcloud.io)
+
+- Go to https://sonarcloud.io/dashboard?id=DamienToomey_memory2
+- Click on the url under the label `Quality Gate`
 
 ### VI. Documentation
 
@@ -372,9 +498,7 @@ Add the following command in `package.json`:
 
 ```
 "scripts": {
-  ...
     "docs": "jsdoc -c jsdoc.conf.json"
-  ...
 }
 ```
 
@@ -420,7 +544,7 @@ or
 
 - Reference: [Create React App Documentation | Deployment](https://create-react-app.dev/docs/deployment/#github-pages)
 
-**WARNING**: follow the steps bellow to create empty `gh-pages` branch where HTML/CSS/JS content will be stored and deployed to GitHub Pages.
+**WARNING**: follow the steps bellow to create empty `gh-pages` branch where HTML/CSS/JS content will be stored and deployed to GitHub Pages. This manual step is only necessary for the first time you deploy to GitHub Pages.
 
 The branch `gh-pages` will contain the app, its documentation and the coverage report.
 
@@ -450,15 +574,15 @@ Go to https://github.com/DamienToomey/memory/settings > Scroll down to GitHub Pa
 
 #### Push to master branch to kick off CI pipeline
 
-This repository uses GitHub Actions for CI/CD purposes (see `.github/workflows/github-ci.yml`). In the `deploy` job of the pipeline, `build`, `coverage`, `docs` folders are generated and pushed on the branch `gh-pages`.
+This repository uses GitHub Actions for CI/CD purposes (see `.github/workflows/github-ci.yml`). In the `deploy` job of the pipeline, `build`, `coverage`, `docs` folders (generated in previous jobs) are pushed to the branch `gh-pages`.
 
-**WARNING**: content on the branch `gh-pages` will be available only after:
+**WARNING**: the content on the branch `gh-pages` will be available on GitHub Pages only after:
 - Step1: configuring GitHub Pages (as described above)
 - Step2: pushing HTML/CSS/JS content to the branch `gh-pages`
 
 Step1 and Step2 must be done in this order.
 
-In our case, HTML/CSS/JS content is pushed to the branch `gh-pages` in our CI pipeline.
+In our case, HTML/CSS/JS content is pushed to the branch `gh-pages` in our CI pipeline by doing:
 
 ```
 $ git add .
@@ -474,9 +598,9 @@ At this stage, you can access the content of the branch `gh-pages` via:
 - Open Documentation: https://damientoomey.github.io/memory/docs
 - Open Coverage Report: https://damientoomey.github.io/memory/coverage/lcov-report
 
-### X. Troubleshooting
+#### Troubleshooting
 
-- I get a 404 error when going on at least one of the following links above.
+- I get a 404 error when going on at least one of the links above.
 
 Try adding `/index.html` at the end of the link. If you can now access the webpage, enter the following commands to trigger a GitHub Pages rebuild.
 
@@ -522,156 +646,12 @@ git push origin gh-pages
 
 - [Setting up ESLint in React](https://medium.com/@RossWhitehouse/setting-up-eslint-in-react-c20015ef35f7)
 
-### [codecov](https://codecov.io) tokenless uploads with GitHub Actions
+### General Information
 
-- Go to https://codecov.io
-- Login with GitHub
-- Follow instructions given on [codecov/codecov-action](https://github.com/codecov/codecov-action) (FYI: codecov supports tokenless uploads from GitHub Actions for a public GitHub repository)
-- Install Codecov app for the `memory` app on GitHub (https://github.com/apps/codecov > Configure)
+- The Dockerfile was created for educational purposes as I have not pushed an image for this app on any registry
 
-#### Why use Codecov ?
-
-- archive and compare coverage reports
-- does not require a upload tokens for public GitHub repositories
-- compute total test coverage
-- does not need to generate a specific codecov compatible code coverage report as needed for SonarCloud for example
-
-#### Why use SonarCloud instead of Codecov ?
-
-- SonarCloud has comprehensive set of pre-configured quality checks
-- has a quality gate
-
-### [ESLint](https://www.npmjs.com/package/eslint)
-
-- [Setting up ESLint in React](https://medium.com/@RossWhitehouse/setting-up-eslint-in-react-c20015ef35f7)
-
-```
-$ sudo npm install --save-dev eslint
-```
-
-You should then set up a configuration file:
-
-```
-$ ./node_modules/.bin/eslint --init
-# How would you like to use ESLint? To check syntax, find problems, and enforce code style
-# What type of modules does your project use? JavaScript modules (import/export)
-# Which framework does your project use? React
-# Does your project use TypeScript? No
-# Where does your code run? Browser
-# How would you like to define a style for your project? Use a popular style guide
-# Which style guide do you want to follow? Airbnb: https://github.com/airbnb/javascript
-# What format do you want your config file to be in? JSON
-# Would you like to install them now with npm? Yes
-```
-
-After that, you can run ESLint on any file or directory like this:
-
-```
-$ ./node_modules/.bin/eslint src/HighScoreInput.js
-```
-
-#### Troubleshooting
-
-- [ESLint Parsing error: Unexpected token](https://stackoverflow.com/questions/36001552/eslint-parsing-error-unexpected-token)
-
-> error  Parsing error: Unexpected token =
-
-```
-sudo npm install --save-dev babel-eslint 
-```
-
-Add the following code in `.eslintrc`:
-
-```
-"parser": "babel-eslint"
-```
-
-- [allow semi colons in javascript eslint](https://stackoverflow.com/questions/40453894/allow-semi-colons-in-javascript-eslint)
-
-Reference: [ESLint Documentation](https://eslint.org/docs/rules/semi#options)
-
-> error  Missing semicolon
-
-Add the following code in `.eslintrc`:
-
-```
-"rules": {
-    "semi": ["error", "never"]
-}
-```
-
-- [Eslint AirBNB with 4 spaces for indent](https://stackoverflow.com/questions/48902050/eslint-airbnb-with-4-spaces-for-indent)
-
-> Expected indentation of 2 spaces but found 4
-
-Add the following code in `.eslintrc`:
-
-```
-"rules": {
-  // Indent with 4 spaces
-  "indent": ["error", 4],
-  // Indent JSX with 4 spaces
-  "react/jsx-indent": ["error", 4],
-  // Indent props with 4 spaces
-  "react/jsx-indent-props": ["error", 4]
-}
-```
-
-- [Running eslint as an npm script results in ELIFECYCLE error.](https://github.com/eslint/eslint/issues/2409)
-
-> Failed at the memory@0.1.0 lint script.
-
-"I tried your scenario and what happens is that when eslint run ends with a exit code of 1 (that means you have eslint error(s) in your code) and then when npm tackles that error code then it throws an error because internal task returned an exit code 1.
-
-It will for sure run fine if you don't have any eslint errors.
-
-So to answer your questions, Yes its behaving as expected."
-
-We can add `eslint ...; exit 0` to prevent npm from throwing an error. or -s (DOES NOT WORK AS EXPECTED)
-
-#### Running ESLint on a single file
-
-```
-$ sudo npm run lint src/HighScoreInput.js
-```
-
-#### Running ESLint on all files
-
-```
-$ sudo npm run lint src/**/*.js
-```
-
-#### Generating ESLint report for SonarCloud
-
-```
-$ sudo npm run lint src/*.js src/**/*.js -- -f json -o lint_report.json
-```
-
-#### Generating HTML
-
-```
-$ sudo npm run lint src/*.js src/**/*.js -- -f html -o lint_report.html
-```
-
-PROBLEM: npm run build from Create React App applies lint on code and fails job even with CI=false
-
-#### Adding ESLint report to SonarCloud
-
-- [Importing ESLint Issues Reports](https://docs.sonarqube.org/pages/viewpage.action?pageId=11639183)
+- `.gitlab-ci.yml` is also for educational purposes as I started this app on GitLab and finally decided to migrate to GitHub to use GitHub Actions instead of GitLab CI.
+  - FYI:`.gitlab-ci.yml` and `.github/workflows/github-ci.yml` do not exaclty match as I had not reached the deployment step when working with GitLab CI
 
 
-#### Fix ESLint issues
 
-```
-$ sudo npm run lint src/*.js src/**/*.js -- --fix
-```
-
-```
-test: src/**/*.js and src/**.js
-```
-
-Remove .eslintrc.json to stop npm run build from failing because of lint
-
-### Change quality gate
-
-https://sonarcloud.io/dashboard?id=DamienToomey_memory2 > Click on href under label Quality Gate

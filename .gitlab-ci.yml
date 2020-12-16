@@ -57,9 +57,3 @@ quality_job:
       - .sonar/cache
   script:
     - sonar-scanner
-
-# [Use docker images built in previous stages](https://gitlab.com/gitlab-org/gitlab-runner/-/issues/1448)
-# [Passing Docker Image Between Build and Test Stage in GitLab Runner](https://forum.gitlab.com/t/passing-docker-image-between-build-and-test-stage-in-gitlab-runner/2444/7)
-# [Gitlab CI react-scripts: not found](https://stackoverflow.com/questions/61000671/gitlab-ci-react-scripts-not-found)
-# [GitLab CI/CD example with a dockerized ReactJS App](https://dev.to/christianmontero/gitlab-ci-cd-example-with-a-dockerized-reactjs-app-1cda)
-
