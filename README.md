@@ -276,10 +276,10 @@ $ ./node_modules/.bin/eslint --init
 ```
 
 | Question | Answer |
-|:---:|:---:|:---:|
+|:---:|:---:|
 | How would you like to use ESLint? | To check syntax, find problems, and enforce code style |
 | What type of modules does your project use? | JavaScript modules (import/export) |
-|  Which framework does your project use? | React
+|  Which framework does your project use? | React |
 | Does your project use TypeScript? | No |
 | Where does your code run? | Browser |
 | How would you like to define a style for your project? | Use a popular style guide |
