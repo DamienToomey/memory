@@ -66,6 +66,42 @@ This app uses [React](https://reactjs.org) and was created with [Create React Ap
 </table> 
 </p>
 
+---
+
+<p align="center">
+      <a href="https://sonarcloud.io/dashboard?id=DamienToomey_memory2">
+        <img src="https://sonarcloud.io/api/project_badges/measure?project=DamienToomey_memory2&metric=bugs">
+      </a>
+      <a href="https://sonarcloud.io/dashboard?id=DamienToomey_memory2">
+        <img src="https://sonarcloud.io/api/project_badges/measure?project=DamienToomey_memory2&metric=code_smells">
+      </a>
+      <a href="https://sonarcloud.io/dashboard?id=DamienToomey_memory2">
+        <img src="https://sonarcloud.io/api/project_badges/measure?project=DamienToomey_memory2&metric=coverage">
+      </a>
+</p>
+<p align="center">
+      <a href="https://sonarcloud.io/dashboard?id=DamienToomey_memory2">
+        <img src="https://sonarcloud.io/api/project_badges/measure?project=DamienToomey_memory2&metric=duplicated_lines_density">
+      </a>
+      <a href="https://sonarcloud.io/dashboard?id=DamienToomey_memory2">
+        <img src="https://sonarcloud.io/api/project_badges/measure?project=DamienToomey_memory2&metric=ncloc">
+      </a>
+      <a href="https://sonarcloud.io/dashboard?id=DamienToomey_memory2">
+        <img src="https://sonarcloud.io/api/project_badges/measure?project=DamienToomey_memory2&metric=sqale_rating">
+      </a>
+</p>
+<p align="center">
+      <a href="https://sonarcloud.io/dashboard?id=DamienToomey_memory2">
+        <img src="https://sonarcloud.io/api/project_badges/measure?project=DamienToomey_memory2&metric=alert_status">
+      </a>
+      <a href="https://sonarcloud.io/dashboard?id=DamienToomey_memory2">
+        <img src="https://sonarcloud.io/api/project_badges/measure?project=DamienToomey_memory2&metric=reliability_rating">
+      </a>
+      <a href="https://sonarcloud.io/dashboard?id=DamienToomey_memory2">
+        <img src="https://sonarcloud.io/images/project_badges/sonarcloud-white.svg" width="90px">
+      </a>
+</p>
+
 ### I. How was the project created?
 
 #### Install nodejs
