@@ -9,7 +9,7 @@ import './GuessCount.css'
  * @prop {number} guesses Number of guesses done by the user
  * @returns {JSX} Information to display on the screen
  */
-const GuessCount = ({ guesses }) => <div className="guesses">{guesses}</div>
+const GuessCount = ({ guesses }) => <div className="guesses">{`Number of guesses: ${guesses}`}</div>
 
 // GuessCount.defaultProps = {
 //     guesses: 0,

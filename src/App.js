@@ -10,7 +10,7 @@ import HighScoreInput from './HighScoreInput'
 
 const SIDE = 6
 export const SYMBOLS = '😀🎉💖🎩🐶🐱🦄🐬🌍🌛🌞💫🍎🍌🍓🍐🍟🍿'
-const VISUAL_PAUSE_MSECS = 500
+export const VISUAL_PAUSE_MSECS = 500
 
 /**
  * Memory app

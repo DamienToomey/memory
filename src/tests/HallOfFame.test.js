@@ -5,7 +5,7 @@ import { shallow } from 'enzyme'
 
 import HallOfFame from '../HallOfFame'
 
-const FAKE_HOF = [
+export const FAKE_HOF = [
     {
         id: 3, guesses: 18, date: '10/10/2017', player: 'Jane',
     },
