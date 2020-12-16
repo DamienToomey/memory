@@ -6,15 +6,65 @@ Based on a Openclassrooms course: [Réalisez une application web avec React.js](
 - Open Documentation: https://damientoomey.github.io/memory/docs
 - Open Coverage Report: https://damientoomey.github.io/memory/coverage/lcov-report
 
-This app uses [React](https://reactjs.org) and was created with Create React App.
+This app uses [React](https://reactjs.org) and was created with [Create React App](https://reactjs.org/docs/create-a-new-react-app.html).
 
-### Badges
+### CI Badges
 
-|  |  |  |
-|:---:|:---:|:---:|
-| [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=DamienToomey_memory2&metric=bugs)](https://sonarcloud.io/dashboard?id=DamienToomey_memory2) | [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=DamienToomey_memory2&metric=code_smells)](https://sonarcloud.io/dashboard?id=DamienToomey_memory2) | [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=DamienToomey_memory2&metric=coverage)](https://sonarcloud.io/dashboard?id=DamienToomey_memory2) |
-| [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=DamienToomey_memory2&metric=duplicated_lines_density)](https://sonarcloud.io/dashboard?id=DamienToomey_memory2) | [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=DamienToomey_memory2&metric=ncloc)](https://sonarcloud.io/dashboard?id=DamienToomey_memory2) | [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=DamienToomey_memory2&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=DamienToomey_memory2) |
-| [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=DamienToomey_memory2&metric=alert_status)](https://sonarcloud.io/dashboard?id=DamienToomey_memory2) | [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=DamienToomey_memory2&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=DamienToomey_memory2) | [![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/dashboard?id=DamienToomey_memory2) |
+<p align="center">
+ <table style="width:100%; text-align: center">
+  <tr>
+    <th style="border: none;">
+      <a href="https://sonarcloud.io/dashboard?id=DamienToomey_memory2">
+        <img src="https://sonarcloud.io/api/project_badges/measure?project=DamienToomey_memory2&metric=bugs">
+      </a>
+    </th>
+    <th style="border: none;">
+      <a href="https://sonarcloud.io/dashboard?id=DamienToomey_memory2">
+        <img src="https://sonarcloud.io/api/project_badges/measure?project=DamienToomey_memory2&metric=code_smells">
+      </a>
+    </th>
+    <th style="border: none;">
+      <a href="https://sonarcloud.io/dashboard?id=DamienToomey_memory2">
+        <img src="https://sonarcloud.io/api/project_badges/measure?project=DamienToomey_memory2&metric=coverage">
+      </a>
+    </th>
+  </tr>
+  <tr>
+    <td style="border: none;">
+      <a href="https://sonarcloud.io/dashboard?id=DamienToomey_memory2">
+        <img src="https://sonarcloud.io/api/project_badges/measure?project=DamienToomey_memory2&metric=duplicated_lines_density">
+      </a>
+    </td>
+    <td style="border: none;">
+      <a href="https://sonarcloud.io/dashboard?id=DamienToomey_memory2">
+        <img src="https://sonarcloud.io/api/project_badges/measure?project=DamienToomey_memory2&metric=ncloc">
+      </a>
+    </td>
+    <td style="border: none;">
+      <a href="https://sonarcloud.io/dashboard?id=DamienToomey_memory2">
+        <img src="https://sonarcloud.io/api/project_badges/measure?project=DamienToomey_memory2&metric=sqale_rating">
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td style="border: none;">
+      <a href="https://sonarcloud.io/dashboard?id=DamienToomey_memory2">
+        <img src="https://sonarcloud.io/api/project_badges/measure?project=DamienToomey_memory2&metric=alert_status">
+      </a>
+    </td>
+    <td style="border: none;">
+      <a href="https://sonarcloud.io/dashboard?id=DamienToomey_memory2">
+        <img src="https://sonarcloud.io/api/project_badges/measure?project=DamienToomey_memory2&metric=reliability_rating">
+      </a>
+    </td>
+    <td style="border: none;">
+      <a href="https://sonarcloud.io/dashboard?id=DamienToomey_memory2">
+        <img src="https://sonarcloud.io/images/project_badges/sonarcloud-white.svg" width="100px">
+      </a>
+    </td>
+  </tr>
+</table> 
+</p>
 
 ### I. How was the project created?
 
