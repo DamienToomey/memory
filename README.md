@@ -8,7 +8,7 @@ Based on a Openclassrooms course: [Réalisez une application web avec React.js](
 
 This app uses [React](https://reactjs.org) and was created with [Create React App](https://reactjs.org/docs/create-a-new-react-app.html).
 
-### CI Badges
+### I. CI Badges
 
 <p align="center">
       <a href="https://sonarcloud.io/dashboard?id=DamienToomey_memory2">
@@ -46,7 +46,7 @@ This app uses [React](https://reactjs.org) and was created with [Create React Ap
       </a>
 </p>
 
-### I. How was the project created?
+### II. How was the project created?
 
 #### Install nodejs
 
@@ -115,7 +115,7 @@ $ create-react-app memory
 $ sudo npm start
 ```
 
-### II. How was this repository created?
+### III. How was this repository created?
 
 - Go to https://github.com
 - Create a blank project named `memory`
@@ -128,7 +128,7 @@ $ git commit -m "Initial commit`
 $ git push --set-upstream origin master
 ```
 
-### III. Install app specific modules
+### IV. Install app specific modules
 
 - Shuffle values in a collection
 
@@ -144,7 +144,7 @@ $ sudo npm install --save prop-types
 # They will be automatically removed when building the app for production
 ```
 
-### IV. Tests
+### V. Tests
 
 #### [Jest](https://jestjs.io)
 
@@ -255,7 +255,7 @@ $ sudo npm test -- --coverage --watchAll --verbose
 # --watchAll: rerun all tests, not just tests related to modified files
 ```
 
-### V. [ESLint](https://www.npmjs.com/package/eslint)
+### VI. [ESLint](https://www.npmjs.com/package/eslint)
 
 (code quality)
 
@@ -429,7 +429,7 @@ Add the following rule in `.eslintrc` to allow devDependencies to be used by tes
 }
 ```
 
-### V. SonarCloud
+### VII. SonarCloud
 
 (code quality)
 
@@ -471,7 +471,7 @@ $ sudo npm test -- --coverage --watchAll --verbose --testResultsProcessor jest-s
 - Go to https://sonarcloud.io/dashboard?id=DamienToomey_memory2
 - Click on the url under the label `Quality Gate`
 
-### VI. Documentation
+### VIII. Documentation
 
 #### [JSDoc](https://jsdoc.app)
 
@@ -508,7 +508,7 @@ Add the following command in `package.json`:
 $ sudo npm run docs
 ```
  
-### VII. Docker deployment (with static server)
+### IX. Docker deployment (with static server)
 
 - Reference: [https://create-react-app.dev/docs/deployment/#static-server](https://create-react-app.dev/docs/deployment)
 
@@ -532,7 +532,7 @@ $ sudo docker container logs b398f4f1c4ed -f # wait until server is ready
 or
 - `{IP address of computer on which Docker container is running}:3000`
 
-### VIII. Deployment (without any server)
+### X. Deployment (without any server)
 
 - References:
   - [Stack Overflow | Run React application without server](https://stackoverflow.com/questions/40342100/run-react-application-without-server)
@@ -540,7 +540,7 @@ or
 
 (not used in this repository but interesting for future projects)
 
-### IX. Deployment on GitHub Pages
+### XI. Deployment on GitHub Pages
 
 - Reference: [Create React App Documentation | Deployment](https://create-react-app.dev/docs/deployment/#github-pages)
 
@@ -613,7 +613,14 @@ git push origin gh-pages
   - [How to force GitHub Pages build?](https://stackoverflow.com/questions/24098792/how-to-force-github-pages-build/61706020#61706020)
     - "It's not currently possible to manually trigger a rebuild, without pushing a commit to the appropriate branch."
 
-### XI. References
+### XII. General Information
+
+- The Dockerfile was created for educational purposes as I have not pushed an image for this app on any registry
+
+- `.gitlab-ci.yml` is also for educational purposes as I started this app on GitLab and finally decided to migrate to GitHub to use GitHub Actions instead of GitLab CI.
+  - FYI:`.gitlab-ci.yml` and `.github/workflows/github-ci.yml` do not exaclty match as I had not reached the deployment step when working with GitLab CI
+
+### XIII. References
 
 - [actions/cache for nmp | GitHub](https://github.com/actions/cache/blob/main/examples.md#using-multiple-systems-and-npm-config)
 
@@ -645,13 +652,6 @@ git push origin gh-pages
 - [codeclimate](https://codeclimate.com)
 
 - [Setting up ESLint in React](https://medium.com/@RossWhitehouse/setting-up-eslint-in-react-c20015ef35f7)
-
-### General Information
-
-- The Dockerfile was created for educational purposes as I have not pushed an image for this app on any registry
-
-- `.gitlab-ci.yml` is also for educational purposes as I started this app on GitLab and finally decided to migrate to GitHub to use GitHub Actions instead of GitLab CI.
-  - FYI:`.gitlab-ci.yml` and `.github/workflows/github-ci.yml` do not exaclty match as I had not reached the deployment step when working with GitLab CI
 
 
 
