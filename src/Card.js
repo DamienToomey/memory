@@ -3,7 +3,7 @@ import React from 'react'
 
 import './Card.css'
 
-const HIDDEN_SYMBOL = '❓'
+export const HIDDEN_SYMBOL = '❓'
 
 /**
  * Display a card on the screen
@@ -17,20 +17,15 @@ const HIDDEN_SYMBOL = '❓'
  */
 const Card = ({
     card, feedback, index, onClick,
-}) => {
-    const enterKey = 13
-    return (
-        <div
-            className={`card ${feedback}`}
-            role="button"
-            onClick={() => onClick(index)}
-            tabIndex={0} // zero indicates that this element can be tabbed to
-            onKeyDown={(event) => { if (event.keycode === enterKey) { onClick(index) } }}
-        >
-            <span className="symbol">{feedback === 'hidden' ? HIDDEN_SYMBOL : card}</span>
-        </div>
-    )
-}
+}) => (
+    <div
+        className={`card ${feedback}`}
+        role="button"
+        onClick={() => onClick(index)}
+    >
+        <span className="symbol">{feedback === 'hidden' ? HIDDEN_SYMBOL : card}</span>
+    </div>
+)
 
 Card.propTypes = {
     card: PropTypes.string.isRequired,

@@ -10,7 +10,7 @@ import { saveHOFEntry } from './HallOfFame'
  * @component
  * @prop {number} guesses Number of guesses done by the user
  * @prop {function} onStored Function called after information is stored
- * in order to display information about the winners
+ * in order to display information about the winners (See {@link App#displayHallOfFame})
  * @extends {Component}
  */
 class HighScoreInput extends Component {
@@ -58,6 +58,7 @@ class HighScoreInput extends Component {
                             type="text"
                             value={winner}
                             id="input_winner_information"
+                            required
                         />
                     </label>
                     <button type="submit">I have won!</button>

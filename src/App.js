@@ -139,7 +139,7 @@ class App extends Component {
         } = this.state
         // Game is won when there are as many matched cards as there are cards
         // in the game
-        const won = matchedCardIndices.length === 4 // cards.length
+        const won = matchedCardIndices.length === cards.length
         return (
             <div className="memory">
                 {/* <span>{`Seconds ${new Date().getSeconds()}`}</span> */}

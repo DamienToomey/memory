@@ -32,7 +32,11 @@
         // Ignore "JSX not allowed in files with extension '.js'" TO BE REMOVED
         "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx"] }],
         // Ignore "Do not use Array index in keys" TO BE REMOVED
-        "react/no-array-index-key": 0 // = off
+        "react/no-array-index-key": 0, // = off
+        // Ignore "Elements with the 'button' interactive role must be focusable." TO BE REMOVED
+        "jsx-a11y/interactive-supports-focus": 0,
+        // Ignore "Visible, non-interactive elements with click handlers must have at least one keyboard listener." TO BE REMOVED
+        "jsx-a11y/click-events-have-key-events": 0
     },
     "parser": "babel-eslint"
 }
