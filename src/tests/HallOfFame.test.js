@@ -68,17 +68,17 @@ describe('<HallOfFame />', () => {
             saveHOFEntry({ guesses: 1, player: 'NAME OF WINNER2' }, app.displayHallOfFame)
             const { hallOfFame } = app.state
             const hallOfFame2 = [{
-                    guesses: 1,
-                    player: 'NAME OF WINNER2',
-                    date: now.toLocaleDateString(),
-                    id: Date.now(),
-                },
-                {
-                    guesses: 10,
-                    player: 'NAME OF WINNER1',
-                    date: now.toLocaleDateString(),
-                    id: Date.now()
-                },
+                guesses: 1,
+                player: 'NAME OF WINNER2',
+                date: now.toLocaleDateString(),
+                id: Date.now(),
+            },
+            {
+                guesses: 10,
+                player: 'NAME OF WINNER1',
+                date: now.toLocaleDateString(),
+                id: Date.now(),
+            },
             ]
             expect(hallOfFame).to.deep.equal(hallOfFame2)
         } finally {
@@ -96,31 +96,32 @@ describe('<HallOfFame />', () => {
         const clock = sinon.useFakeTimers(now.getTime())
 
         try {
-            for (let i=0; i < HOF_MAX_SIZE; i++) {
-                saveHOFEntry({ guesses: 10, player: 'NAME OF WINNER' + i }, app.displayHallOfFame)
+            for (let i = 0; i < HOF_MAX_SIZE; i += 1) {
+                saveHOFEntry({ guesses: 10, player: `NAME OF WINNER${i}` }, app.displayHallOfFame)
             }
-            let newEntry = { guesses: 5, player: 'NAME OF WINNER' + HOF_MAX_SIZE }
+            let newEntry = { guesses: 5, player: `NAME OF WINNER${HOF_MAX_SIZE}` }
             saveHOFEntry(newEntry, app.displayHallOfFame)
             const { hallOfFame } = app.state
             newEntry = {
                 guesses: 5,
-                player: 'NAME OF WINNER' + HOF_MAX_SIZE,
+                player: `NAME OF WINNER${HOF_MAX_SIZE}`,
                 date: now.toLocaleDateString(),
                 id: Date.now(),
             }
             const entryZero = {
-                    guesses: 10,
-                    player: 'NAME OF WINNER' + 0,
-                    date: now.toLocaleDateString(),
-                    id: Date.now(),
-                }
-            const entryOne = {
                 guesses: 10,
-                player: 'NAME OF WINNER' + 1,
+                player: `NAME OF WINNER${0}`,
                 date: now.toLocaleDateString(),
                 id: Date.now(),
             }
-            // entryZero is sliced out of hallOfFame as the cut off size of hallOfFame is HOF_MAX_SIZE
+            const entryOne = {
+                guesses: 10,
+                player: `NAME OF WINNER${1}`,
+                date: now.toLocaleDateString(),
+                id: Date.now(),
+            }
+            // entryZero is sliced out of hallOfFame as the cut off size
+            // of hallOfFame is HOF_MAX_SIZE
             expect(hallOfFame).not.to.contain(entryZero)
             expect(hallOfFame[0]).to.deep.equal(newEntry)
             expect(hallOfFame[hallOfFame.length - 1]).to.deep.equal(entryOne)

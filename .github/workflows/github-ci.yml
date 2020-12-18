@@ -26,13 +26,28 @@ jobs:
         # Why set CI=true ? # This does not seem to work
         # "to perform a linter warning check"
         # [Continuous Integration | Create React App Documentation](https://create-react-app.dev/docs/running-tests/#continuous-integration)
-        run: npm run build
+        run: npm run build # runs linter on source code (except test code) when the file .eslintrc exists
       - name: Archive build as artifact
         uses: actions/upload-artifact@v2
         with:
           name: build_artifact
           path: "*build/"
           retention-days: 1
+
+  lint-test-files: # test files are not linted when doing npm run build
+    runs-on: ubuntu-18.04
+    strategy:
+      matrix:
+        node-version: [12.x]
+    steps:
+      - name: Checkout branch on which commit was performed 
+        uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: npm lint
+        run: npm lint src/tests/*.js
 
   unit-tests:
     runs-on: ubuntu-18.04
@@ -119,7 +134,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   deploy:
-    needs: [build, quality, docs]
+    needs: [build, quality, docs, lint-test-files]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout branch gh-pages

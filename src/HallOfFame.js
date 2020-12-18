@@ -61,7 +61,7 @@ export function saveHOFEntry(entry, onStored) {
 
     const entries = JSON.parse(localStorage.getItem(HOF_KEY) || '[]')
     const insertionPoint = entries.findIndex(
-        (entry) => entry.guesses >= newEntry.guesses
+        (_entry) => _entry.guesses >= newEntry.guesses,
     )
 
     if (insertionPoint === -1) {

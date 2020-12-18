@@ -6,6 +6,21 @@ import './Card.css'
 export const HIDDEN_SYMBOL = '❓'
 
 /**
+ * <p>Flip a card when the card is selected (with tab) and enter key is pressed</p>
+ * <p>The card can only be selected once (i.e. only if its current feedback is `hidden`)</p>
+ * @arg {Event} event onKeyPress event
+ * @arg {Event} onClick onClick event
+ * @arg {number} index Index of card that was clicked on
+ * @arg {string} feedback Feeback of the card
+ * (See possible feedback values in {@link Card}.propTypes)
+ */
+function handleKeyPress(e, onClick, index, feedback) {
+    if (e.key === 'Enter' && feedback === 'hidden') {
+        onClick(index)
+    }
+}
+
+/**
  * Display a card on the screen
  * @component
  * @prop {string} card Content of the card
@@ -21,6 +36,8 @@ const Card = ({
     <div
         className={`card ${feedback}`}
         role="button"
+        tabIndex={0} // a value of zero indicates that this element can be tabbed to
+        onKeyPress={(e) => handleKeyPress(e, onClick, index, feedback)}
         onClick={() => onClick(index)}
     >
         <span className="symbol">{feedback === 'hidden' ? HIDDEN_SYMBOL : card}</span>

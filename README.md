@@ -653,5 +653,33 @@ git push origin gh-pages
 
 - [Setting up ESLint in React](https://medium.com/@RossWhitehouse/setting-up-eslint-in-react-c20015ef35f7)
 
+### XIV. Known issues
 
+#### Keypress event is not fired in `Card.test.js` when testing Enter and Tab keypresses
 
+Most likely lead: `enzyme-adapter-react-16` and `react 17` are not compatible so I cannot use `mount`.
+
+```
+const wrapper = mount(<App />)
+wrapper.find('Card').at(0).simulate('keypress', {key: 'Enter'})
+```
+
+- [How do you simulate an keyDown enter event (or others) in Enzyme?](https://stackoverflow.com/questions/38960832/how-do-you-simulate-an-keydown-enter-event-or-others-in-enzyme)
+- [.simulate(event[, mock]) => Self](https://github.com/enzymejs/enzyme/blob/master/docs/api/ReactWrapper/simulate.md)
+- [Mount does not work in enzyme with next js](https://stackoverflow.com/questions/64586111/mount-does-not-work-in-enzyme-with-next-js)
+- [ wojtekmaj/enzyme-adapter-react-17 ](https://github.com/wojtekmaj/enzyme-adapter-react-17)
+
+---
+
+#### Interesting assertion
+
+[How to assert on Element 'Array attribute' in Jest/Enzyme?](https://stackoverflow.com/questions/51194556/how-to-assert-on-element-array-attribute-in-jest-enzyme)
+
+```
+expectedProps = {
+    items: ['JK',],
+    disabled: false,
+    filterable: false,
+}
+expect(compoennt.props()).toMatchObject(expectedProps);
+```

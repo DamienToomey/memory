@@ -11,6 +11,10 @@
     background: silver;
 }
 
+.memory>.card.hidden:focus {
+    outline: 0.1em solid #195b94;
+}
+
 .memory>.card.justMatched,
 .memory>.card.justMismatched {
     outline: 0.1em solid green;
