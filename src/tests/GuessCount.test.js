@@ -1,4 +1,3 @@
-// Use expect from chai not expect from Jest
 import { expect } from 'chai'
 import React from 'react'
 import { shallow } from 'enzyme'

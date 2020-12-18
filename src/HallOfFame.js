@@ -41,7 +41,7 @@ export default HallOfFame
 // ===== Internal helpers =====
 
 const HOF_KEY = '::Memory::HallOfFame'
-const HOF_MAX_SIZE = 10
+export const HOF_MAX_SIZE = 10
 
 /**
  * Save information about a player
@@ -61,7 +61,7 @@ export function saveHOFEntry(entry, onStored) {
 
     const entries = JSON.parse(localStorage.getItem(HOF_KEY) || '[]')
     const insertionPoint = entries.findIndex(
-        ({ _guesses }) => _guesses >= newEntry.guesses,
+        (entry) => entry.guesses >= newEntry.guesses
     )
 
     if (insertionPoint === -1) {
@@ -72,7 +72,16 @@ export function saveHOFEntry(entry, onStored) {
     if (entries.length > HOF_MAX_SIZE) {
         entries.splice(HOF_MAX_SIZE, entries.length)
     }
-
     localStorage.setItem(HOF_KEY, JSON.stringify(entries))
     onStored(entries)
+}
+
+/**
+ * <p>Empty storage that contains Hall Of Fame</p>
+ * <p>This function is used in test files to reset
+ * the value of the local storage to make each test independent
+ * of one another</p>
+ */
+export function emptyHOF() {
+    localStorage.setItem(HOF_KEY, '[]')
 }

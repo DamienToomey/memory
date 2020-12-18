@@ -96,6 +96,7 @@ class App extends Component {
     /**
      * <p>Get the feeback of a card</p>
      * <p>See possible feedback values in {@link Card#propTypes}</p>
+     * The variable `currentPair` should at maximum contain two elements (i.e. a pair)
      * @return {string} Feeback value
      */
     getFeedbackForCard(index) {
@@ -108,12 +109,10 @@ class App extends Component {
             newFeedback = 'disabled'
         } else if (currentPair.length < 2) {
             newFeedback = currentPair.includes(index) ? 'visible' : 'hidden'
-        } else if (currentPair.length === 2) {
-            if (currentPair.includes(index)) {
-                newFeedback = indexMatched ? 'justMatched' : 'justMismatched'
-            } else {
-                newFeedback = indexMatched ? 'visible' : 'hidden'
-            }
+        } else if (currentPair.includes(index)) { // if (currentPair.length === 2)
+            newFeedback = indexMatched ? 'justMatched' : 'justMismatched'
+        } else {
+            newFeedback = indexMatched ? 'visible' : 'hidden'
         }
         this.feedbacks[index] = newFeedback
         return newFeedback
