@@ -41,8 +41,8 @@ This app uses [React](https://reactjs.org) and was created with [Create React Ap
       <a href="https://sonarcloud.io/dashboard?id=DamienToomey_memory2">
         <img src="https://sonarcloud.io/api/project_badges/measure?project=DamienToomey_memory2&metric=reliability_rating">
       </a>
-      <a href="https://sonarcloud.io/dashboard?id=DamienToomey_memory2">
-        <img src="https://sonarcloud.io/images/project_badges/sonarcloud-white.svg" width="90px">
+      <a href="https://github.com/DamienToomey/memory/actions">
+        <img src="https://github.com/DamienToomey/memory/workflows/CI/badge.svg">
       </a>
 </p>
 
