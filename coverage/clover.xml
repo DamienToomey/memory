@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1608412202475" clover="3.2.0">
-  <project timestamp="1608412202475" name="All files">
+<coverage generated="1608412421001" clover="3.2.0">
+  <project timestamp="1608412421001" name="All files">
     <metrics statements="102" coveredstatements="93" conditionals="40" coveredconditionals="34" methods="25" coveredmethods="22" elements="167" coveredelements="149" complexity="0" loc="102" ncloc="102" packages="1" files="7" classes="7"/>
     <file name="App.js" path="/home/runner/work/memory/memory/src/App.js">
       <metrics statements="48" coveredstatements="48" conditionals="24" coveredconditionals="24" methods="9" coveredmethods="9"/>
