@@ -8,7 +8,7 @@ import GuessCount from './GuessCount'
 import HallOfFame from './HallOfFame'
 import HighScoreInput from './HighScoreInput'
 
-const SIDE = 6
+export const SIDE = 6
 export const SYMBOLS = '😀🎉💖🎩🐶🐱🦄🐬🌍🌛🌞💫🍎🍌🍓🍐🍟🍿'
 export const VISUAL_PAUSE_MSECS = 500
 
@@ -70,7 +70,6 @@ class App extends Component {
             this.setState({ currentPair: [index] })
             return
         }
-
         this.handleNewPair(index)
     }
 
@@ -109,9 +108,11 @@ class App extends Component {
             newFeedback = 'disabled'
         } else if (currentPair.length < 2) {
             newFeedback = currentPair.includes(index) ? 'visible' : 'hidden'
-        } else if (currentPair.includes(index)) { // if (currentPair.length === 2)
+        } else if (currentPair.includes(index)) {
+            // implicit (currentPair.length === 2) as a pair is at most composed of two elements
             newFeedback = indexMatched ? 'justMatched' : 'justMismatched'
         } else {
+            // implicit (currentPair.length === 2) as a pair is at most composed of two elements
             newFeedback = indexMatched ? 'visible' : 'hidden'
         }
         this.feedbacks[index] = newFeedback

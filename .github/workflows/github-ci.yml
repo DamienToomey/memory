@@ -49,7 +49,7 @@ jobs:
       - name: npm ci
         run: npm ci
       - name: npm run lint
-        run: npm run lint src/tests/*.js
+        run: npm run lint src/tests/**/*.js
 
   unit-tests:
     runs-on: ubuntu-18.04

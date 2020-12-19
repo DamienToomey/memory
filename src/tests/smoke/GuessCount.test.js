@@ -1,8 +1,9 @@
-import { expect } from 'chai'
 import React from 'react'
+
+import { expect } from 'chai'
 import { shallow } from 'enzyme'
 
-import GuessCount from '../GuessCount'
+import GuessCount from '../../GuessCount'
 
 describe('<GuessCount />', () => {
     // Smoke test: test if rendering works

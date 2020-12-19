@@ -1,9 +1,10 @@
-import { expect } from 'chai'
 import React from 'react'
+
+import { expect } from 'chai'
 import { shallow } from 'enzyme'
 import sinon from 'sinon'
 
-import Card, { HIDDEN_SYMBOL } from '../Card'
+import Card, { HIDDEN_SYMBOL } from '../../Card'
 
 describe('<Card />', () => {
     it('should trigger its `onClick` prop when clicked', () => {

@@ -676,7 +676,7 @@ wrapper.find('Card').at(0).simulate('keypress', {key: 'Enter'})
 [How to assert on Element 'Array attribute' in Jest/Enzyme?](https://stackoverflow.com/questions/51194556/how-to-assert-on-element-array-attribute-in-jest-enzyme)
 
 ```
-expectedProps = {
+const expectedProps = {
     items: ['JK',],
     disabled: false,
     filterable: false,

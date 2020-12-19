@@ -11,7 +11,7 @@ ADD package-lock.json /app/package-lock.json
 WORKDIR /app
 
 RUN apt-get update -yq \
-    && npm install --production \
+    && npm ci \
     && npm run build \
     && npm install -g serve
   
