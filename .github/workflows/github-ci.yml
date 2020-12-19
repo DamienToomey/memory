@@ -51,7 +51,7 @@ jobs:
       - name: npm run lint
         run: npm run lint src/tests/**/*.js
 
-  unit-tests:
+  tests:
     runs-on: ubuntu-18.04
     strategy:
       matrix:
@@ -111,7 +111,7 @@ jobs:
           retention-days: 1
 
   quality: # measured with SonarCloud
-    needs: unit-tests
+    needs: tests
     runs-on: ubuntu-latest
     # Most of the code in steps is given sonarcloud.io
     # when creating a new project
