@@ -7,6 +7,7 @@ import sinon from 'sinon'
 
 import App, { VISUAL_PAUSE_MSECS, SIDE, SYMBOLS } from '../../App'
 import FAKE_HOF from '../smoke/HallOfFame.test'
+import Card from '../../Card'
 
 const BUFFER_MSECS = 10
 
@@ -92,6 +93,71 @@ describe('<App />', () => {
         expect(wrapper).to.have.state('currentPair').to.deep.equal([index])
         const emptyReturn = undefined
         expect(instance.handleCardClick(index)).to.equal(emptyReturn)
+    })
+
+    it("handleKeyPress if (e.key === 'Enter' && feedback === 'hidden')", () => {
+        const wrapper = shallow(<App />)
+        const instance = wrapper.instance()
+        const onClick = sinon.spy()
+        const index = 0
+        const feedback = 'hidden'
+        const e = new KeyboardEvent('keypress', { key: 'Enter' })
+        instance.handleKeyPress(e, onClick, index, feedback)
+        expect(onClick).to.have.been.calledWith(index)
+    })
+
+    it("handleKeyPress not if (e.key === 'Enter' && feedback === 'hidden')", () => {
+        const wrapper = shallow(<App />)
+        const instance = wrapper.instance()
+        const onClick = sinon.spy()
+        const index = 0
+        const feedback = 'visible'
+        const e = new KeyboardEvent('keypress', { key: 'a' })
+        instance.handleKeyPress(e, onClick, index, feedback)
+        expect(onClick).not.to.have.been.calledWith(index)
+    })
+
+    it('onKeyPress with simulate KeyboardEvent', () => {
+        const onClick = sinon.spy()
+        const onKeyPress = sinon.spy()
+        const index = 0
+        const wrapper = shallow(
+            <Card card="😀" feedback="hidden" index={index} onClick={onClick} onKeyPress={onKeyPress} />,
+        )
+        wrapper.simulate('keypress', { key: 'Enter' })
+        expect(onKeyPress).to.have.been.called()
+    })
+
+    it('should trigger its `onKeyPress` prop when clicked', () => {
+        // Workaround test because `enzyme-adapter-react-16` and
+        // `react 17` are not compatible so I cannot use `mount`
+        // so I use shallow
+
+        // "Currently, event simulation for the shallow renderer
+        // does not propagate as one would normally expect in a
+        // real environment. As a result, one must call .simulate()
+        // on the actual node that has the event handler set."
+        // Enzyme Documentation:
+        // https://enzymejs.github.io/enzyme/docs/api/ShallowWrapper/simulate.html
+        const wrapper = shallow(<App />)
+        const app = wrapper.instance()
+        const wrapperCard = shallow(
+            <Card
+                card="😀"
+                feedback="hidden"
+                index={0}
+                onClick={app.handleCardClick}
+                onKeyPress={app.handleKeyPress}
+            />,
+        )
+        expect(wrapper.find('Card').at(0)).to.have.props(['feedback'])
+            .deep.equal(['hidden'])
+        wrapperCard.simulate('keypress', { key: 'Enter' })
+        // ideally, with mount, we would be able to do:
+        // wrapper.simulate('keypress', { key: 'Tab' }) // set the focus on the first card
+        // wrapper.simulate('keypress', { key: 'Enter' })
+        expect(wrapper.find('Card').at(0)).to.have.props(['feedback'])
+            .deep.equal(['visible'])
     })
 
     it('handleNewPair if (matched) statement', () => {
@@ -220,8 +286,3 @@ describe('<App />', () => {
     //     }
     // })
 })
-
-// interesting way of testing props values:
-// expect(wrapper.find('Card').at(0)).to.have.props([ 'card', 'feedback',\
-// 'index', 'onClick' ])
-// .deep.equal([ "😀", 'hidden', 0, instance.handleCardClick ])

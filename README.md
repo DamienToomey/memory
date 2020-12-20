@@ -669,17 +669,4 @@ wrapper.find('Card').at(0).simulate('keypress', {key: 'Enter'})
 - [Mount does not work in enzyme with next js](https://stackoverflow.com/questions/64586111/mount-does-not-work-in-enzyme-with-next-js)
 - [ wojtekmaj/enzyme-adapter-react-17 ](https://github.com/wojtekmaj/enzyme-adapter-react-17)
 
----
-
-#### Interesting assertion
-
-[How to assert on Element 'Array attribute' in Jest/Enzyme?](https://stackoverflow.com/questions/51194556/how-to-assert-on-element-array-attribute-in-jest-enzyme)
-
-```
-const expectedProps = {
-    items: ['JK',],
-    disabled: false,
-    filterable: false,
-}
-expect(compoennt.props()).toMatchObject(expectedProps);
-```
+This makes the test of the tab key event impossible to test the change of focus on another card.

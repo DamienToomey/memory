@@ -74,6 +74,22 @@ class App extends Component {
     }
 
     /**
+     * <p>Flip a card when the card is selected (with tab) and enter key is pressed</p>
+     * <p>The card can only be selected once (i.e. only if its current feedback is `hidden`)</p>
+     * @arg {Event} event onKeyPress event
+     * @arg {Event} onClick onClick event
+     * @arg {number} index Index of card that was clicked on
+     * @arg {string} feedback Feeback of the card
+     * (See possible feedback values in {@link Card}.propTypes)
+     */
+    // Arrow function for binding
+    handleKeyPress = (e, onClick, index, feedback) => {
+        if (e.key === 'Enter' && feedback === 'hidden') {
+            onClick(index)
+        }
+    }
+
+    /**
      * Checking if both cards in the pair match
      * @param {number} index Index of the card that was clicked on
      */
@@ -151,6 +167,7 @@ class App extends Component {
                         key={index} // key must be unique and stable in time
                         index={index}
                         onClick={this.handleCardClick}
+                        onKeyPress={this.handleKeyPress}
                     />
                 ))}
                 {won && (hallOfFame ? (<HallOfFame entries={hallOfFame} />

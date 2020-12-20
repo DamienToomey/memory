@@ -36,6 +36,7 @@ describe('<App />', () => {
                 key={0}
                 index={0}
                 onClick={instance.handleCardClick}
+                onKeyPress={instance.handleKeyPress}
             />)
         } finally {
             // try/finally is enough as we are synchronous
