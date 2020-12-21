@@ -40,8 +40,8 @@ Card.propTypes = {
         'disabled',
     ]).isRequired,
     index: PropTypes.number.isRequired,
-    onKeyPress: PropTypes.func.isRequired,
     onClick: PropTypes.func.isRequired,
+    onKeyPress: PropTypes.func.isRequired,
 }
 
 export default Card

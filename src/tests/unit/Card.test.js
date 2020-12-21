@@ -18,6 +18,21 @@ describe('<Card />', () => {
         expect(onClick).to.have.been.calledWith(0) // Chai syntax
     })
 
+    it('should trigger its `onKeyPress` prop when card has focus and key is pressed', () => {
+        // In this test, the Card already has the focus as we work directly on a
+        // Card component
+        const onKeyPress = sinon.spy()
+        const enterKeyEvent = new KeyboardEvent('keypress', { key: 'Enter' })
+        const index = 0
+        const feedback = 'hidden'
+        const onClick = sinon.spy()
+        const wrapper = shallow(
+            <Card card="😀" feedback="hidden" index={index} onClick={onClick} onKeyPress={onKeyPress} />,
+        )
+        wrapper.simulate('keypress', enterKeyEvent)
+        expect(onKeyPress).to.have.been.calledWith(enterKeyEvent, onClick, index, feedback)
+    })
+
     it('should display hidden symbol when card feedback is hidden', () => {
         const onKeyPress = sinon.spy()
         const onClick = sinon.spy()
@@ -27,40 +42,17 @@ describe('<Card />', () => {
         expect(wrapper.find('span.symbol')).to.have.text(HIDDEN_SYMBOL)
     })
 
-    it('should display card symbol when card feedback is visible', () => {
+    it('should display card symbol when card feedback is visible, justMatched, justMismatched or disabled', () => {
+        const feedbacks = ['visible', 'justMatched', 'justMismatched', 'disabled']
         const onKeyPress = sinon.spy()
         const onClick = sinon.spy()
-        const wrapper = shallow(
-            <Card card="😀" feedback="visible" index={0} onClick={onClick} onKeyPress={onKeyPress} />,
-        )
-        expect(wrapper.find('span.symbol')).to.have.text('😀')
-    })
-
-    it('should display card symbol when card feedback is justMatched', () => {
-        const onKeyPress = sinon.spy()
-        const onClick = sinon.spy()
-        const wrapper = shallow(
-            <Card card="😀" feedback="justMatched" index={0} onClick={onClick} onKeyPress={onKeyPress} />,
-        )
-        expect(wrapper.find('span.symbol')).to.have.text('😀')
-    })
-
-    it('should display card symbol when card feedback is justMismatched', () => {
-        const onKeyPress = sinon.spy()
-        const onClick = sinon.spy()
-        const wrapper = shallow(
-            <Card card="😀" feedback="justMismatched" index={0} onClick={onClick} onKeyPress={onKeyPress} />,
-        )
-        expect(wrapper.find('span.symbol')).to.have.text('😀')
-    })
-
-    it('should display card symbol when card feedback is disabled', () => {
-        const onKeyPress = sinon.spy()
-        const onClick = sinon.spy()
-        const wrapper = shallow(
-            <Card card="😀" feedback="disabled" index={0} onClick={onClick} onKeyPress={onKeyPress} />,
-        )
-        expect(wrapper.find('span.symbol')).to.have.text('😀')
+        for (let i = 0; i < feedbacks.length; i += 1) {
+            const feedback = feedbacks[i]
+            const wrapper = shallow(
+                <Card card="😀" feedback={feedback} index={0} onClick={onClick} onKeyPress={onKeyPress} />,
+            )
+            expect(wrapper.find('span.symbol')).to.have.text('😀')
+        }
     })
 
     // ===== Snapshots =====
@@ -73,5 +65,3 @@ describe('<Card />', () => {
     //     expect(wrapper).to.matchSnapshot()
     // })
 })
-
-// https://stackoverflow.com/questions/38960832/how-do-you-simulate-an-keydown-enter-event-or-others-in-enzyme

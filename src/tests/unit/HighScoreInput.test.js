@@ -9,9 +9,10 @@ import HighScoreInput from '../../HighScoreInput'
 
 describe('<HighScoreInput />', () => {
     it('handleWinnerUpdate performs lower case to upper case', () => {
+        const onStored = sinon.spy()
         const wrapper = shallow(<HighScoreInput
             guesses={0}
-            onStored={new App().displayHallOfFame}
+            onStored={onStored}
         />)
         const instance = wrapper.instance()
         const input = wrapper.find('input')

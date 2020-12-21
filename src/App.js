@@ -8,7 +8,8 @@ import GuessCount from './GuessCount'
 import HallOfFame from './HallOfFame'
 import HighScoreInput from './HighScoreInput'
 
-export const SIDE = 6
+// SIDE * SIDE should be an even number as each card must be present twice to make pairs
+export const SIDE = 4
 export const SYMBOLS = '😀🎉💖🎩🐶🐱🦄🐬🌍🌛🌞💫🍎🍌🍓🍐🍟🍿'
 export const VISUAL_PAUSE_MSECS = 500
 
@@ -140,7 +141,10 @@ class App extends Component {
      * @param {HallOfFame} hallOfFame Information about the winners
      */
     // Arrow function for binding
-    // (i.e. to access `this` of the current object)
+    // (i.e. to access `this` of the current object,
+    // instead of doing
+    // this.displayHallOfFame = this.displayHallOfFame.bind(this)
+    // in the constructor)
     displayHallOfFame = (hallOfFame) => {
         this.setState({ hallOfFame })
         // where { hallOfFame } is shorthand for { hallOfFame: hallOfFame }

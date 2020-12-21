@@ -40,8 +40,8 @@ export default HallOfFame
 
 // ===== Internal helpers =====
 
-const HOF_KEY = '::Memory::HallOfFame'
-export const HOF_MAX_SIZE = 10
+export const HOF_KEY = '::Memory::HallOfFame'
+export const HOF_MAX_SIZE = 10 // limit the number of winners to HOF_MAX_SIZE in the HallOfFame
 
 /**
  * Save information about a player
@@ -60,9 +60,12 @@ export function saveHOFEntry(entry, onStored) {
     }
 
     const entries = JSON.parse(localStorage.getItem(HOF_KEY) || '[]')
+
     const insertionPoint = entries.findIndex(
         (_entry) => _entry.guesses >= newEntry.guesses,
     )
+    // findIndex does not execute the function for array elements without values
+    // i.e. when entries === []
 
     if (insertionPoint === -1) {
         entries.push(newEntry)

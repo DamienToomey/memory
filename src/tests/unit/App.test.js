@@ -12,6 +12,24 @@ import Card from '../../Card'
 const BUFFER_MSECS = 10
 
 describe('<App />', () => {
+    it('SIDE * SIDE should be an even number as each card must be present twice to make pairs', () => {
+        const nCards = SIDE * SIDE
+        expect(nCards % 2 === 0).to.be.equal(true)
+    })
+
+    it('each card symbol should be present twice to make pairs', () => {
+        const cards = App.generateCards()
+        // define function to count occurences of a given value in an array
+        const count = (arr, val) => arr.reduce((a, v) => (v === val ? a + 1 : a), 0)
+
+        const occurences = []
+
+        for (let i = 0; i < cards.length; i += 1) {
+            occurences.push(count(cards, cards[i]))
+        }
+        expect(count(occurences, 2)).to.equal(cards.length) // i.e. every card is present twice
+    })
+
     it('generateCards', () => {
         // Why is “👍”.length === 2?
         // https://stackoverflow.com/questions/38345372/why-is-length-2
@@ -45,9 +63,11 @@ describe('<App />', () => {
                 hallOfFame: null,
                 matchedCardIndices: [],
             }
-            const app = new App()
+            // const app = new App()
+            const wrapper = shallow(<App />)
+            const app = wrapper.instance()
             expect(app.state).to.deep.equal(expectedState)
-            expect(app.feedbacks).to.deep.equal(Array(SIDE * SIDE).fill('hidden'))
+            expect(app.feedbacks).to.deep.equal(Array(cards.length).fill('hidden'))
         } finally {
             stub.restore()
             // restore behaviour of generateCards for following tests
@@ -109,26 +129,15 @@ describe('<App />', () => {
     it("handleKeyPress not if (e.key === 'Enter' && feedback === 'hidden')", () => {
         const wrapper = shallow(<App />)
         const instance = wrapper.instance()
-        const onClick = sinon.spy()
+        const e = new KeyboardEvent('keypress', { key: 'a' })
         const index = 0
         const feedback = 'visible'
-        const e = new KeyboardEvent('keypress', { key: 'a' })
+        const onClick = sinon.spy()
         instance.handleKeyPress(e, onClick, index, feedback)
         expect(onClick).not.to.have.been.calledWith(index)
     })
 
-    it('onKeyPress with simulate KeyboardEvent', () => {
-        const onClick = sinon.spy()
-        const onKeyPress = sinon.spy()
-        const index = 0
-        const wrapper = shallow(
-            <Card card="😀" feedback="hidden" index={index} onClick={onClick} onKeyPress={onKeyPress} />,
-        )
-        wrapper.simulate('keypress', { key: 'Enter' })
-        expect(onKeyPress).to.have.been.called()
-    })
-
-    it('should trigger its `onKeyPress` prop when clicked', () => {
+    it('should trigger its `onKeyPress` prop when card has focus and key is pressed', () => {
         // Workaround test because `enzyme-adapter-react-16` and
         // `react 17` are not compatible so I cannot use `mount`
         // so I use shallow
@@ -152,10 +161,11 @@ describe('<App />', () => {
         )
         expect(wrapper.find('Card').at(0)).to.have.props(['feedback'])
             .deep.equal(['hidden'])
-        wrapperCard.simulate('keypress', { key: 'Enter' })
+        const enterKeyEvent = new KeyboardEvent('keypress', { key: 'Enter' })
+        wrapperCard.simulate('keypress', enterKeyEvent)
         // ideally, with mount, we would be able to do:
         // wrapper.simulate('keypress', { key: 'Tab' }) // set the focus on the first card
-        // wrapper.simulate('keypress', { key: 'Enter' })
+        // wrapper.simulate('keypress', enterKeyEvent)
         expect(wrapper.find('Card').at(0)).to.have.props(['feedback'])
             .deep.equal(['visible'])
     })
