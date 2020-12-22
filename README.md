@@ -255,7 +255,7 @@ $ sudo npm test -- --coverage --watchAll --verbose
 # --watchAll: rerun all tests, not just tests related to modified files
 ```
 
-### VI. [ESLint](https://www.npmjs.com/package/eslint)
+### VI. [ESLint](https://www.npmjs.com/package/eslint) (Javascript linter)
 
 (code quality)
 
@@ -287,6 +287,8 @@ $ ./node_modules/.bin/eslint --init
 | What format do you want your config file to be in? | JSON |
 | Would you like to install them now with npm? | Yes |
 
+The file `.eslintrc.json` has been created.
+
 After that, you can run ESLint on any file or directory like this:
 
 ```
@@ -297,20 +299,20 @@ $ ./node_modules/.bin/eslint src/HighScoreInput.js
 
 ```
 "scripts": {
-    "lint": "eslint"
+    "lint:js": "eslint"
 }
 ```
 
 #### Running ESLint on a single file
 
 ```
-$ sudo npm run lint src/HighScoreInput.js
+$ sudo npm run lint:js src/HighScoreInput.js
 ```
 
 #### Running ESLint on all files
 
 ```
-$ sudo npm run lint src/*.js src/**/*.js
+$ sudo npm run lint:js src/*.js src/tests/**/*.js 
 # src/*.js: .js files in src 
 # src/**/*.js: .js files in src subfolders
 ```
@@ -318,7 +320,7 @@ $ sudo npm run lint src/*.js src/**/*.js
 #### Generating ESLint HTML report
 
 ```
-$ sudo npm run lint src/*.js src/**/*.js -- -f html -o lint_report.html
+$ sudo npm run lint:js src/*.js src/tests/**/*.js  -- -f html -o js_lint_report.html
 ```
 
 #### Troubleshooting
@@ -336,7 +338,7 @@ So to answer your questions, Yes its behaving as expected."
 If you really want to remove the npm error, do:
 - `eslint; exit 0` in `package.json`
 or
-- `npm run lint -s`
+- `npm run lint:js -s`
 
 **WARNING**: when building the app with `npm run build`, this also runs the linter when the file `.eslintrc.json` exists.
 
@@ -347,7 +349,7 @@ This means that the linter will fail the build job in the CI pipeline if there a
 #### Fix ESLint related errors
 
 ```
-$ sudo npm run lint src/*.js src/**/*.js -- --fix
+$ sudo npm run lint:js src/*.js src/tests/**/*.js -- --fix
 ```
 
 This will fix linting errors that can be automatically fixed. You might have to fix other errors manually.
@@ -429,7 +431,75 @@ Add the following rule in `.eslintrc` to allow devDependencies to be used by tes
 }
 ```
 
-### VII. SonarCloud
+### VII. (stylelint)[https://www.npmjs.com/package/stylelint] (CSS linter)
+
+- Reference: [stylelint/docs/user-guide/get-started.md](https://github.com/stylelint/stylelint/blob/master/docs/user-guide/get-started.md)
+
+#### Setting up stylelint
+
+```
+$ sudo npm install --save-dev stylelint stylelint-config-standard
+```
+
+#### Create a `.stylelintrc.json` configuration file in the root of your project:
+
+```
+{
+  "extends": "stylelint-config-standard"
+}
+```
+
+#### Adding stylelint script in `package.json` to run linter on CSS
+
+```
+"scripts": {
+    "lint:css": "npx stylelint"
+}
+```
+
+#### Run stylelint on, for example, all the CSS files in your project:
+
+```
+$ sudo npm run lint:css src/*.css public/*.css
+```
+
+#### Fix stylelint related errors
+
+```
+$ sudo npm run lint:css src/*.css public/*.css -- --fix
+```
+
+#### Generating stylelint HTML report
+
+```
+sudo npm run lint:css src/*.css public/*.css -- -o css_lint_report.html
+# WARNING: generates report only if there are linting errors
+```
+
+### VIII. [HTMLHint](https://github.com/htmlhint/HTMLHint)
+- Reference: [stylelint/docs/user-guide/get-started.md](https://github.com/stylelint/stylelint/blob/master/docs/user-guide/get-started.md)
+
+#### Setting up HTMLHint
+
+```
+$ sudo npm install htmlhint --save-dev
+```
+
+#### Adding HTMLHint script in `package.json` to run linter on CSS
+
+```
+"scripts": {
+    "lint:html": "htmlhint"
+}
+```
+
+#### Run HTMLHint on, for example, all the CSS files in your project:
+
+```
+$ sudo npm run lint:html src/*.html public/*.html
+```
+
+### IX. SonarCloud
 
 (code quality)
 
@@ -471,7 +541,7 @@ $ sudo npm test -- --coverage --watchAll --verbose --testResultsProcessor jest-s
 - Go to https://sonarcloud.io/dashboard?id=DamienToomey_memory2
 - Click on the url under the label `Quality Gate`
 
-### VIII. Documentation
+### X. Documentation
 
 #### [JSDoc](https://jsdoc.app)
 
@@ -508,7 +578,7 @@ Add the following command in `package.json`:
 $ sudo npm run docs
 ```
  
-### IX. Docker deployment (with static server)
+### XI. Docker deployment (with static server)
 
 - Reference: [https://create-react-app.dev/docs/deployment/#static-server](https://create-react-app.dev/docs/deployment)
 
@@ -532,7 +602,7 @@ $ sudo docker container logs b398f4f1c4ed -f # wait until server is ready
 or
 - `{IP address of computer on which Docker container is running}:3000`
 
-### X. Deployment (without any server)
+### XII. Deployment (without any server)
 
 - References:
   - [Stack Overflow | Run React application without server](https://stackoverflow.com/questions/40342100/run-react-application-without-server)
@@ -540,7 +610,7 @@ or
 
 (not used in this repository but interesting for future projects)
 
-### XI. Deployment on GitHub Pages
+### XIII. Deployment on GitHub Pages
 
 - Reference: [Create React App Documentation | Deployment](https://create-react-app.dev/docs/deployment/#github-pages)
 
@@ -613,14 +683,14 @@ git push origin gh-pages
   - [How to force GitHub Pages build?](https://stackoverflow.com/questions/24098792/how-to-force-github-pages-build/61706020#61706020)
     - "It's not currently possible to manually trigger a rebuild, without pushing a commit to the appropriate branch."
 
-### XII. General Information
+### XIV. General Information
 
 - The Dockerfile was created for educational purposes as I have not pushed an image for this app on any registry
 
 - `.gitlab-ci.yml` is also for educational purposes as I started this app on GitLab and finally decided to migrate to GitHub to use GitHub Actions instead of GitLab CI.
   - FYI:`.gitlab-ci.yml` and `.github/workflows/github-ci.yml` do not exaclty match as I had not reached the deployment step when working with GitLab CI
 
-### XIII. References
+### XV. References
 
 - [actions/cache for nmp | GitHub](https://github.com/actions/cache/blob/main/examples.md#using-multiple-systems-and-npm-config)
 
@@ -653,7 +723,7 @@ git push origin gh-pages
 
 - [Setting up ESLint in React](https://medium.com/@RossWhitehouse/setting-up-eslint-in-react-c20015ef35f7)
 
-### XIV. Known issues
+### XVI. Known issues
 
 #### Keypress event is not fired in `Card.test.js` when testing Enter and Tab keypresses
 

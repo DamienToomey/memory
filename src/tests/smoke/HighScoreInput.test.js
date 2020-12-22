@@ -7,7 +7,6 @@ import sinon from 'sinon'
 import HighScoreInput from '../../HighScoreInput'
 
 describe('<HighScoreInput />', () => {
-    // Smoke test: test if rendering works
     it('renders without crashing', () => {
         const onStored = sinon.spy()
         const wrapper = shallow(<HighScoreInput

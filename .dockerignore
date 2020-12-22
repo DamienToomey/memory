@@ -8,4 +8,5 @@ README.md
 reports
 sonar-project.properties
 .eslintcache
-lint_report.html
+js_lint_report.html
+css_lint_report.html

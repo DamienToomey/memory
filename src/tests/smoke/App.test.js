@@ -12,7 +12,6 @@ import HallOfFame from '../../HallOfFame'
 import HighScoreInput from '../../HighScoreInput'
 
 describe('<App />', () => {
-    // Smoke test: test if rendering works
     it('renders without crashing', () => {
         // What is the difference between a stub and a spy ?
         // For a stub, we can specify what it returns
@@ -46,7 +45,7 @@ describe('<App />', () => {
         }
     })
 
-    it('render for won === true and non null FAKE_HOF', () => {
+    it('renders without crashing for won === true and non null FAKE_HOF', () => {
         const wrapper = shallow(<App />)
         const instance = wrapper.instance()
         const { cards } = instance.state
@@ -54,7 +53,7 @@ describe('<App />', () => {
         expect(wrapper).to.contain(<HallOfFame entries={FAKE_HOF} />)
     })
 
-    it('render for won === true and null FAKE_HOF', () => {
+    it('renders without crashing for won === true and null FAKE_HOF', () => {
         const wrapper = shallow(<App />)
         const instance = wrapper.instance()
         const { cards } = instance.state

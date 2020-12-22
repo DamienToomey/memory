@@ -1,4 +1,4 @@
-.memory>.card {
+.memory > .card {
     font-size: 2em;
     flex: 1 1 calc(100% / 6 - 0.4em);
     outline: 0.08em solid silver;
@@ -7,34 +7,34 @@
     cursor: default;
 }
 
-.memory>.card.hidden {
+.memory > .card.hidden {
     background: silver;
 }
 
-.memory>.card.hidden:focus {
+.memory > .card.hidden:focus {
     outline: 0.1em solid #195b94;
 }
 
-.memory>.card.justMatched,
-.memory>.card.justMismatched {
+.memory > .card.justMatched,
+.memory > .card.justMismatched {
     outline: 0.1em solid green;
 }
 
-.memory>.card.justMismatched {
+.memory > .card.justMismatched {
     outline-color: red;
 }
 
-.memory>.card.visible {
+.memory > .card.visible {
     cursor: not-allowed;
     pointer-events: none;
 }
 
-.memory>.card.disabled {
+.memory > .card.disabled {
     cursor: not-allowed;
     pointer-events: none;
     outline-color: black;
 }
 
-.memory>.card>.symbol {
+.memory > .card > .symbol {
     margin: auto;
 }

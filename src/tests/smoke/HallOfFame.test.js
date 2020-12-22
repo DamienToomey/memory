@@ -19,7 +19,6 @@ const FAKE_HOF = [
 export default FAKE_HOF
 
 describe('<HallOfFame />', () => {
-    // Smoke test: test if rendering works
     it('renders without crashing', () => {
         const wrapper = shallow(<HallOfFame entries={FAKE_HOF} />)
 

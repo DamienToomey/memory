@@ -7,12 +7,7 @@ import sinon from 'sinon'
 import Card from '../../Card'
 
 describe('<Card />', () => {
-    // Smoke test: test if rendering works
     it('renders without crashing', () => {
-        // const wrapperApp = shallow(< App/>)
-        // const app = wrapperApp.instance()
-        // const onClick = sinon.spy(app, 'handleCardClick')
-        // const onKeyPress = sinon.spy(app, 'handleKeyPress')
         const onClick = sinon.spy()
         const onKeyPress = sinon.spy()
 
