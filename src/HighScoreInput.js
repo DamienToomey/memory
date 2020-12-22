@@ -62,7 +62,7 @@ class HighScoreInput extends Component {
                             required
                         />
                     </label>
-                    <button type="submit">You have won!</button>
+                    <button type="submit">Submit</button>
                 </p>
             </form>
         )

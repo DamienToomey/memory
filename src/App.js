@@ -9,7 +9,7 @@ import HallOfFame from './HallOfFame'
 import HighScoreInput from './HighScoreInput'
 
 // SIDE * SIDE should be an even number as each card must be present twice to make pairs
-export const SIDE = 2
+export const SIDE = 4
 export const SYMBOLS = '😀🎉💖🎩🐶🐱🦄🐬🌍🌛🌞💫🍎🍌🍓🍐🍟🍿'
 export const VISUAL_PAUSE_MSECS = 500
 
