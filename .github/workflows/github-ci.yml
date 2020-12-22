@@ -8,7 +8,29 @@ on:
 # [Building and testing Node.js | GitHub Documentation](https://docs.github.com/en/free-pro-team@latest/actions/guides/building-and-testing-nodejs)
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  lint:
+    runs-on: ubuntu-18.04
+    strategy:
+      matrix:
+        node-version: [12.x]
+    steps:
+      - name: Checkout branch on which commit was performed 
+        uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: npm ci
+        run: npm ci
+      - name: npm run lint:js
+        run: npm run lint:js src/*.js src/tests/**/*.js # src/*.js will also be linted with npm run build
+      - name: npm run lint:css
+        run: npm run lint:css src/*.css public/*.css
+      - name: npm run lint:html
+        run: npm run lint:html src/*.html public/*.html
+
   build:
+    needs: lint
     runs-on: ubuntu-18.04
     strategy:
       matrix:
@@ -33,27 +55,6 @@ jobs:
           name: build_artifact
           path: "*build/"
           retention-days: 1
-
-  lint:
-    runs-on: ubuntu-18.04
-    strategy:
-      matrix:
-        node-version: [12.x]
-    steps:
-      - name: Checkout branch on which commit was performed 
-        uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-      - name: npm ci
-        run: npm ci
-      - name: npm run lint:js
-        run: npm run lint:js src/*.js src/tests/**/*.js # src/*.js will also be linted with npm run build
-      - name: npm run lint:css
-        run: npm run lint:css src/*.css public/*.css
-      - name: npm run lint:html
-        run: npm run lint:html src/*.html public/*.html
       
   tests:
     runs-on: ubuntu-18.04
@@ -140,7 +141,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   deploy:
-    needs: [build, quality, docs, lint-test-files]
+    needs: [build, quality, docs]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout branch gh-pages
