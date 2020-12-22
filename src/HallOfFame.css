@@ -7,3 +7,8 @@
 .hallOfFame tr:nth-child(even) {
     background: #eee;
 }
+
+.hallOfFame td,
+.hallOfFame th {
+    padding: 0 15px 0 15px;
+}
