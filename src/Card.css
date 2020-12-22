@@ -1,40 +1,34 @@
-.memory > .card {
+.card {
     font-size: 2em;
-    flex: 1 1 calc(100% / 6 - 0.4em);
     outline: 0.08em solid silver;
     margin: 0.2em;
-    display: flex;
     cursor: default;
 }
 
-.memory > .card.hidden {
+.card.hidden {
     background: silver;
 }
 
-.memory > .card.hidden:focus {
+.card.hidden:focus {
     outline: 0.1em solid #195b94;
 }
 
-.memory > .card.justMatched,
-.memory > .card.justMismatched {
+.card.justMatched,
+.card.justMismatched {
     outline: 0.1em solid green;
 }
 
-.memory > .card.justMismatched {
+.card.justMismatched {
     outline-color: red;
 }
 
-.memory > .card.visible {
+.card.visible {
     cursor: not-allowed;
     pointer-events: none;
 }
 
-.memory > .card.disabled {
+.card.disabled {
     cursor: not-allowed;
     pointer-events: none;
     outline-color: black;
-}
-
-.memory > .card > .symbol {
-    margin: auto;
 }

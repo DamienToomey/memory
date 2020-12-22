@@ -1,11 +1,6 @@
 .hallOfFame {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.hallOfFame .date,
-.hallOfFame .guesses {
     width: 20%;
+    border-collapse: collapse;
     text-align: center;
 }
 

@@ -1,7 +1,10 @@
 .memory > .guesses {
+    display: inline;
     font-size: 1em;
-    width: calc(100% - 0.4em);
+
+    /* width: calc(100% - 0.4em); */
     margin: 0.2em;
-    text-align: right;
+
+    /* text-align: right; */
     font-family: Menlo, Monaco, Consolas, Inconsolata, 'Courier New', monospace;
 }

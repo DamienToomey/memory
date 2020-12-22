@@ -13,7 +13,9 @@ describe('<HighScoreInput />', () => {
             guesses={0}
             onStored={onStored}
         />)
-        expect(wrapper.find('form>p>label')).to.have.text('Well done! Please enter your name:')
-        expect(wrapper.find('form>p>button')).to.have.text('I have won!')
+        expect(wrapper.find('form>p>label')).to.have.text('Well done!')
+        expect(wrapper.find('form>p>label>input')).to.have.props(['placeholder'])
+            .deep.equal(['Enter your name'])
+        expect(wrapper.find('form>p>button')).to.have.text('You have won!')
     })
 })

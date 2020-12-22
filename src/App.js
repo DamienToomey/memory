@@ -9,7 +9,7 @@ import HallOfFame from './HallOfFame'
 import HighScoreInput from './HighScoreInput'
 
 // SIDE * SIDE should be an even number as each card must be present twice to make pairs
-export const SIDE = 6
+export const SIDE = 2
 export const SYMBOLS = '😀🎉💖🎩🐶🐱🦄🐬🌍🌛🌞💫🍎🍌🍓🍐🍟🍿'
 export const VISUAL_PAUSE_MSECS = 500
 
@@ -160,20 +160,40 @@ class App extends Component {
         // Game is won when there are as many matched cards as there are cards
         // in the game
         const won = matchedCardIndices.length === cards.length
+        const table = []
+        const copyCards = [...cards]
+
+        // reshape 1D array to 2D array with SIDE rows
+        // and SIDE columns
+        while (copyCards.length) {
+            table.push(copyCards.splice(0, SIDE))
+        }
         return (
             <div className="memory">
-                {/* <span>{`Seconds ${new Date().getSeconds()}`}</span> */}
                 <GuessCount guesses={guesses} />
-                { cards.map((card, index) => (
-                    <Card
-                        card={card}
-                        feedback={this.getFeedbackForCard(index)}
-                        key={index} // key must be unique and stable in time
-                        index={index}
-                        onClick={this.handleCardClick}
-                        onKeyPress={this.handleKeyPress}
-                    />
-                ))}
+                <table>
+                    <tbody>
+                        { table.map((row, iRow) => (
+                            <tr key={iRow}>
+                                { row.map((card, iCol) => {
+                                    const index = SIDE * iRow + iCol
+                                    return (
+                                        <td key={index}>
+                                            <Card
+                                                card={card}
+                                                feedback={this.getFeedbackForCard(index)}
+                                                key={index} // key must be unique and stable in time
+                                                index={index}
+                                                onClick={this.handleCardClick}
+                                                onKeyPress={this.handleKeyPress}
+                                            />
+                                        </td>
+                                    )
+                                })}
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
                 {won && (hallOfFame ? (<HallOfFame entries={hallOfFame} />
                 ) : (
                     <HighScoreInput

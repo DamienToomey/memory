@@ -11,6 +11,13 @@ import './HallOfFame.css'
  */
 const HallOfFame = ({ entries }) => (
     <table className="hallOfFame">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Guesses</th>
+                <th>Player</th>
+            </tr>
+        </thead>
         <tbody>
             {entries.map(({
                 date, guesses, id, player,

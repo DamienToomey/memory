@@ -1,7 +1,23 @@
 .memory {
+    /* establish flex container */
     display: flex;
-    flex-wrap: wrap;
-    width: 300px;
-    margin: auto;
+
+    /* make main axis vertical */
+    flex-direction: column;
+
+    /* center items vertically, in this case */
+    justify-content: center;
+
+    /* center items horizontally, in this case */
+    align-items: center;
+
+    /* width: 300px; */
+
+    /* margin: auto; */
     user-select: none;
+    margin: auto;
+}
+
+.memory > table {
+    margin: 5px;
 }
