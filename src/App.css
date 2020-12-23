@@ -10,10 +10,6 @@
 
     /* center items horizontally, in this case */
     align-items: center;
-
-    /* width: 300px; */
-
-    /* margin: auto; */
     user-select: none;
     margin: auto;
 }

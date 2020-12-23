@@ -1,6 +1,8 @@
 # Memory
 
-Based on a Openclassrooms course: [Réalisez une application web avec React.js](https://openclassrooms.com/fr/courses/4664381-realisez-une-application-web-avec-react-js/4664801-demarrez-facilement-avec-create-react-app)
+This app is based on an Openclassrooms:
+  - Course: [Réalisez une application web avec React.js](https://openclassrooms.com/fr/courses/4664381-realisez-une-application-web-avec-react-js/4664801-demarrez-facilement-avec-create-react-app)
+  - GitHub: [Memory game](https://github.com/deliciousinsights/ocr-memory)
 
 - Open App: https://damientoomey.github.io/memory/app
 - Open Documentation: https://damientoomey.github.io/memory/docs
