@@ -33,7 +33,7 @@
     outline-color: black;
 }
 
-.card>span {
+.card > span {
     font-family: "Segoe UI Emoji", "Segoe UI Symbol", Arial, sans-serif;
     font-size: 2em;
     color: transparent;
