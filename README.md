@@ -1,4 +1,12 @@
-# Memory
+<p align="center">
+  <a href="https://linkedin.com/in/damien-toomey">
+    <img
+      alt="Memory"
+      src="images/logo/logo.png"
+      width="300"
+    />
+  </a>
+</p>
 
 This app is based on an Openclassrooms:
   - Course: [Réalisez une application web avec React.js](https://openclassrooms.com/fr/courses/4664381-realisez-une-application-web-avec-react-js/4664801-demarrez-facilement-avec-create-react-app)
