@@ -12,11 +12,19 @@ This app is based on an Openclassrooms:
   - Course: [Réalisez une application web avec React.js](https://openclassrooms.com/fr/courses/4664381-realisez-une-application-web-avec-react-js/4664801-demarrez-facilement-avec-create-react-app)
   - GitHub: [Memory game](https://github.com/deliciousinsights/ocr-memory)
 
-- Open App: https://damientoomey.github.io/memory/app
-- Open Documentation: https://damientoomey.github.io/memory/docs
-- Open Coverage Report: https://damientoomey.github.io/memory/coverage/lcov-report
-
 This app uses [React](https://reactjs.org) and was created with [Create React App](https://reactjs.org/docs/create-a-new-react-app.html).
+
+#### App
+
+https://damientoomey.github.io/memory/app
+
+#### Documentation
+
+https://damientoomey.github.io/memory/docs
+
+#### Coverage Report
+
+https://damientoomey.github.io/memory/coverage/lcov-report
 
 ### I. CI Badges
 
