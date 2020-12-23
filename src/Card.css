@@ -34,8 +34,9 @@
 }
 
 .card > span {
-    font-family: "Segoe UI Emoji", "Segoe UI Symbol", Arial, sans-serif;
-    font-size: 2em;
-    color: transparent;
-    text-shadow: 0 0 0 red;
+    font-size: 1.2em;
+    padding: 0 3px 0 3px;
+
+    /* color: transparent;
+    text-shadow: 0 0 0 red; */
 }

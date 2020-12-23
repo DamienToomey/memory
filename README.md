@@ -727,7 +727,7 @@ git push origin gh-pages
 
 ### XVI. Known issues
 
-#### Keypress event is not fired in `Card.test.js` when testing Enter and Tab keypresses
+#### Keypress event is not fired in `Card.test.js` when testing Enter and Tab keypresses with Enzyme
 
 Most likely lead: `enzyme-adapter-react-16` and `react 17` are not compatible so I cannot use `mount`.
 
@@ -742,3 +742,14 @@ wrapper.find('Card').at(0).simulate('keypress', {key: 'Enter'})
 - [ wojtekmaj/enzyme-adapter-react-17 ](https://github.com/wojtekmaj/enzyme-adapter-react-17)
 
 This makes the test of the tab key event impossible to test the change of focus on another card.
+
+#### Emojis are displayed as empty boxes
+
+- [Emojis don't display on Google Chrome in Windows](https://github.com/twitter/twemoji/issues/205)
+
+If the following emoji 😀 is not displayed as a smiley face then your browser does not display emojis properly.
+
+Solution: use svg images of emojis given on [twitter/twemoji](https://github.com/twitter/twemoji/tree/gh-pages) instead of using a list of emoji characters in `App.js` (`SYMBOLS` constant)
+
+export const  = '😀🎉💖🎩🐶🐱🦄🐬🌍🌛🌞💫🍎🍌🍓🍐🍟🍿'
+
