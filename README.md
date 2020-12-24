@@ -3,30 +3,10 @@
     <img
       alt="Memory"
       src="images/logo/logo.png"
-      width="300"
+      width="300px"
     />
   </a>
 </p>
-
-This app is based on an Openclassrooms:
-  - Course: [Réalisez une application web avec React.js](https://openclassrooms.com/fr/courses/4664381-realisez-une-application-web-avec-react-js/4664801-demarrez-facilement-avec-create-react-app)
-  - GitHub: [Memory game](https://github.com/deliciousinsights/ocr-memory)
-
-This app uses [React](https://reactjs.org) and was created with [Create React App](https://reactjs.org/docs/create-a-new-react-app.html).
-
-#### App
-
-https://damientoomey.github.io/memory/app
-
-#### Documentation
-
-https://damientoomey.github.io/memory/docs
-
-#### Coverage Report
-
-https://damientoomey.github.io/memory/coverage/lcov-report
-
-### I. CI Badges
 
 <p align="center">
       <a href="https://sonarcloud.io/dashboard?id=DamienToomey_memory2">
@@ -64,7 +44,27 @@ https://damientoomey.github.io/memory/coverage/lcov-report
       </a>
 </p>
 
-### II. How was the project created?
+This app is based on an Openclassrooms:
+  - Course: [Réalisez une application web avec React.js](https://openclassrooms.com/fr/courses/4664381-realisez-une-application-web-avec-react-js/4664801-demarrez-facilement-avec-create-react-app)
+  - GitHub: [Memory game](https://github.com/deliciousinsights/ocr-memory)
+
+This app uses [React](https://reactjs.org) and was created with [Create React App](https://reactjs.org/docs/create-a-new-react-app.html).
+
+#### App
+
+https://damientoomey.github.io/memory/app
+
+#### Documentation
+
+https://damientoomey.github.io/memory/docs
+
+#### Coverage Report
+
+https://damientoomey.github.io/memory/coverage/lcov-report
+
+
+
+### I. How was the project created?
 
 #### Install nodejs
 
@@ -133,7 +133,7 @@ $ create-react-app memory
 $ sudo npm start
 ```
 
-### III. How was this repository created?
+### II. How was this repository created?
 
 - Go to https://github.com
 - Create a blank project named `memory`
@@ -146,7 +146,7 @@ $ git commit -m "Initial commit`
 $ git push --set-upstream origin master
 ```
 
-### IV. Install app specific modules
+### III. Install app specific modules
 
 - Shuffle values in a collection
 
@@ -162,7 +162,7 @@ $ sudo npm install --save prop-types
 # They will be automatically removed when building the app for production
 ```
 
-### V. Tests
+### IV. Tests
 
 #### [Jest](https://jestjs.io)
 
@@ -273,7 +273,7 @@ $ sudo npm test -- --coverage --watchAll --verbose
 # --watchAll: rerun all tests, not just tests related to modified files
 ```
 
-### VI. [ESLint](https://www.npmjs.com/package/eslint) (Javascript linter)
+### V. [ESLint](https://www.npmjs.com/package/eslint) (Javascript linter)
 
 (code quality)
 
@@ -449,7 +449,7 @@ Add the following rule in `.eslintrc` to allow devDependencies to be used by tes
 }
 ```
 
-### VII. (stylelint)[https://www.npmjs.com/package/stylelint] (CSS linter)
+### VI. [stylelint](https://www.npmjs.com/package/stylelint) (CSS linter)
 
 - Reference: [stylelint/docs/user-guide/get-started.md](https://github.com/stylelint/stylelint/blob/master/docs/user-guide/get-started.md)
 
@@ -494,7 +494,7 @@ sudo npm run lint:css src/*.css public/*.css -- -o css_lint_report.html
 # WARNING: generates report only if there are linting errors
 ```
 
-### VIII. [HTMLHint](https://github.com/htmlhint/HTMLHint)
+### VII. [HTMLHint](https://github.com/htmlhint/HTMLHint)
 - Reference: [stylelint/docs/user-guide/get-started.md](https://github.com/stylelint/stylelint/blob/master/docs/user-guide/get-started.md)
 
 #### Setting up HTMLHint
@@ -517,7 +517,7 @@ $ sudo npm install htmlhint --save-dev
 $ sudo npm run lint:html src/*.html public/*.html
 ```
 
-### IX. SonarCloud
+### VIII. SonarCloud
 
 (code quality)
 
@@ -559,7 +559,7 @@ $ sudo npm test -- --coverage --watchAll --verbose --testResultsProcessor jest-s
 - Go to https://sonarcloud.io/dashboard?id=DamienToomey_memory2
 - Click on the url under the label `Quality Gate`
 
-### X. Documentation
+### IX. Documentation
 
 #### [JSDoc](https://jsdoc.app)
 
@@ -596,7 +596,7 @@ Add the following command in `package.json`:
 $ sudo npm run docs
 ```
  
-### XI. Docker deployment (with static server)
+### X. Docker deployment (with static server)
 
 - Reference: [https://create-react-app.dev/docs/deployment/#static-server](https://create-react-app.dev/docs/deployment)
 
@@ -620,7 +620,7 @@ $ sudo docker container logs b398f4f1c4ed -f # wait until server is ready
 or
 - `{IP address of computer on which Docker container is running}:3000`
 
-### XII. Deployment (without any server)
+### XI. Deployment (without any server)
 
 - References:
   - [Stack Overflow | Run React application without server](https://stackoverflow.com/questions/40342100/run-react-application-without-server)
@@ -628,7 +628,7 @@ or
 
 (not used in this repository but interesting for future projects)
 
-### XIII. Deployment on GitHub Pages
+### XII. Deployment on GitHub Pages
 
 - Reference: [Create React App Documentation | Deployment](https://create-react-app.dev/docs/deployment/#github-pages)
 
@@ -701,14 +701,14 @@ git push origin gh-pages
   - [How to force GitHub Pages build?](https://stackoverflow.com/questions/24098792/how-to-force-github-pages-build/61706020#61706020)
     - "It's not currently possible to manually trigger a rebuild, without pushing a commit to the appropriate branch."
 
-### XIV. General Information
+### XIII. General Information
 
 - The Dockerfile was created for educational purposes as I have not pushed an image for this app on any registry
 
 - `.gitlab-ci.yml` is also for educational purposes as I started this app on GitLab and finally decided to migrate to GitHub to use GitHub Actions instead of GitLab CI.
   - FYI:`.gitlab-ci.yml` and `.github/workflows/github-ci.yml` do not exaclty match as I had not reached the deployment step when working with GitLab CI
 
-### XV. References
+### XIV. References
 
 - [actions/cache for nmp | GitHub](https://github.com/actions/cache/blob/main/examples.md#using-multiple-systems-and-npm-config)
 
@@ -741,7 +741,7 @@ git push origin gh-pages
 
 - [Setting up ESLint in React](https://medium.com/@RossWhitehouse/setting-up-eslint-in-react-c20015ef35f7)
 
-### XVI. Known issues
+### XV. Known issues
 
 #### Keypress event is not fired in `Card.test.js` when testing Enter and Tab keypresses with Enzyme
 
@@ -765,7 +765,4 @@ This makes the test of the tab key event impossible to test the change of focus 
 
 If the following emoji 😀 is not displayed as a smiley face then your browser does not display emojis properly.
 
-Solution: use svg images of emojis given on [twitter/twemoji](https://github.com/twitter/twemoji/tree/gh-pages) instead of using a list of emoji characters in `App.js` (`SYMBOLS` constant)
-
-export const  = '😀🎉💖🎩🐶🐱🦄🐬🌍🌛🌞💫🍎🍌🍓🍐🍟🍿'
-
+Solution: use svg images of emojis given on [twitter/twemoji](https://github.com/twitter/twemoji/tree/gh-pages) instead of using a list of emoji characters in `App.js` (`SYMBOLS` constant).

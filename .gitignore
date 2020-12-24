@@ -1,5 +1,8 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# odp
+/.~lock.*
+
 # stylelint
 /css_lint_report.html
 
