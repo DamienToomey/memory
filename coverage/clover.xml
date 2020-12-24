@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1608765229901" clover="3.2.0">
-  <project timestamp="1608765229901" name="All files">
+<coverage generated="1608840475886" clover="3.2.0">
+  <project timestamp="1608840475886" name="All files">
     <metrics statements="109" coveredstatements="103" conditionals="40" coveredconditionals="38" methods="26" coveredmethods="25" elements="175" coveredelements="166" complexity="0" loc="109" ncloc="109" packages="1" files="7" classes="7"/>
     <file name="App.js" path="/home/runner/work/memory/memory/src/App.js">
       <metrics statements="57" coveredstatements="57" conditionals="28" coveredconditionals="28" methods="11" coveredmethods="11"/>
@@ -34,33 +34,33 @@
       <line num="104" count="9" type="stmt"/>
       <line num="105" count="9" type="stmt"/>
       <line num="106" count="9" type="cond" truecount="2" falsecount="0"/>
-      <line num="107" count="5" type="stmt"/>
+      <line num="107" count="4" type="stmt"/>
       <line num="109" count="9" type="stmt"/>
-      <line num="119" count="2164" type="stmt"/>
-      <line num="120" count="2164" type="stmt"/>
-      <line num="121" count="2164" type="stmt"/>
-      <line num="122" count="2164" type="stmt"/>
-      <line num="124" count="2164" type="cond" truecount="4" falsecount="0"/>
+      <line num="119" count="2148" type="stmt"/>
+      <line num="120" count="2148" type="stmt"/>
+      <line num="121" count="2148" type="stmt"/>
+      <line num="122" count="2148" type="stmt"/>
+      <line num="124" count="2148" type="cond" truecount="4" falsecount="0"/>
       <line num="125" count="14" type="stmt"/>
-      <line num="126" count="2150" type="cond" truecount="2" falsecount="0"/>
+      <line num="126" count="2134" type="cond" truecount="2" falsecount="0"/>
       <line num="127" count="1620" type="cond" truecount="2" falsecount="0"/>
-      <line num="128" count="530" type="cond" truecount="2" falsecount="0"/>
-      <line num="130" count="46" type="cond" truecount="2" falsecount="0"/>
-      <line num="133" count="484" type="cond" truecount="2" falsecount="0"/>
-      <line num="135" count="2164" type="stmt"/>
-      <line num="136" count="2164" type="stmt"/>
+      <line num="128" count="514" type="cond" truecount="2" falsecount="0"/>
+      <line num="130" count="44" type="cond" truecount="2" falsecount="0"/>
+      <line num="133" count="470" type="cond" truecount="2" falsecount="0"/>
+      <line num="135" count="2148" type="stmt"/>
+      <line num="136" count="2148" type="stmt"/>
       <line num="148" count="33" type="stmt"/>
       <line num="149" count="20" type="stmt"/>
-      <line num="159" count="103" type="stmt"/>
-      <line num="162" count="103" type="stmt"/>
-      <line num="163" count="103" type="stmt"/>
-      <line num="164" count="103" type="stmt"/>
-      <line num="168" count="103" type="stmt"/>
-      <line num="169" count="537" type="stmt"/>
-      <line num="171" count="103" type="stmt"/>
-      <line num="177" count="537" type="stmt"/>
-      <line num="179" count="2148" type="stmt"/>
-      <line num="180" count="2148" type="stmt"/>
+      <line num="159" count="102" type="stmt"/>
+      <line num="162" count="102" type="stmt"/>
+      <line num="163" count="102" type="stmt"/>
+      <line num="164" count="102" type="stmt"/>
+      <line num="168" count="102" type="stmt"/>
+      <line num="169" count="533" type="stmt"/>
+      <line num="171" count="102" type="stmt"/>
+      <line num="177" count="533" type="stmt"/>
+      <line num="179" count="2132" type="stmt"/>
+      <line num="180" count="2132" type="stmt"/>
     </file>
     <file name="Card.js" path="/home/runner/work/memory/memory/src/Card.js">
       <metrics statements="6" coveredstatements="6" conditionals="2" coveredconditionals="2" methods="3" coveredmethods="3"/>
